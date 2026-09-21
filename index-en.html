@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domijoch Analytics | Portfolio</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2300d4ff' d='M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z'/></svg>" type="image/svg+xml">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root { --primary: #00d4ff; --secondary: #005f99; --glass: rgba(255, 255, 255, 0.05); --glass-border: rgba(255, 255, 255, 0.15); --text-light: #f8fafc; --text-gray: #cbd5e1; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background: radial-gradient(circle at 75% 50%, #0077b6 0%, #002244 50%, #000614 100%); background-attachment: fixed; color: var(--text-light); min-height: 100vh; overflow-x: hidden; }
+        
+        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+
+        .navbar { padding: 0.8rem 5%; background: rgba(0, 6, 20, 0.7); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .nav-left, .nav-right { display: flex; align-items: center; gap: 20px; }
+        .logo { font-weight: 800; font-size: 1.2rem; color: var(--primary); letter-spacing: 1px; }
+        
+        .lang-switch { display: flex; gap: 5px; background: var(--glass); padding: 5px 10px; border-radius: 20px; border: 1px solid var(--glass-border); font-weight: bold; font-size: 0.9rem; }
+        .lang-switch a { text-decoration: none; color: var(--text-gray); transition: 0.3s; }
+        .lang-switch a.active { color: var(--primary); }
+        .lang-switch a:hover { color: white; }
+
+        .social-icons { display: flex; gap: 10px; border-right: 1px solid var(--glass-border); padding-right: 15px; }
+        .social-icons a { display: flex; justify-content: center; align-items: center; width: 35px; height: 35px; background: var(--glass); border-radius: 50%; color: var(--text-gray); text-decoration: none; transition: 0.3s; font-size: 1.1rem; border: 1px solid transparent; }
+        .social-icons a.whatsapp:hover { background: #25D366; color: white; box-shadow: 0 0 15px #25D366; border-color: #25D366; transform: translateY(-3px); }
+        .social-icons a.linkedin:hover { background: #0077b5; color: white; box-shadow: 0 0 15px #0077b5; border-color: #0077b5; transform: translateY(-3px); }
+        @media (max-width: 600px) { .social-icons, .lang-switch { display: none; } }
+
+        .hero { text-align: center; padding: 5rem 1rem 3rem; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; color: white; text-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
+        .hero h1 span { color: var(--primary); }
+        .hero p { color: var(--text-gray); font-size: 1.2rem; letter-spacing: 1px; margin-bottom: 2rem; }
+        .cv-btn { display: inline-flex; align-items: center; gap: 10px; padding: 1rem 2.5rem; font-size: 1.1rem; background: linear-gradient(45deg, var(--primary), var(--secondary)); color: white; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3); transition: 0.4s; }
+        .cv-btn:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5); }
+
+        .skills-section { max-width: 800px; margin: 0 auto 4rem; padding: 2rem; background: rgba(0, 10, 30, 0.5); border-radius: 20px; border: 1px solid var(--glass-border); backdrop-filter: blur(16px); text-align: center; }
+        .skills-section h2 { margin-bottom: 1.5rem; color: var(--primary); font-size: 1.8rem; }
+        .canvas-container { position: relative; height: 350px; width: 100%; display: flex; justify-content: center; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .card { background: rgba(0, 10, 30, 0.5); border: 1px solid var(--glass-border); border-radius: 20px; padding: 2rem 1.5rem; transition: 0.4s ease; backdrop-filter: blur(16px); display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 15px 35px rgba(0, 212, 255, 0.15); }
+        .card-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; background: rgba(0, 212, 255, 0.1); width: 80px; height: 80px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 1px solid var(--glass-border); transition: 0.3s; }
+        .card:hover .card-icon { box-shadow: 0 0 20px rgba(0, 212, 255, 0.4); transform: scale(1.05); }
+        .card h3 { font-size: 1.4rem; margin-bottom: 0.8rem; color: white; }
+        .card p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem; flex-grow: 1; }
+        .btn-link { display: block; width: 100%; padding: 0.8rem; text-align: center; background: linear-gradient(45deg, var(--primary), var(--secondary)); color: white; border-radius: 10px; text-decoration: none; font-weight: 600; transition: 0.3s; border: 1px solid transparent; cursor: pointer; }
+        .btn-link:hover { transform: scale(1.03); box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4); }
+        .btn-link.disabled { background: rgba(255,255,255,0.05); color: var(--text-gray); box-shadow: none; pointer-events: none; border-color: var(--glass-border); }
+
+        .contact-section { max-width: 600px; margin: 4rem auto; background: rgba(0, 10, 30, 0.5); padding: 2.5rem; border-radius: 20px; border: 1px solid var(--glass-border); backdrop-filter: blur(16px); }
+        .contact-section h2 { text-align: center; color: white; margin-bottom: 1.5rem; font-size: 1.8rem; }
+        .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 1rem; border-radius: 10px; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: white; outline: none; transition: 0.3s; font-size: 1rem; }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(0, 212, 255, 0.3); }
+        .contact-form textarea { resize: vertical; min-height: 120px; }
+        
+        footer { text-align: center; padding: 3rem; color: var(--text-gray); border-top: 1px solid var(--glass-border); }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div> 
+
+    <nav class="navbar" data-aos="fade-down" data-aos-duration="800">
+        <div class="nav-left">
+            <div class="logo">JCH ANALYTICS</div>
+        </div>
+        <div class="nav-right">
+            <div class="lang-switch">
+                <a href="index.html">ES</a> | <a href="index-en.html" class="active">EN</a>
+            </div>
+            <div class="social-icons">
+                <a href="https://wa.me/51939646138?text=Hello%20Jose,%20I%20was%20reviewing%20your%20portfolio%20and%20would%20like%20to%20contact%20you." target="_blank" class="whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.linkedin.com/in/josé-chevez" target="_blank" class="linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero" data-aos="zoom-in" data-aos-duration="1000">
+            <h1>Business Intelligence & <br><span>Data Analytics</span></h1>
+            <p>Industrial Engineer focused on process optimization and data-driven decision making.</p>
+            <a href="CV_Jose_Chevez_G.pdf" download="CV_Jose_Chevez_G.pdf" class="cv-btn">
+                <i class="fas fa-file-download"></i> Download Resume
+            </a>
+        </section>
+
+        <section class="skills-section" data-aos="fade-up" data-aos-delay="100">
+            <h2><i class="fas fa-brain"></i> Technical Skills</h2>
+            <div class="canvas-container">
+                <canvas id="skillsRadar"></canvas>
+            </div>
+        </section>
+
+        <div class="container" id="proyectos">
+            <div class="grid">
+                <article class="card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Financial Overview</h3>
+                    <p>Interactive dashboard of historical Sales analysis (2015-2017). Data modeling and ETL.</p>
+                    <a href="ventas.html" class="btn-link"><i class="fas fa-eye"></i> View Dashboard</a>
+                </article>
+
+                <article class="card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-icon"><i class="fas fa-boxes"></i></div>
+                    <h3>Logistics Management</h3>
+                    <p>Supply chain and inventory analysis. Coming soon...</p>
+                    <a href="#" class="btn-link disabled"><i class="fas fa-tools"></i> Under Construction</a>
+                </article>
+
+                <article class="card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-icon"><i class="fas fa-users"></i></div>
+                    <h3>Human Resources</h3>
+                    <p>Performance metrics, retention, and headcount. Coming soon...</p>
+                    <a href="#" class="btn-link disabled"><i class="fas fa-tools"></i> Under Construction</a>
+                </article>
+            </div>
+        </div>
+
+        <section class="contact-section" data-aos="fade-up" data-aos-delay="500">
+            <h2><i class="fas fa-envelope"></i> Contact Me</h2>
+            <form action="https://formspree.io/f/xnpnpvlw" method="POST" class="contact-form">
+                <input type="text" name="name" placeholder="Your Name or Company" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="How can I help you?" required></textarea>
+                <button type="submit" class="btn-link"><i class="fas fa-paper-plane"></i> Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer data-aos="fade-in">
+        <p>&copy; 2024 JCH Analyst. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        AOS.init({ once: true });
+
+        particlesJS("particles-js", {
+            "particles": { "number": { "value": 60 }, "color": { "value": "#00d4ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.2 }, "move": { "enable": true, "speed": 2 } },
+            "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } }
+        });
+
+        const ctx = document.getElementById('skillsRadar').getContext('2d');
+        new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Power BI', 'SQL Server', 'Python', 'Bizagi (BPMN)', 'Advanced Excel', 'Primavera P6'],
+                datasets: [{
+                    label: 'Technical Proficiency',
+                    data: [90, 85, 75, 80, 95, 70],
+                    backgroundColor: 'rgba(0, 212, 255, 0.2)',
+                    borderColor: '#00d4ff',
+                    pointBackgroundColor: '#005f99',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#00d4ff'
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        pointLabels: { color: '#cbd5e1', font: { size: 13, family: 'Segoe UI' } },
+                        ticks: { display: false, max: 100, min: 0 }
+                    }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+</body>
+</html>
