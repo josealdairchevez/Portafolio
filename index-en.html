@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JCH Analytics | Portfolio</title>
     
+    <!-- ========================================== -->
+    <!-- OPEN GRAPH (LinkedIn, WhatsApp, Facebook)  -->
+    <!-- ========================================== -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jose Chevez | Data Analytics & Business Intelligence">
+    <meta property="og:description" content="Industrial Engineer specialized in data visualization, relational modeling, and process optimization. Explore my interactive dashboards.">
+    <meta property="og:image" content="https://josealdairchevez.github.io/Portafolio/preview.jpg">
+    <meta property="og:url" content="https://josealdairchevez.github.io/Portafolio/index-en.html">
+
+    <!-- ========================================== -->
+    <!-- TWITTER / X CARDS                          -->
+    <!-- ========================================== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jose Chevez | Data Analytics & Business Intelligence">
+    <meta name="twitter:description" content="Industrial Engineer focused on continuous improvement through the strategic use of data.">
+    <meta name="twitter:image" content="https://josealdairchevez.github.io/Portafolio/preview.jpg">
+    
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2300d4ff' d='M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z'/></svg>" type="image/svg+xml">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -16,14 +33,14 @@
         
         #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
 
-        /* --- NAVBAR SUPERIOR --- */
+        /* --- TOP NAVBAR --- */
         .navbar { padding: 0.8rem 5%; background: rgba(0, 6, 20, 0.7); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
         .nav-left, .nav-right { display: flex; align-items: center; gap: 20px; }
         .menu-btn { background: transparent; border: none; color: var(--text-light); font-size: 1.5rem; cursor: pointer; transition: 0.3s; }
         .menu-btn:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); transform: scale(1.1); }
         .logo { font-weight: 800; font-size: 1.2rem; color: var(--primary); letter-spacing: 1px; }
 
-        /* Desplegable Categorías */
+        /* Categories Dropdown */
         .nav-category { position: relative; }
         .category-btn { background: transparent; border: none; color: var(--text-light); font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 6px; }
         .category-btn:hover { color: var(--primary); text-shadow: 0 0 8px var(--primary); }
@@ -33,7 +50,7 @@
         .dropdown-menu a:hover { background: rgba(0, 212, 255, 0.1); color: white; padding-left: 1.5rem; border-left-color: var(--primary); }
         .dropdown-menu i { color: var(--primary); width: 20px; text-align: center; }
 
-        /* Buscador */
+        /* Search Box */
         .search-box { display: flex; align-items: center; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 50px; padding: 0.4rem 1rem; transition: 0.3s; }
         .search-box:focus-within { border-color: var(--primary); box-shadow: 0 0 10px rgba(0, 212, 255, 0.3); background: rgba(0,0,0,0.4); }
         .search-box input { background: transparent; border: none; color: white; outline: none; width: 100px; transition: 0.4s; font-size: 0.9rem; }
@@ -42,7 +59,7 @@
         .search-box i { color: var(--text-gray); font-size: 0.9rem; cursor: pointer; transition: 0.3s; }
         .search-box i:hover { color: var(--primary); }
 
-        /* Switch Idioma y Redes */
+        /* Language Switch & Socials */
         .lang-switch { display: flex; gap: 5px; background: var(--glass); padding: 5px 10px; border-radius: 20px; border: 1px solid var(--glass-border); font-weight: bold; font-size: 0.9rem; }
         .lang-switch a { text-decoration: none; color: var(--text-gray); transition: 0.3s; }
         .lang-switch a.active { color: var(--primary); }
@@ -56,7 +73,7 @@
         @media (max-width: 900px) { .nav-category, .search-box { display: none; } }
         @media (max-width: 600px) { .social-icons, .lang-switch { display: none; } }
 
-        /* --- SIDEBAR HAMBURGUESA --- */
+        /* --- HAMBURGER SIDEBAR --- */
         .menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); z-index: 999; opacity: 0; visibility: hidden; transition: 0.3s ease; }
         .menu-overlay.active { opacity: 1; visibility: visible; }
         .side-menu { position: fixed; top: 0; left: -320px; width: 320px; height: 100%; background: rgba(0, 10, 30, 0.9); backdrop-filter: blur(20px); border-right: 1px solid var(--glass-border); box-shadow: 5px 0 30px rgba(0,0,0,0.5); z-index: 1000; transition: 0.4s; display: flex; flex-direction: column; }
