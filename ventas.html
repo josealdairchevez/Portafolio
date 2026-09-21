@@ -149,21 +149,21 @@
     <div id="particles-js"></div> 
 
     <!-- Overlay menú -->
-    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()" aria-hidden="true"></div>
 
-    <!-- Menú Hamburguesa Exacto al original -->
-    <aside class="side-menu" id="sideMenu">
+    <!-- Menú Hamburguesa Accesible -->
+    <aside class="side-menu" id="sideMenu" aria-label="Menú de navegación lateral">
         <div class="menu-header">
             <h3>Navegación</h3>
-            <button class="close-btn" onclick="toggleMenu()"><i class="fas fa-times"></i></button>
+            <button class="close-btn" onclick="toggleMenu()" aria-label="Cerrar menú de navegación"><i class="fas fa-times" aria-hidden="true"></i></button>
         </div>
         <ul class="menu-links">
-            <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
-            <li><a href="CV_Jose_Chevez_G.pdf" download><i class="fas fa-user-tie"></i> Sobre Mí / CV</a></li>
-            <li><a href="index.html#proyectos"><i class="fas fa-chart-line"></i> Business Intelligence</a></li>
-            <li><a href="#"><i class="fas fa-robot"></i> Machine Learning</a></li>
-            <li><a href="#"><i class="fas fa-cogs"></i> Gestión de Procesos</a></li>
-            <li><a href="index.html#contacto"><i class="fas fa-envelope"></i> Contactar</a></li>
+            <li><a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> Inicio</a></li>
+            <li><a href="CV_Jose_Chevez_G.pdf" download aria-label="Descargar currículum en PDF"><i class="fas fa-user-tie" aria-hidden="true"></i> Sobre Mí / CV</a></li>
+            <li><a href="index.html#proyectos"><i class="fas fa-chart-line" aria-hidden="true"></i> Business Intelligence</a></li>
+            <li><a href="#"><i class="fas fa-robot" aria-hidden="true"></i> Machine Learning</a></li>
+            <li><a href="#"><i class="fas fa-cogs" aria-hidden="true"></i> Gestión de Procesos</a></li>
+            <li><a href="index.html#contacto"><i class="fas fa-envelope" aria-hidden="true"></i> Contactar</a></li>
         </ul>
         <div class="menu-footer">
             <p>Portafolio Profesional JCH</p>
@@ -173,46 +173,46 @@
     <!-- NAVBAR SUPERIOR -->
     <nav class="navbar" data-aos="fade-down" data-aos-duration="800">
         <div class="nav-left">
-            <button class="menu-btn" onclick="toggleMenu()" title="Menú"><i class="fas fa-bars"></i></button>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú de navegación"><i class="fas fa-bars" aria-hidden="true"></i></button>
             <div class="logo">ANALISTA JCH</div>
             
             <div class="nav-category">
-                <button class="category-btn">Categorías <i class="fas fa-chevron-down" style="font-size: 0.75rem;"></i></button>
+                <button class="category-btn" aria-expanded="false">Categorías <i class="fas fa-chevron-down" style="font-size: 0.75rem;" aria-hidden="true"></i></button>
                 <div class="dropdown-menu">
-                    <a href="#"><i class="fas fa-chart-pie"></i> Business Intelligence</a>
-                    <a href="#"><i class="fab fa-python"></i> Machine Learning (Python)</a>
-                    <a href="#"><i class="fas fa-project-diagram"></i> Procesos y Six Sigma</a>
-                    <a href="#"><i class="fas fa-boxes"></i> Logística y Operaciones</a>
+                    <a href="#"><i class="fas fa-chart-pie" aria-hidden="true"></i> Business Intelligence</a>
+                    <a href="#"><i class="fab fa-python" aria-hidden="true"></i> Machine Learning (Python)</a>
+                    <a href="#"><i class="fas fa-project-diagram" aria-hidden="true"></i> Procesos y Six Sigma</a>
+                    <a href="#"><i class="fas fa-boxes" aria-hidden="true"></i> Logística y Operaciones</a>
                 </div>
             </div>
         </div>
 
         <div class="nav-right">
             <div class="search-box">
-                <input type="text" placeholder="Buscar proyecto...">
-                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Buscar proyecto..." aria-label="Buscar proyectos en el portafolio">
+                <i class="fas fa-search" aria-hidden="true"></i>
             </div>
 
             <!-- Interruptor de idioma -->
-            <div class="lang-switch">
-                <a href="ventas.html" class="active">ES</a> | <a href="ventas-en.html">EN</a>
+            <div class="lang-switch" aria-label="Selector de idioma">
+                <a href="ventas.html" class="active" aria-current="page">ES</a> | <a href="ventas-en.html">EN</a>
             </div>
             
             <div class="social-icons">
-                <a href="https://wa.me/51939646138?text=Hola%20Jos%C3%A9,%20estuve%20revisando%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte." target="_blank" class="whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.linkedin.com/in/josé-chevez" target="_blank" class="linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/51939646138?text=Hola%20Jos%C3%A9,%20estuve%20revisando%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte." target="_blank" class="whatsapp" aria-label="Abrir chat de WhatsApp" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                <a href="https://www.linkedin.com/in/josé-chevez" target="_blank" class="linkedin" aria-label="Visitar perfil de LinkedIn" rel="noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
             </div>
 
-            <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Volver</a>
+            <a href="index.html" class="btn-back" aria-label="Volver a la página principal"><i class="fas fa-arrow-left" aria-hidden="true"></i> Volver</a>
         </div>
     </nav>
 
-    <div class="main-container">
+    <main class="main-container">
 
         <header class="page-header" data-aos="zoom-in" data-aos-duration="1000">
             <h1>Resumen Financiero</h1>
             <p>Análisis de Ventas | Insights Estratégicos</p>
-            <div class="badge-year"><i class="fas fa-info-circle"></i> Indicadores correspondientes al último periodo (2017)</div>
+            <div class="badge-year"><i class="fas fa-info-circle" aria-hidden="true"></i> Indicadores correspondientes al último periodo (2017)</div>
         </header>
         
         <div class="kpi-grid">
@@ -237,21 +237,21 @@
         <!-- DASHBOARD POWER BI -->
         <section class="report-section" data-aos="fade-up" data-aos-delay="500">
             <div class="toolbar">
-                <h2><i class="fas fa-chart-pie" style="color: var(--primary); margin-right: 10px;"></i>Visualización Interactiva Histórica</h2>
+                <h2><i class="fas fa-chart-pie" style="color: var(--primary); margin-right: 10px;" aria-hidden="true"></i>Visualización Interactiva Histórica</h2>
                 <div style="display: flex; gap: 10px;">
-                    <button class="btn-action btn-primary" onclick="location.reload()"><i class="fas fa-sync-alt"></i> Actualizar</button>
-                    <button class="btn-action" onclick="toggleFullScreen()"><i class="fas fa-expand"></i> Pantalla Completa</button>
+                    <button class="btn-action btn-primary" onclick="location.reload()" aria-label="Actualizar visualización del reporte"><i class="fas fa-sync-alt" aria-hidden="true"></i> Actualizar</button>
+                    <button class="btn-action" onclick="toggleFullScreen()" aria-label="Ver reporte en pantalla completa"><i class="fas fa-expand" aria-hidden="true"></i> Pantalla Completa</button>
                 </div>
             </div>
 
             <div class="iframe-wrapper" id="reportContainer">
                 <!-- Carga Fantasma (Skeleton Loader) -->
                 <div class="skeleton-loader" id="skeletonLoader">
-                    <i class="fas fa-spinner fa-spin" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2.5rem; margin-bottom: 15px;" aria-hidden="true"></i>
                     <span>Conectando al Motor VertiPaq...</span>
                 </div>
                 
-                <iframe title="Dashboard de Ventas" 
+                <iframe title="Dashboard interactivo de Resumen Financiero y Ventas" 
                         src="https://app.powerbi.com/view?r=eyJrIjoiMTNmNTBiZTYtNzNjOC00OGMwLWE1ODgtZTY3NmYxN2NlODU2IiwidCI6IjkwYTkxNmNlLThjYjctNDc0ZS1hMTQ2LTBkYzc5ZDkyN2Q4OSIsImMiOjR9" 
                         allowFullScreen="true"
                         onload="document.getElementById('skeletonLoader').style.display='none'">
@@ -260,11 +260,11 @@
         </section>
 
         <!-- SECCIÓN TÉCNICA ULTRA-PREMIUM -->
-        <h3 class="section-title" data-aos="fade-up"><i class="fas fa-database" style="margin-right: 10px;"></i>Arquitectura de Datos y Modelado</h3>
+        <h3 class="section-title" data-aos="fade-up"><i class="fas fa-database" style="margin-right: 10px;" aria-hidden="true"></i>Arquitectura de Datos y Modelado</h3>
         
         <div class="arch-grid">
             <article class="arch-card" data-aos="fade-up" data-aos-delay="100">
-                <h4><i class="fas fa-filter"></i> 1. Limpieza y Normalización (ETL)</h4>
+                <h4><i class="fas fa-filter" aria-hidden="true"></i> 1. Limpieza y Normalización (ETL)</h4>
                 <p>Se realizó la transición de una base de datos plana y redundante a un sistema normalizado, garantizando la integridad referencial y optimizando el peso del modelo.</p>
                 <ul>
                     <li>Transformación y limpieza en Power Query.</li>
@@ -274,7 +274,7 @@
             </article>
 
             <article class="arch-card" data-aos="fade-up" data-aos-delay="200">
-                <h4><i class="fas fa-project-diagram"></i> 2. Modelo Relacional (Esquema Estrella)</h4>
+                <h4><i class="fas fa-project-diagram" aria-hidden="true"></i> 2. Modelo Relacional (Esquema Estrella)</h4>
                 <p>Diseño eficiente estructurando la información central alrededor del registro de transacciones, con relaciones uno a muchos (1:*).</p>
                 <ul>
                     <li><strong>Tabla de Hechos (Fact):</strong> `Ventas` (Transaccional).</li>
@@ -284,7 +284,7 @@
             </article>
 
             <article class="arch-card" data-aos="fade-up" data-aos-delay="300">
-                <h4><i class="fas fa-code"></i> 3. Cálculos y Lenguaje DAX</h4>
+                <h4><i class="fas fa-code" aria-hidden="true"></i> 3. Cálculos y Lenguaje DAX</h4>
                 <p>Implementación de medidas explícitas (Measures) para asegurar una evaluación dinámica frente a los filtros de segmento y dimensión.</p>
                 <div class="code-block">
                     <span class="code-hl">Total Ventas</span> = SUM(Ventas[Ventas])<br><br>
@@ -297,7 +297,7 @@
             </article>
 
             <article class="arch-card" data-aos="fade-up" data-aos-delay="400">
-                <h4><i class="fas fa-mouse-pointer"></i> 4. Interactividad y UX Analítica</h4>
+                <h4><i class="fas fa-mouse-pointer" aria-hidden="true"></i> 4. Interactividad y UX Analítica</h4>
                 <p>Diseño centrado en el usuario mediante tooltips contextuales y segmentación dinámica, permitiendo un descubrimiento de datos profundo sin sobrecarga visual.</p>
                 <ul>
                     <li>Tooltips con métricas secundarias (variación % contra el eslabón anterior/primero).</li>
@@ -307,19 +307,22 @@
             </article>
         </div>
 
-    </div>
+    </main>
 
     <footer data-aos="fade-in">
         <p>&copy; 2024 Analista JCH. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Scripts Premium -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Scripts optimizados con rendimiento diferido (defer) -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script>
         function toggleMenu() {
-            document.getElementById('sideMenu').classList.toggle('active');
-            document.getElementById('menuOverlay').classList.toggle('active');
+            const menu = document.getElementById('sideMenu');
+            const overlay = document.getElementById('menuOverlay');
+            const isOpen = menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            menu.setAttribute('aria-hidden', !isOpen);
         }
 
         function toggleFullScreen() {
@@ -331,12 +334,14 @@
             }
         }
 
-        AOS.init({ once: true });
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({ once: true });
 
-        // Red Interactiva de Fondo
-        particlesJS("particles-js", {
-            "particles": { "number": { "value": 60 }, "color": { "value": "#00d4ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.2 }, "move": { "enable": true, "speed": 2 } },
-            "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } }
+            // Red Interactiva de Fondo
+            particlesJS("particles-js", {
+                "particles": { "number": { "value": 60 }, "color": { "value": "#00d4ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.2 }, "move": { "enable": true, "speed": 2 } },
+                "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } }
+            });
         });
     </script>
 </body>
