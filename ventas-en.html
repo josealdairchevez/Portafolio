@@ -149,21 +149,21 @@
     <div id="particles-js"></div> 
 
     <!-- Menu Overlay -->
-    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()" aria-hidden="true"></div>
 
-    <!-- Hamburger Sidebar -->
-    <aside class="side-menu" id="sideMenu">
+    <!-- Accessible Hamburger Sidebar -->
+    <aside class="side-menu" id="sideMenu" aria-label="Side navigation menu">
         <div class="menu-header">
             <h3>Navigation</h3>
-            <button class="close-btn" onclick="toggleMenu()"><i class="fas fa-times"></i></button>
+            <button class="close-btn" onclick="toggleMenu()" aria-label="Close navigation menu"><i class="fas fa-times" aria-hidden="true"></i></button>
         </div>
         <ul class="menu-links">
-            <li><a href="index-en.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="CV_Jose_Chevez_G.pdf" download><i class="fas fa-user-tie"></i> About Me / Resume</a></li>
-            <li><a href="index-en.html#projects"><i class="fas fa-chart-line"></i> Business Intelligence</a></li>
-            <li><a href="#"><i class="fas fa-robot"></i> Machine Learning</a></li>
-            <li><a href="#"><i class="fas fa-cogs"></i> Process Management</a></li>
-            <li><a href="index-en.html#contact"><i class="fas fa-envelope"></i> Contact Me</a></li>
+            <li><a href="index-en.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+            <li><a href="CV_Jose_Chevez_G.pdf" download aria-label="Download resume in PDF format"><i class="fas fa-user-tie" aria-hidden="true"></i> About Me / Resume</a></li>
+            <li><a href="index-en.html#projects"><i class="fas fa-chart-line" aria-hidden="true"></i> Business Intelligence</a></li>
+            <li><a href="#"><i class="fas fa-robot" aria-hidden="true"></i> Machine Learning</a></li>
+            <li><a href="#"><i class="fas fa-cogs" aria-hidden="true"></i> Process Management</a></li>
+            <li><a href="index-en.html#contact"><i class="fas fa-envelope" aria-hidden="true"></i> Contact Me</a></li>
         </ul>
         <div class="menu-footer">
             <p>JCH Professional Portfolio</p>
@@ -173,37 +173,37 @@
     <!-- TOP NAVBAR -->
     <nav class="navbar" data-aos="fade-down" data-aos-duration="800">
         <div class="nav-left">
-            <button class="menu-btn" onclick="toggleMenu()" title="Menu"><i class="fas fa-bars"></i></button>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Open navigation menu"><i class="fas fa-bars" aria-hidden="true"></i></button>
             <div class="logo">JCH ANALYST</div>
             
             <div class="nav-category">
-                <button class="category-btn">Categories <i class="fas fa-chevron-down" style="font-size: 0.75rem;"></i></button>
+                <button class="category-btn" aria-expanded="false">Categories <i class="fas fa-chevron-down" style="font-size: 0.75rem;" aria-hidden="true"></i></button>
                 <div class="dropdown-menu">
-                    <a href="#"><i class="fas fa-chart-pie"></i> Business Intelligence</a>
-                    <a href="#"><i class="fab fa-python"></i> Machine Learning (Python)</a>
-                    <a href="#"><i class="fas fa-project-diagram"></i> Process & Six Sigma</a>
-                    <a href="#"><i class="fas fa-boxes"></i> Logistics & Operations</a>
+                    <a href="#"><i class="fas fa-chart-pie" aria-hidden="true"></i> Business Intelligence</a>
+                    <a href="#"><i class="fab fa-python" aria-hidden="true"></i> Machine Learning (Python)</a>
+                    <a href="#"><i class="fas fa-project-diagram" aria-hidden="true"></i> Process & Six Sigma</a>
+                    <a href="#"><i class="fas fa-boxes" aria-hidden="true"></i> Logistics & Operations</a>
                 </div>
             </div>
         </div>
 
         <div class="nav-right">
             <div class="search-box">
-                <input type="text" placeholder="Search project...">
-                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search project..." aria-label="Search projects in portfolio">
+                <i class="fas fa-search" aria-hidden="true"></i>
             </div>
 
             <!-- Language Switcher -->
-            <div class="lang-switch">
-                <a href="ventas.html">ES</a> | <a href="ventas-en.html" class="active">EN</a>
+            <div class="lang-switch" aria-label="Language selector">
+                <a href="ventas.html">ES</a> | <a href="ventas-en.html" class="active" aria-current="page">EN</a>
             </div>
             
             <div class="social-icons">
-                <a href="https://wa.me/51939646138?text=Hello%20Jose,%20I%20was%20reviewing%20your%20portfolio%20and%20would%20like%20to%20contact%20you." target="_blank" class="whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.linkedin.com/in/josé-chevez" target="_blank" class="linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/51939646138?text=Hello%20Jose,%20I%20was%20reviewing%20your%20portfolio%20and%20would%20like%20to%20contact%20you." target="_blank" class="whatsapp" aria-label="Open WhatsApp chat" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                <a href="https://www.linkedin.com/in/josé-chevez" target="_blank" class="linkedin" aria-label="Visit LinkedIn profile" rel="noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
             </div>
 
-            <a href="index-en.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back</a>
+            <a href="index-en.html" class="btn-back" aria-label="Back to home page"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back</a>
         </div>
     </nav>
 
@@ -212,7 +212,7 @@
         <header class="page-header" data-aos="zoom-in" data-aos-duration="1000">
             <h1>Financial Overview</h1>
             <p>Sales Analysis | Strategic Insights</p>
-            <div class="badge-year"><i class="fas fa-info-circle"></i> Indicators correspond to the last period (2017)</div>
+            <div class="badge-year"><i class="fas fa-info-circle" aria-hidden="true"></i> Indicators correspond to the last period (2017)</div>
         </header>
         
         <div class="kpi-grid">
@@ -237,21 +237,21 @@
         <!-- POWER BI DASHBOARD -->
         <section class="report-section" data-aos="fade-up" data-aos-delay="500">
             <div class="toolbar">
-                <h2><i class="fas fa-chart-pie" style="color: var(--primary); margin-right: 10px;"></i>Interactive Historical Visualization</h2>
+                <h2><i class="fas fa-chart-pie" style="color: var(--primary); margin-right: 10px;" aria-hidden="true"></i>Interactive Historical Visualization</h2>
                 <div style="display: flex; gap: 10px;">
-                    <button class="btn-action btn-primary" onclick="location.reload()"><i class="fas fa-sync-alt"></i> Refresh</button>
-                    <button class="btn-action" onclick="toggleFullScreen()"><i class="fas fa-expand"></i> Full Screen</button>
+                    <button class="btn-action btn-primary" onclick="location.reload()" aria-label="Refresh report visualization"><i class="fas fa-sync-alt" aria-hidden="true"></i> Refresh</button>
+                    <button class="btn-action" onclick="toggleFullScreen()" aria-label="View report in full screen"><i class="fas fa-expand" aria-hidden="true"></i> Full Screen</button>
                 </div>
             </div>
 
             <div class="iframe-wrapper" id="reportContainer">
                 <!-- Skeleton Loader -->
                 <div class="skeleton-loader" id="skeletonLoader">
-                    <i class="fas fa-spinner fa-spin" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2.5rem; margin-bottom: 15px;" aria-hidden="true"></i>
                     <span>Connecting to VertiPaq Engine...</span>
                 </div>
                 
-                <iframe title="Sales Dashboard" 
+                <iframe title="Interactive Financial Overview and Sales Dashboard" 
                         src="https://app.powerbi.com/view?r=eyJrIjoiMTNmNTBiZTYtNzNjOC00OGMwLWE1ODgtZTY3NmYxN2NlODU2IiwidCI6IjkwYTkxNmNlLThjYjctNDc0ZS1hMTQ2LTBkYzc5ZDkyN2Q4OSIsImMiOjR9" 
                         allowFullScreen="true"
                         onload="document.getElementById('skeletonLoader').style.display='none'">
@@ -260,11 +260,11 @@
         </section>
 
         <!-- TECHNICAL SECTION -->
-        <h3 class="section-title" data-aos="fade-up"><i class="fas fa-database" style="margin-right: 10px;"></i>Data Architecture & Modeling</h3>
+        <h3 class="section-title" data-aos="fade-up"><i class="fas fa-database" style="margin-right: 10px;" aria-hidden="true"></i>Data Architecture & Modeling</h3>
         
         <div class="arch-grid">
             <article class="arch-card" data-aos="fade-up" data-aos-delay="100">
-                <h4><i class="fas fa-filter"></i> 1. Cleaning & Normalization (ETL)</h4>
+                <h4><i class="fas fa-filter" aria-hidden="true"></i> 1. Cleaning & Normalization (ETL)</h4>
                 <p>Transitioned from a flat, redundant database to a normalized system, ensuring referential integrity and optimizing model weight.</p>
                 <ul>
                     <li>Transformation and cleaning via Power Query.</li>
@@ -274,7 +274,7 @@
             </article>
 
             <article class="arch-card" data-aos="fade-up" data-aos-delay="200">
-                <h4><i class="fas fa-project-diagram"></i> 2. Relational Model (Star Schema)</h4>
+                <h4><i class="fas fa-project-diagram" aria-hidden="true"></i> 2. Relational Model (Star Schema)</h4>
                 <p>Efficient design structuring central information around the transaction log, with one-to-many (1:*) relationships.</p>
                 <ul>
                     <li><strong>Fact Table:</strong> `Sales` (Transactional).</li>
@@ -284,7 +284,7 @@
             </article>
 
             <article class="arch-card" data-aos="fade-up" data-aos-delay="300">
-                <h4><i class="fas fa-code"></i> 3. Calculations & DAX Language</h4>
+                <h4><i class="fas fa-code" aria-hidden="true"></i> 3. Calculations & DAX Language</h4>
                 <p>Implementation of explicit measures to ensure dynamic evaluation against slicers and dimension filters.</p>
                 <div class="code-block">
                     <span class="code-hl">Total Sales</span> = SUM(Sales[Sales])<br><br>
@@ -297,7 +297,7 @@
             </article>
 
             <article class="arch-card" data-aos="fade-up" data-aos-delay="400">
-                <h4><i class="fas fa-mouse-pointer"></i> 4. Interactivity & Analytical UX</h4>
+                <h4><i class="fas fa-mouse-pointer" aria-hidden="true"></i> 4. Interactivity & Analytical UX</h4>
                 <p>User-centered design through contextual tooltips and dynamic segmentation, allowing deep data discovery without visual overload.</p>
                 <ul>
                     <li>Tooltips featuring secondary metrics (% variance against previous/first step).</li>
@@ -313,13 +313,16 @@
         <p>&copy; 2024 JCH Analyst. All rights reserved.</p>
     </footer>
 
-    <!-- Premium Scripts -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Optimized Performance Scripts with defer -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script>
         function toggleMenu() {
-            document.getElementById('sideMenu').classList.toggle('active');
-            document.getElementById('menuOverlay').classList.toggle('active');
+            const menu = document.getElementById('sideMenu');
+            const overlay = document.getElementById('menuOverlay');
+            const isOpen = menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            menu.setAttribute('aria-hidden', !isOpen);
         }
 
         function toggleFullScreen() {
@@ -331,12 +334,14 @@
             }
         }
 
-        AOS.init({ once: true });
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({ once: true });
 
-        // Interactive Background
-        particlesJS("particles-js", {
-            "particles": { "number": { "value": 60 }, "color": { "value": "#00d4ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.2 }, "move": { "enable": true, "speed": 2 } },
-            "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } }
+            // Interactive Background
+            particlesJS("particles-js", {
+                "particles": { "number": { "value": 60 }, "color": { "value": "#00d4ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.2 }, "move": { "enable": true, "speed": 2 } },
+                "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } }
+            });
         });
     </script>
 </body>
