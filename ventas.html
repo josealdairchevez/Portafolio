@@ -109,7 +109,7 @@
         .iframe-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); }
         iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* --- SECCIÓN ARQUITECTURA DE DATOS (NUEVO) --- */
+        /* --- SECCIÓN ARQUITECTURA DE DATOS --- */
         .section-title { font-size: 1.8rem; color: white; text-align: center; margin: 4rem 0 2rem; border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; display: inline-block; position: relative; left: 50%; transform: translateX(-50%); }
         .arch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;}
         .arch-card { background: rgba(0, 10, 30, 0.6); border: 1px solid var(--glass-border); border-radius: 15px; padding: 2rem; transition: 0.3s; backdrop-filter: blur(10px); }
@@ -121,7 +121,7 @@
         .arch-card ul li::before { content: "\f0da"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); }
         
         .code-block { background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; font-family: monospace; color: #a5d6ff; font-size: 0.85rem; overflow-x: auto; margin-top: 10px; }
-        .code-hl { color: #ff7b72; } /* Resaltado DAX */
+        .code-hl { color: #ff7b72; }
 
         footer { text-align: center; padding: 3rem; color: var(--text-gray); border-top: 1px solid var(--glass-border); margin-top: 3rem; }
     </style>
@@ -183,7 +183,7 @@
 
         <header class="page-header" data-aos="zoom-in" data-aos-duration="1000">
             <h1>Resumen Financiero</h1>
-            <p>Contoso JCH6 | Insights Estratégicos</p>
+            <p> Ventas | Insights Estratégicos</p>
             <div class="badge-year"><i class="fas fa-info-circle"></i> Indicadores correspondientes al último periodo (2017)</div>
         </header>
         
@@ -224,12 +224,12 @@
             </div>
         </section>
 
-        <!-- SECCIÓN TÉCNICA ULTRA-PREMIUM (NUEVA) -->
+        <!-- SECCIÓN TÉCNICA ULTRA-PREMIUM -->
         <h3 class="section-title" data-aos="fade-up"><i class="fas fa-database" style="margin-right: 10px;"></i>Arquitectura de Datos y Modelado</h3>
         
         <div class="arch-grid">
             <!-- Normalización ETL -->
-            <article class="arch-card" data-aos="fade-right" data-aos-delay="100">
+            <article class="arch-card" data-aos="fade-up" data-aos-delay="100">
                 <h4><i class="fas fa-filter"></i> 1. Limpieza y Normalización (ETL)</h4>
                 <p>Se realizó la transición de una base de datos plana y redundante a un sistema normalizado, garantizando la integridad referencial y optimizando el peso del modelo.</p>
                 <ul>
@@ -251,7 +251,7 @@
             </article>
 
             <!-- KPIs y DAX -->
-            <article class="arch-card" data-aos="fade-left" data-aos-delay="300">
+            <article class="arch-card" data-aos="fade-up" data-aos-delay="300">
                 <h4><i class="fas fa-code"></i> 3. Cálculos y Lenguaje DAX</h4>
                 <p>Implementación de medidas explícitas (Measures) para asegurar una evaluación dinámica frente a los filtros de segmento y dimensión.</p>
                 <div class="code-block">
@@ -262,6 +262,17 @@
                     )<br><br>
                     <span class="code-hl">Prom. Descuento</span> = AVERAGE(Ventas[Descuento])
                 </div>
+            </article>
+
+            <!-- Interacción y Tooltips -->
+            <article class="arch-card" data-aos="fade-up" data-aos-delay="400">
+                <h4><i class="fas fa-mouse-pointer"></i> 4. Interactividad y UX Analítica</h4>
+                <p>Diseño centrado en el usuario mediante tooltips contextuales y segmentación dinámica, permitiendo un descubrimiento de datos profundo sin sobrecarga visual.</p>
+                <ul>
+                    <li>Tooltips con métricas secundarias (variación % contra el eslabón anterior/primero).</li>
+                    <li>Navegación limpia para evitar la fatiga cognitiva del tomador de decisiones.</li>
+                    <li>Slicers sincrónicos para exploración de escenarios cruzados (Categoría y Año).</li>
+                </ul>
             </article>
         </div>
 
