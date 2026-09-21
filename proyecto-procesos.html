@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso de Estudio: Optimización de Procesos | Domijoch Analytics</title>
+    
+    <!-- OPEN GRAPH -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Optimización Logística - Método STAR | José Chevez">
+    <meta property="og:description" content="Caso de estudio: Modelado BPMN en Bizagi para reducir tiempos de ciclo en un centro de distribución.">
+    <meta property="og:image" content="https://josealdairchevez.github.io/Portafolio/preview.jpg">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2300d4ff' d='M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z'/></svg>" type="image/svg+xml">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS BASE --- */
+        :root { --primary: #00d4ff; --secondary: #005f99; --glass: rgba(255, 255, 255, 0.05); --glass-border: rgba(255, 255, 255, 0.15); --text-light: #f8fafc; --text-gray: #cbd5e1; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background: radial-gradient(circle at 75% 50%, #0077b6 0%, #002244 50%, #000614 100%); background-attachment: fixed; color: var(--text-light); min-height: 100vh; overflow-x: hidden; }
+        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+
+        /* --- NAVBAR SIMPLIFICADO (Modo Caso de Estudio) --- */
+        .navbar { padding: 1rem 5%; background: rgba(0, 6, 20, 0.7); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .logo { font-weight: 800; font-size: 1.2rem; color: var(--primary); letter-spacing: 1px; }
+        .btn-back { text-decoration: none; color: white; background: rgba(0, 212, 255, 0.1); border: 1px solid var(--primary); padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 600; transition: 0.3s; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
+        .btn-back:hover { background: var(--primary); color: #000614; box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); }
+
+        /* --- CABECERA DEL PROYECTO --- */
+        .project-header { text-align: center; padding: 4rem 2rem 2rem; max-width: 900px; margin: 0 auto; }
+        .project-category { display: inline-block; background: rgba(0, 212, 255, 0.15); color: var(--primary); border: 1px solid var(--primary); padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: bold; margin-bottom: 1rem; letter-spacing: 1px; }
+        .project-header h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 1rem; color: white; text-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+        .project-header p { font-size: 1.1rem; color: var(--text-gray); line-height: 1.6; margin-bottom: 2rem; }
+        
+        .tech-stack { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 2rem; }
+        .tech-tag { background: rgba(255,255,255,0.08); border: 1px solid var(--glass-border); padding: 0.4rem 1rem; border-radius: 8px; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; color: white; }
+        .tech-tag i { color: var(--primary); }
+
+        /* --- MÉTODO STAR (GRID LAYOUT) --- */
+        .star-container { max-width: 1100px; margin: 0 auto 4rem; padding: 0 2rem; display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        
+        /* Fases S, T, A */
+        .star-card { background: rgba(0, 10, 30, 0.5); border: 1px solid var(--glass-border); border-radius: 20px; padding: 2.5rem; backdrop-filter: blur(16px); transition: 0.4s ease; position: relative; overflow: hidden; }
+        .star-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 15px 35px rgba(0, 212, 255, 0.15); }
+        
+        /* Línea decorativa lateral */
+        .star-card::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 4px; background: var(--primary); opacity: 0.5; transition: 0.3s; }
+        .star-card:hover::before { opacity: 1; box-shadow: 0 0 15px var(--primary); }
+
+        .star-card-header { display: flex; align-items: center; gap: 15px; margin-bottom: 1.5rem; }
+        .star-letter { background: rgba(0, 212, 255, 0.1); width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; border-radius: 12px; border: 1px solid var(--primary); color: var(--primary); font-size: 1.5rem; font-weight: 800; font-family: monospace; }
+        .star-card-header h2 { font-size: 1.6rem; color: white; }
+        
+        .star-content { color: var(--text-gray); font-size: 1.05rem; line-height: 1.7; }
+        .star-content strong { color: white; }
+        
+        /* Lista en bloque Acción */
+        .action-list { list-style: none; margin-top: 1rem; }
+        .action-list li { margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px; }
+        .action-list li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); margin-top: 4px; }
+
+        /* Botón Evidencia */
+        .btn-evidence { display: inline-flex; align-items: center; gap: 8px; margin-top: 1.5rem; padding: 0.8rem 1.5rem; background: transparent; border: 1px solid var(--primary); color: var(--primary); border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn-evidence:hover { background: var(--primary); color: #000614; box-shadow: 0 0 15px rgba(0, 212, 255, 0.5); }
+
+        /* --- FASE R: RESULTADOS (GRID DE IMPACTO) --- */
+        .results-wrapper { grid-column: 1 / -1; } /* Ocupa todo el ancho */
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        
+        .metric-card { background: linear-gradient(145deg, rgba(0, 212, 255, 0.1), rgba(0, 10, 30, 0.8)); border: 1px solid var(--primary); border-radius: 15px; padding: 2rem; text-align: center; position: relative; overflow: hidden; transition: 0.4s; }
+        .metric-card:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(0, 212, 255, 0.2); }
+        .metric-card::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,212,255,0.1) 0%, transparent 60%); z-index: 0; pointer-events: none; }
+        
+        .metric-val { font-size: 3.5rem; font-weight: 900; color: white; text-shadow: 0 0 20px rgba(0, 212, 255, 0.8); margin-bottom: 0.5rem; position: relative; z-index: 1; }
+        .metric-lbl { font-size: 0.95rem; color: var(--text-gray); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; position: relative; z-index: 1; }
+
+        @media (min-width: 900px) {
+            .star-container { grid-template-columns: 1fr 1fr; } /* Situación y Tarea en la misma fila */
+            .action-wrapper { grid-column: 1 / -1; } /* Acción ocupa todo el ancho */
+        }
+        
+        footer { text-align: center; padding: 3rem; color: var(--text-gray); border-top: 1px solid var(--glass-border); }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div> 
+
+    <!-- NAVBAR SIMPLE -->
+    <nav class="navbar" data-aos="fade-down">
+        <div class="logo">ANALISTA JCH</div>
+        <a href="index.html" class="btn-back" aria-label="Volver al portafolio"><i class="fas fa-arrow-left" aria-hidden="true"></i> Volver al Inicio</a>
+    </nav>
+
+    <main>
+        <!-- CABECERA DEL CASO DE ESTUDIO -->
+        <header class="project-header" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="project-category" aria-label="Categoría del proyecto"><i class="fas fa-cogs" aria-hidden="true"></i> GESTIÓN DE PROCESOS / PoC</div>
+            <h1>Optimización del Flujo de Despacho en Centro de Distribución E-commerce</h1>
+            <p>Caso de estudio metodológico orientado a la identificación de cuellos de botella y rediseño de procesos <em>(Proof of Concept)</em> para reducir los tiempos de ciclo logístico.</p>
+            
+            <div class="tech-stack" aria-label="Tecnologías y herramientas utilizadas">
+                <span class="tech-tag"><i class="fas fa-project-diagram" aria-hidden="true"></i> Bizagi Modeler</span>
+                <span class="tech-tag"><i class="fas fa-sitemap" aria-hidden="true"></i> BPMN 2.0</span>
+                <span class="tech-tag"><i class="fas fa-chart-bar" aria-hidden="true"></i> Lean Management</span>
+            </div>
+        </header>
+
+        <!-- CONTENEDOR MÉTODO STAR -->
+        <div class="star-container">
+            
+            <!-- S: SITUACIÓN -->
+            <article class="star-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="star-card-header">
+                    <div class="star-letter">S</div>
+                    <h2>Situación (El Reto)</h2>
+                </div>
+                <div class="star-content">
+                    <p>Un centro de distribución logístico (Retail simulado) presentaba un <strong>15% de pedidos retrasados</strong> durante temporadas de alta demanda (Q4). Se identificaron reprocesos en la etapa de <em>Picking</em> y falta de estandarización en la recepción documentaria, generando fatiga operativa y tiempos muertos prolongados en la zona de embarque.</p>
+                </div>
+            </article>
+
+            <!-- T: TAREA -->
+            <article class="star-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="star-card-header">
+                    <div class="star-letter">T</div>
+                    <h2>Tarea (Objetivos KPI)</h2>
+                </div>
+                <div class="star-content">
+                    <p>Como analista e ingeniero de procesos, mi objetivo principal consistió en auditar la cadena de valor operativa y modelar el flujo de trabajo para lograr:</p>
+                    <ul class="action-list" style="margin-top: 15px;">
+                        <li>Mapear el flujo actual <strong>(AS-IS)</strong> para visibilizar cuellos de botella.</li>
+                        <li>Proyectar un escenario optimizado <strong>(TO-BE)</strong>.</li>
+                        <li><strong>Objetivo numérico:</strong> Reducir el Lead Time de despacho interno en un 20%.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- A: ACCIÓN -->
+            <article class="star-card action-wrapper" data-aos="fade-up" data-aos-delay="300">
+                <div class="star-card-header">
+                    <div class="star-letter">A</div>
+                    <h2>Acción (Estrategia y Modelado)</h2>
+                </div>
+                <div class="star-content">
+                    <p>Apliqué principios de Ingeniería Industrial y notación estándar para rediseñar el proceso:</p>
+                    <ul class="action-list">
+                        <li><strong>Levantamiento de Información:</strong> Simulación de toma de tiempos y movimientos (Time Study) en las zonas críticas del almacén.</li>
+                        <li><strong>Modelado BPMN (Bizagi):</strong> Diagramación estructurada usando <em>Pools</em>, <em>Lanes</em> (roles separados por Picker, Checker y Montacarguista) y compuertas lógicas (Gateways) para validar la disponibilidad de inventario.</li>
+                        <li><strong>Aplicación Lean:</strong> Rediseño del layout de recojo para minimizar el desplazamiento físico (Spaghetti Diagram) y eliminación de 3 pasos de validación manual redundantes.</li>
+                    </ul>
+                    <!-- Opcional: Aquí puedes poner una imagen de tu diagrama Bizagi o un link a PDF -->
+                    <a href="#" class="btn-evidence" aria-label="Visualizar diagrama en Bizagi"><i class="fas fa-project-diagram" aria-hidden="true"></i> Ver Diagrama Bizagi (PDF)</a>
+                </div>
+            </article>
+
+            <!-- R: RESULTADOS -->
+            <article class="star-card results-wrapper" style="border-color: var(--primary);" data-aos="fade-up" data-aos-delay="400">
+                <div class="star-card-header" style="justify-content: center;">
+                    <div class="star-letter" style="background: var(--primary); color: #000614;">R</div>
+                    <h2 style="color: var(--primary); text-transform: uppercase; font-weight: 800; letter-spacing: 1px;">Resultados Proyectados (Impacto)</h2>
+                </div>
+                
+                <div class="results-grid">
+                    <div class="metric-card">
+                        <div class="metric-val">-22%</div>
+                        <div class="metric-lbl">Reducción en Tiempo de Ciclo (Lead Time)</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-val">+18%</div>
+                        <div class="metric-lbl">Productividad por Turno (Picking)</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-val">3</div>
+                        <div class="metric-lbl">Tareas Redundantes Eliminadas</div>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <footer data-aos="fade-in">
+        <p>&copy; 2024 Analista JCH. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Scripts de Rendimiento -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({ once: true });
+            particlesJS("particles-js", {
+                "particles": { "number": { "value": 40 }, "color": { "value": "#00d4ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.3 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.1 }, "move": { "enable": true, "speed": 1.5 } }
+            });
+        });
+    </script>
+</body>
+</html>
