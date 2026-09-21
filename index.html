@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Domijoch Analytics | Portafolio</title>
     
-    <!-- Favicon Gráfico Neón -->
+    <!-- Favicon (Icono de la pestaña) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2300d4ff' d='M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z'/></svg>" type="image/svg+xml">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -28,7 +28,7 @@
             background-attachment: fixed; 
             color: var(--text-light); 
             min-height: 100vh; 
-            overflow-x: hidden; 
+            overflow-x: hidden; /* Evita el espacio en blanco a la derecha */
         }
 
         /* --- LUCES DE FONDO --- */
@@ -111,7 +111,7 @@
         .menu-links li a i { font-size: 1.2rem; color: var(--primary); width: 24px; text-align: center; }
         .menu-footer { padding: 2rem; margin-top: auto; border-top: 1px solid var(--glass-border); text-align: center; font-size: 0.85rem; color: var(--text-gray); }
 
-        /* --- HERO Y TARJETAS --- */
+        /* --- HERO Y TARJETAS (ESTILO CRISTAL) --- */
         .hero { text-align: center; padding: 4rem 1rem; }
         .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; color: white; text-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
         .hero h1 span { color: var(--primary); }
@@ -153,9 +153,13 @@
 </head>
 <body>
 
+    <!-- Luces de fondo -->
     <div id="lights-container"></div> 
+
+    <!-- Overlay menú -->
     <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 
+    <!-- Menú Hamburguesa -->
     <aside class="side-menu" id="sideMenu">
         <div class="menu-header">
             <h3>Navegación</h3>
@@ -174,6 +178,7 @@
         </div>
     </aside>
 
+    <!-- NAVBAR SUPERIOR -->
     <nav class="navbar">
         <div class="nav-left">
             <button class="menu-btn" onclick="toggleMenu()" title="Menú"><i class="fas fa-bars"></i></button>
@@ -196,9 +201,14 @@
                 <i class="fas fa-search"></i>
             </div>
             
+            <!-- Redes Sociales Actualizadas -->
             <div class="social-icons">
-                <a href="#" class="whatsapp" title="Contáctame por WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" class="linkedin" title="Mi perfil de LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/51939646138?text=Hola%20Jos%C3%A9,%20estuve%20revisando%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte." target="_blank" class="whatsapp" title="Contáctame por WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/josé-chevez" target="_blank" class="linkedin" title="Mi perfil de LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
             </div>
         </div>
     </nav>
@@ -212,6 +222,7 @@
         <div class="container">
             <div class="grid">
                 
+                <!-- Tarjeta 1: Proyecto Activo -->
                 <article class="card">
                     <div class="card-icon"><i class="fas fa-chart-line"></i></div>
                     <h3>Resumen Financiero</h3>
@@ -222,6 +233,7 @@
                     </a>
                 </article>
 
+                <!-- Tarjeta 2: En construcción -->
                 <article class="card">
                     <div class="card-icon"><i class="fas fa-boxes"></i></div>
                     <h3>Gestión Logística</h3>
@@ -229,6 +241,7 @@
                     <a href="#" class="btn-link disabled"><i class="fas fa-tools"></i> En construcción</a>
                 </article>
 
+                <!-- Tarjeta 3: En construcción -->
                 <article class="card">
                     <div class="card-icon"><i class="fas fa-users"></i></div>
                     <h3>Recursos Humanos</h3>
@@ -249,6 +262,7 @@
             document.getElementById('menuOverlay').classList.toggle('active');
         }
 
+        // Generador de luces de fondo
         function createGlowingNodes() {
             const container = document.getElementById('lights-container');
             const nodeCount = 50; 
