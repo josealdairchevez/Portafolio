@@ -88,13 +88,58 @@
         .menu-links li a i { font-size: 1.2rem; color: var(--primary); width: 24px; text-align: center; }
         .menu-footer { padding: 2rem; margin-top: auto; border-top: 1px solid var(--glass-border); text-align: center; font-size: 0.85rem; color: var(--text-gray); }
 
-        /* --- HERO & CV BUTTON --- */
-        .hero { text-align: center; padding: 5rem 1rem 3rem; }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; color: white; text-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
-        .hero h1 span { color: var(--primary); }
-        .hero p { color: var(--text-gray); font-size: 1.2rem; letter-spacing: 1px; margin-bottom: 2rem; }
-        .cv-btn { display: inline-flex; align-items: center; gap: 10px; padding: 1rem 2.5rem; font-size: 1.1rem; background: linear-gradient(45deg, var(--primary), var(--secondary)); color: white; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3); transition: 0.4s; }
-        .cv-btn:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5); }
+        /* --- HERO & ELITE EXECUTIVE PITCH --- */
+        .hero { text-align: center; padding: 5rem 1.5rem 3rem; display: flex; flex-direction: column; align-items: center; }
+        
+        .hero-badge { 
+            display: inline-flex; align-items: center; gap: 8px; 
+            background: rgba(0, 212, 255, 0.1); border: 1px solid var(--primary); 
+            color: var(--primary); padding: 0.5rem 1.2rem; border-radius: 50px; 
+            font-size: 0.85rem; font-weight: 700; letter-spacing: 1.5px; 
+            margin-bottom: 1.5rem; box-shadow: 0 0 15px rgba(0, 212, 255, 0.2); 
+        }
+
+        .hero h1 { 
+            font-size: 3.2rem; line-height: 1.2; margin-bottom: 1.5rem; 
+            color: white; text-shadow: 0 0 25px rgba(0, 212, 255, 0.4); 
+            max-width: 950px; 
+        }
+        
+        .hero h1 span { color: var(--primary); border-bottom: 2px solid var(--primary); }
+
+        .hero p { 
+            color: var(--text-gray); font-size: 1.15rem; line-height: 1.7; 
+            max-width: 780px; margin-bottom: 2.5rem; 
+        }
+
+        .hero p strong, .hero p .tech-highlight { 
+            color: white; font-weight: 600; 
+        }
+        
+        .hero p .tech-highlight { color: var(--primary); }
+
+        .hero-actions { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+
+        .btn-primary-action { 
+            display: inline-flex; align-items: center; gap: 10px; padding: 1rem 2.2rem; 
+            font-size: 1.05rem; background: rgba(0, 10, 30, 0.7); 
+            border: 1px solid var(--primary); color: white; border-radius: 50px; 
+            text-decoration: none; font-weight: 600; backdrop-filter: blur(10px); 
+            transition: 0.4s; box-shadow: 0 5px 20px rgba(0, 212, 255, 0.15); 
+        }
+        
+        .btn-primary-action:hover { 
+            background: var(--primary); color: #000614; 
+            transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4); 
+        }
+
+        .cv-btn { display: inline-flex; align-items: center; gap: 10px; padding: 1rem 2.2rem; font-size: 1.05rem; background: linear-gradient(45deg, var(--primary), var(--secondary)); color: white; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3); transition: 0.4s; }
+        .cv-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+        }
 
         /* --- SKILLS RADAR --- */
         .skills-section { max-width: 800px; margin: 0 auto 4rem; padding: 2rem; background: rgba(0, 10, 30, 0.5); border-radius: 20px; border: 1px solid var(--glass-border); backdrop-filter: blur(16px); text-align: center; }
@@ -186,13 +231,29 @@
     </nav>
 
     <main>
-        <!-- HERO & CV -->
+        <!-- HERO & ELITE EXECUTIVE PITCH -->
         <section class="hero" data-aos="zoom-in" data-aos-duration="1000">
-            <h1>Business Intelligence & <br><span>Data Analytics</span></h1>
-            <p>Industrial Engineer focused on process optimization and data-driven decision making.</p>
-            <a href="CV_Jose_Chevez_G.pdf" download="CV_Jose_Chevez_G.pdf" class="cv-btn" aria-label="Download resume in PDF format">
-                <i class="fas fa-file-download" aria-hidden="true"></i> Download Resume
-            </a>
+            <div class="hero-badge" aria-label="Professional specialty">
+                <i class="fas fa-chart-line" aria-hidden="true"></i> INDUSTRIAL ENGINEERING & DATA ANALYTICS
+            </div>
+            
+            <h1>I transform complex data and <br><span>operational processes</span> into strategic value.</h1>
+            
+            <p>
+                Specialized in <strong>Business Intelligence</strong>, data modeling 
+                (<span class="tech-highlight">SQL Server, Power BI</span>), and operations management 
+                (<span class="tech-highlight">BPMN/Bizagi</span>). I combine analytical rigor with a solid 
+                corporate vision to optimize workflows and accelerate decision-making.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#projects" class="btn-primary-action" aria-label="Go to projects section">
+                    <i class="fas fa-eye" aria-hidden="true"></i> View Projects
+                </a>
+                <a href="CV_Jose_Chevez_G.pdf" download="CV_Jose_Chevez_G.pdf" class="cv-btn" aria-label="Download resume in PDF format">
+                    <i class="fas fa-file-download" aria-hidden="true"></i> Download Resume
+                </a>
+            </div>
         </section>
 
         <!-- SKILLS RADAR -->
