@@ -130,21 +130,21 @@
     <div id="particles-js"></div> 
 
     <!-- Overlay menú -->
-    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()" aria-hidden="true"></div>
 
-    <!-- Menú Hamburguesa Exacto al original -->
-    <aside class="side-menu" id="sideMenu">
+    <!-- Menú Hamburguesa Accesible -->
+    <aside class="side-menu" id="sideMenu" aria-label="Menú de navegación lateral">
         <div class="menu-header">
             <h3>Navegación</h3>
-            <button class="close-btn" onclick="toggleMenu()"><i class="fas fa-times"></i></button>
+            <button class="close-btn" onclick="toggleMenu()" aria-label="Cerrar menú de navegación"><i class="fas fa-times" aria-hidden="true"></i></button>
         </div>
         <ul class="menu-links">
-            <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
-            <li><a href="CV_Jose_Chevez_G.pdf" download><i class="fas fa-user-tie"></i> Sobre Mí / CV</a></li>
-            <li><a href="#proyectos"><i class="fas fa-chart-line"></i> Business Intelligence</a></li>
-            <li><a href="#"><i class="fas fa-robot"></i> Machine Learning</a></li>
-            <li><a href="#"><i class="fas fa-cogs"></i> Gestión de Procesos</a></li>
-            <li><a href="#contacto"><i class="fas fa-envelope"></i> Contactar</a></li>
+            <li><a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> Inicio</a></li>
+            <li><a href="CV_Jose_Chevez_G.pdf" download aria-label="Descargar currículum en PDF"><i class="fas fa-user-tie" aria-hidden="true"></i> Sobre Mí / CV</a></li>
+            <li><a href="#proyectos"><i class="fas fa-chart-line" aria-hidden="true"></i> Business Intelligence</a></li>
+            <li><a href="#"><i class="fas fa-robot" aria-hidden="true"></i> Machine Learning</a></li>
+            <li><a href="#"><i class="fas fa-cogs" aria-hidden="true"></i> Gestión de Procesos</a></li>
+            <li><a href="#contacto"><i class="fas fa-envelope" aria-hidden="true"></i> Contactar</a></li>
         </ul>
         <div class="menu-footer">
             <p>Portafolio Profesional JCH</p>
@@ -154,33 +154,33 @@
     <!-- NAVBAR SUPERIOR -->
     <nav class="navbar" data-aos="fade-down" data-aos-duration="800">
         <div class="nav-left">
-            <button class="menu-btn" onclick="toggleMenu()" title="Menú"><i class="fas fa-bars"></i></button>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú de navegación"><i class="fas fa-bars" aria-hidden="true"></i></button>
             <div class="logo">ANALISTA JCH</div>
             
             <div class="nav-category">
-                <button class="category-btn">Categorías <i class="fas fa-chevron-down" style="font-size: 0.75rem;"></i></button>
+                <button class="category-btn" aria-expanded="false">Categorías <i class="fas fa-chevron-down" style="font-size: 0.75rem;" aria-hidden="true"></i></button>
                 <div class="dropdown-menu">
-                    <a href="#"><i class="fas fa-chart-pie"></i> Business Intelligence</a>
-                    <a href="#"><i class="fab fa-python"></i> Machine Learning (Python)</a>
-                    <a href="#"><i class="fas fa-project-diagram"></i> Procesos y Six Sigma</a>
-                    <a href="#"><i class="fas fa-boxes"></i> Logística y Operaciones</a>
+                    <a href="#"><i class="fas fa-chart-pie" aria-hidden="true"></i> Business Intelligence</a>
+                    <a href="#"><i class="fab fa-python" aria-hidden="true"></i> Machine Learning (Python)</a>
+                    <a href="#"><i class="fas fa-project-diagram" aria-hidden="true"></i> Procesos y Six Sigma</a>
+                    <a href="#"><i class="fas fa-boxes" aria-hidden="true"></i> Logística y Operaciones</a>
                 </div>
             </div>
         </div>
 
         <div class="nav-right">
             <div class="search-box">
-                <input type="text" placeholder="Buscar proyecto...">
-                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Buscar proyecto..." aria-label="Buscar proyectos en el portafolio">
+                <i class="fas fa-search" aria-hidden="true"></i>
             </div>
             
-            <div class="lang-switch">
-                <a href="index.html" class="active">ES</a> | <a href="index-en.html">EN</a>
+            <div class="lang-switch" aria-label="Selector de idioma">
+                <a href="index.html" class="active" aria-current="page">ES</a> | <a href="index-en.html">EN</a>
             </div>
             
             <div class="social-icons">
-                <a href="https://wa.me/51939646138?text=Hola%20Jos%C3%A9,%20estuve%20revisando%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte." target="_blank" class="whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.linkedin.com/in/josé-chevez" target="_blank" class="linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/51939646138?text=Hola%20Jos%C3%A9,%20estuve%20revisando%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte." target="_blank" class="whatsapp" aria-label="Abrir chat de WhatsApp" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                <a href="https://www.linkedin.com/in/josé-chevez" target="_blank" class="linkedin" aria-label="Visitar perfil de LinkedIn" rel="noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
             </div>
         </div>
     </nav>
@@ -190,16 +190,16 @@
         <section class="hero" data-aos="zoom-in" data-aos-duration="1000">
             <h1>Business Intelligence & <br><span>Data Analytics</span></h1>
             <p>Ingeniero Industrial enfocado en la optimización de procesos y toma de decisiones basadas en datos.</p>
-            <a href="CV_Jose_Chevez_G.pdf" download="CV_Jose_Chevez_G.pdf" class="cv-btn">
-                <i class="fas fa-file-download"></i> Descargar CV
+            <a href="CV_Jose_Chevez_G.pdf" download="CV_Jose_Chevez_G.pdf" class="cv-btn" aria-label="Descargar currículum en formato PDF">
+                <i class="fas fa-file-download" aria-hidden="true"></i> Descargar CV
             </a>
         </section>
 
         <!-- SKILLS RADAR -->
         <section class="skills-section" data-aos="fade-up" data-aos-delay="100">
-            <h2><i class="fas fa-brain"></i> Habilidades Técnicas</h2>
+            <h2><i class="fas fa-brain" aria-hidden="true"></i> Habilidades Técnicas</h2>
             <div class="canvas-container">
-                <canvas id="skillsRadar"></canvas>
+                <canvas id="skillsRadar" aria-label="Gráfico de radar de habilidades técnicas" role="img"></canvas>
             </div>
         </section>
 
@@ -207,36 +207,36 @@
         <div class="container" id="proyectos">
             <div class="grid">
                 <article class="card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="card-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
                     <h3>Resumen Financiero</h3>
                     <p>Reporte interactivo de análisis histórico de Ventas (2015-2017). Modelado y limpieza ETL.</p>
-                    <a href="ventas.html" class="btn-link"><i class="fas fa-eye"></i> Ver Dashboard</a>
+                    <a href="ventas.html" class="btn-link" aria-label="Ver dashboard de Resumen Financiero"><i class="fas fa-eye" aria-hidden="true"></i> Ver Dashboard</a>
                 </article>
 
                 <article class="card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card-icon"><i class="fas fa-boxes"></i></div>
+                    <div class="card-icon"><i class="fas fa-boxes" aria-hidden="true"></i></div>
                     <h3>Gestión Logística</h3>
                     <p>Análisis de cadena de suministro e inventarios. Próximamente...</p>
-                    <a href="#" class="btn-link disabled"><i class="fas fa-tools"></i> En construcción</a>
+                    <a href="#" class="btn-link disabled" aria-disabled="true"><i class="fas fa-tools" aria-hidden="true"></i> En construcción</a>
                 </article>
 
                 <article class="card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="card-icon"><i class="fas fa-users"></i></div>
+                    <div class="card-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
                     <h3>Recursos Humanos</h3>
                     <p>Métricas de rendimiento, retención y headcount. Próximamente...</p>
-                    <a href="#" class="btn-link disabled"><i class="fas fa-tools"></i> En construcción</a>
+                    <a href="#" class="btn-link disabled" aria-disabled="true"><i class="fas fa-tools" aria-hidden="true"></i> En construcción</a>
                 </article>
             </div>
         </div>
 
         <!-- CONTACT FORM -->
         <section class="contact-section" id="contacto" data-aos="fade-up" data-aos-delay="500">
-            <h2><i class="fas fa-envelope"></i> Contáctame</h2>
+            <h2><i class="fas fa-envelope" aria-hidden="true"></i> Contáctame</h2>
             <form action="https://formspree.io/f/xnpnpvlw" method="POST" class="contact-form">
-                <input type="text" name="name" placeholder="Tu Nombre o Empresa" required>
-                <input type="email" name="email" placeholder="Tu Correo Electrónico" required>
-                <textarea name="message" placeholder="¿En qué puedo ayudarte?" required></textarea>
-                <button type="submit" class="btn-link"><i class="fas fa-paper-plane"></i> Enviar Mensaje</button>
+                <input type="text" name="name" placeholder="Tu Nombre o Empresa" required aria-label="Tu Nombre o Empresa">
+                <input type="email" name="email" placeholder="Tu Correo Electrónico" required aria-label="Tu Correo Electrónico">
+                <textarea name="message" placeholder="¿En qué puedo ayudarte?" required aria-label="Tu Mensaje"></textarea>
+                <button type="submit" class="btn-link" aria-label="Enviar mensaje de contacto"><i class="fas fa-paper-plane" aria-hidden="true"></i> Enviar Mensaje</button>
             </form>
         </section>
     </main>
@@ -245,53 +245,58 @@
         <p>&copy; 2024 Analista JCH. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Scripts optimizados con rendimiento diferido (defer) -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script>
         function toggleMenu() {
-            document.getElementById('sideMenu').classList.toggle('active');
-            document.getElementById('menuOverlay').classList.toggle('active');
+            const menu = document.getElementById('sideMenu');
+            const overlay = document.getElementById('menuOverlay');
+            const isOpen = menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            menu.setAttribute('aria-hidden', !isOpen);
         }
 
-        AOS.init({ once: true });
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({ once: true });
 
-        // Particles.js
-        particlesJS("particles-js", {
-            "particles": { "number": { "value": 60 }, "color": { "value": "#00d4ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.2 }, "move": { "enable": true, "speed": 2 } },
-            "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } }
-        });
+            // Particles.js
+            particlesJS("particles-js", {
+                "particles": { "number": { "value": 60 }, "color": { "value": "#00d4ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.2 }, "move": { "enable": true, "speed": 2 } },
+                "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } }
+            });
 
-        // Chart.js Radar
-        const ctx = document.getElementById('skillsRadar').getContext('2d');
-        new Chart(ctx, {
-            type: 'radar',
-            data: {
-                labels: ['Power BI', 'SQL Server', 'Python', 'Bizagi (BPMN)', 'Excel Avanzado', 'Primavera P6'],
-                datasets: [{
-                    label: 'Dominio Técnico',
-                    data: [90, 85, 75, 80, 95, 70],
-                    backgroundColor: 'rgba(0, 212, 255, 0.2)',
-                    borderColor: '#00d4ff',
-                    pointBackgroundColor: '#005f99',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: '#00d4ff'
-                }]
-            },
-            options: {
-                responsive: true, maintainAspectRatio: false,
-                scales: {
-                    r: {
-                        angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                        pointLabels: { color: '#cbd5e1', font: { size: 13, family: 'Segoe UI' } },
-                        ticks: { display: false, max: 100, min: 0 }
-                    }
+            // Chart.js Radar
+            const ctx = document.getElementById('skillsRadar').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Power BI', 'SQL Server', 'Python', 'Bizagi (BPMN)', 'Excel Avanzado', 'Primavera P6'],
+                    datasets: [{
+                        label: 'Dominio Técnico',
+                        data: [90, 85, 75, 80, 95, 70],
+                        backgroundColor: 'rgba(0, 212, 255, 0.2)',
+                        borderColor: '#00d4ff',
+                        pointBackgroundColor: '#005f99',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#00d4ff'
+                    }]
                 },
-                plugins: { legend: { display: false } }
-            }
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            pointLabels: { color: '#cbd5e1', font: { size: 13, family: 'Segoe UI' } },
+                            ticks: { display: false, max: 100, min: 0 }
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
         });
     </script>
 </body>
