@@ -44,13 +44,13 @@
         .nav-category { position: relative; }
         .category-btn { background: transparent; border: none; color: var(--text-light); font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 6px; }
         .category-btn:hover { color: var(--primary); text-shadow: 0 0 8px var(--primary); }
-        .dropdown-menu { position: absolute; top: 150%; left: 0; background: rgba(0, 10, 30, 0.95); backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 12px; min-width: 220px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden; }
+        .dropdown-menu { position: absolute; top: 150%; left: 0; background: rgba(0, 10, 30, 0.95); backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 12px; min-width: 220px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden; z-index: 200; }
         .nav-category:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
         .dropdown-menu a { display: flex; align-items: center; gap: 10px; padding: 1rem 1.2rem; color: var(--text-gray); text-decoration: none; font-size: 0.9rem; transition: 0.3s; border-left: 3px solid transparent; }
         .dropdown-menu a:hover { background: rgba(0, 212, 255, 0.1); color: white; padding-left: 1.5rem; border-left-color: var(--primary); }
         .dropdown-menu i { color: var(--primary); width: 20px; text-align: center; }
 
-        /* Buscador Mejorado con Gap y Ancho Adaptado */
+        /* Buscador Mejorado */
         .search-box { display: flex; align-items: center; gap: 8px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 50px; padding: 0.4rem 1rem; transition: 0.3s; }
         .search-box:focus-within { border-color: var(--primary); box-shadow: 0 0 10px rgba(0, 212, 255, 0.3); background: rgba(0,0,0,0.4); }
         .search-box input { background: transparent; border: none; color: white; outline: none; width: 115px; transition: 0.4s; font-size: 0.9rem; }
@@ -58,6 +58,19 @@
         .search-box input::placeholder { color: var(--text-gray); }
         .search-box i { color: var(--text-gray); font-size: 0.9rem; cursor: pointer; transition: 0.3s; }
         .search-box i:hover { color: var(--primary); }
+
+        /* --- RESULTADOS DEL BUSCADOR & HIGHLIGHT CYAN --- */
+        .search-dropdown { position: absolute; top: 130%; right: 0; width: 320px; background: rgba(0, 10, 30, 0.95); backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.7); display: none; flex-direction: column; overflow: hidden; z-index: 200; }
+        .search-dropdown.active { display: flex; animation: fadeIn 0.3s ease; }
+        .search-item { padding: 1rem; color: var(--text-gray); text-decoration: none; border-bottom: 1px solid var(--glass-border); transition: 0.3s; display: flex; flex-direction: column; gap: 5px; }
+        .search-item:last-child { border-bottom: none; }
+        .search-item:hover { background: rgba(0, 212, 255, 0.1); border-left: 3px solid var(--primary); }
+        .search-item-title { font-weight: 700; color: white; font-size: 0.95rem; }
+        .search-item-desc { font-size: 0.8rem; line-height: 1.4; color: #94a3b8; }
+        
+        .highlight-cyan { color: var(--primary); text-shadow: 0 0 10px var(--primary); font-weight: 900; background: rgba(0, 212, 255, 0.1); border-radius: 3px; }
+        .no-results { padding: 1rem; color: #ff4757; font-size: 0.85rem; text-align: center; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Switch Idioma y Redes */
         .lang-switch { display: flex; gap: 5px; background: var(--glass); padding: 5px 10px; border-radius: 20px; border: 1px solid var(--glass-border); font-weight: bold; font-size: 0.9rem; }
@@ -70,7 +83,7 @@
         .social-icons a.whatsapp:hover { background: #25D366; color: white; box-shadow: 0 0 15px #25D366; border-color: #25D366; transform: translateY(-3px); }
         .social-icons a.linkedin:hover { background: #0077b5; color: white; box-shadow: 0 0 15px #0077b5; border-color: #0077b5; transform: translateY(-3px); }
 
-        @media (max-width: 900px) { .nav-category, .search-box { display: none; } }
+        @media (max-width: 900px) { .nav-category, .search-wrapper { display: none; } }
         @media (max-width: 600px) { .social-icons, .lang-switch { display: none; } }
 
         /* --- SIDEBAR HAMBURGUESA --- */
@@ -112,10 +125,7 @@
             max-width: 780px; margin-bottom: 2.5rem; 
         }
 
-        .hero p strong, .hero p .tech-highlight { 
-            color: white; font-weight: 600; 
-        }
-        
+        .hero p strong, .hero p .tech-highlight { color: white; font-weight: 600; }
         .hero p .tech-highlight { color: var(--primary); }
 
         .hero-actions { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
@@ -148,7 +158,7 @@
 
         /* --- CARDS --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
         .card { background: rgba(0, 10, 30, 0.5); border: 1px solid var(--glass-border); border-radius: 20px; padding: 2rem 1.5rem; transition: 0.4s ease; backdrop-filter: blur(16px); display: flex; flex-direction: column; align-items: center; text-align: center; }
         .card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 15px 35px rgba(0, 212, 255, 0.15); }
         .card-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; background: rgba(0, 212, 255, 0.1); width: 80px; height: 80px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 1px solid var(--glass-border); transition: 0.3s; }
@@ -214,9 +224,15 @@
         </div>
 
         <div class="nav-right">
-            <div class="search-box">
-                <input type="text" placeholder="Buscar proyecto..." aria-label="Buscar proyectos en el portafolio">
-                <i class="fas fa-search" aria-hidden="true"></i>
+            
+            <!-- Buscador Funcional con Dropdown -->
+            <div class="search-wrapper" style="position: relative;">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Buscar proyecto..." aria-label="Buscar proyectos en el portafolio" autocomplete="off">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </div>
+                <!-- Menú desplegable de resultados -->
+                <div id="searchResults" class="search-dropdown"></div>
             </div>
             
             <div class="lang-switch" aria-label="Selector de idioma">
@@ -264,9 +280,11 @@
             </div>
         </section>
 
-        <!-- PORTFOLIO CARDS -->
+        <!-- PORTFOLIO CARDS (4 Tarjetas) -->
         <div class="container" id="proyectos">
             <div class="grid">
+                
+                <!-- Tarjeta 1: Ventas -->
                 <article class="card" data-aos="fade-up" data-aos-delay="200">
                     <div class="card-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
                     <h3>Resumen Financiero</h3>
@@ -274,24 +292,35 @@
                     <a href="ventas.html" class="btn-link" aria-label="Ver dashboard de Resumen Financiero"><i class="fas fa-eye" aria-hidden="true"></i> Ver Dashboard</a>
                 </article>
 
+                <!-- Tarjeta 2: Almacén (NUEVA) -->
                 <article class="card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-icon"><i class="fas fa-sitemap" aria-hidden="true"></i></div>
+                    <h3>Control de Almacén (BPMN)</h3>
+                    <p>Modelado de procesos logísticos End-to-End en Bizagi. Gestión de Materias Primas, WIP y trazabilidad.</p>
+                    <a href="proyecto-almacen.html" class="btn-link" aria-label="Ver caso de estudio de Control de Almacén"><i class="fas fa-arrow-right" aria-hidden="true"></i> Ver Proyecto</a>
+                </article>
+
+                <!-- Tarjeta 3: Logística General -->
+                <article class="card" data-aos="fade-up" data-aos-delay="400">
                     <div class="card-icon"><i class="fas fa-boxes" aria-hidden="true"></i></div>
                     <h3>Gestión Logística</h3>
                     <p>Análisis de cadena de suministro e inventarios. Próximamente...</p>
                     <a href="#" class="btn-link disabled" aria-disabled="true"><i class="fas fa-tools" aria-hidden="true"></i> En construcción</a>
                 </article>
 
-                <article class="card" data-aos="fade-up" data-aos-delay="400">
+                <!-- Tarjeta 4: RRHH -->
+                <article class="card" data-aos="fade-up" data-aos-delay="500">
                     <div class="card-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
                     <h3>Recursos Humanos</h3>
                     <p>Métricas de rendimiento, retención y headcount. Próximamente...</p>
-                    <a href="proyecto-procesos.html" class="btn-link" aria-label="Ver caso de estudio de Gestión de Procesos"><i class="fas fa-arrow-right" aria-hidden="true"></i> Ver Caso de Estudio</a>
+                    <a href="#" class="btn-link disabled" aria-disabled="true"><i class="fas fa-tools" aria-hidden="true"></i> En construcción</a>
                 </article>
+
             </div>
         </div>
 
         <!-- CONTACT FORM -->
-        <section class="contact-section" id="contacto" data-aos="fade-up" data-aos-delay="500">
+        <section class="contact-section" id="contacto" data-aos="fade-up" data-aos-delay="600">
             <h2><i class="fas fa-envelope" aria-hidden="true"></i> Contáctame</h2>
             <form action="https://formspree.io/f/xnpnpvlw" method="POST" class="contact-form">
                 <input type="text" name="name" placeholder="Tu Nombre o Empresa" required aria-label="Tu Nombre o Empresa">
@@ -356,6 +385,92 @@
                         }
                     },
                     plugins: { legend: { display: false } }
+                }
+            });
+
+            // ==========================================
+            // LÓGICA DEL BUSCADOR FUNCIONAL (CON HIGHLIGHT)
+            // ==========================================
+            const proyectos = [
+                {
+                    id: "ventas",
+                    titulo: "Resumen Financiero",
+                    descripcion: "Reporte interactivo de análisis histórico de Ventas (2015-2017). Modelado y limpieza ETL. Dashboard interactivo en Power BI con modelado en Esquema Estrella, limpieza ETL y cálculos DAX.",
+                    keywords: "finanzas, ventas, power bi, dax, etl, dashboard, esquema estrella",
+                    link: "ventas.html"
+                },
+                {
+                    id: "almacen",
+                    titulo: "Control de Almacén (BPMN)",
+                    descripcion: "Modelado de procesos logísticos End-to-End en Bizagi. Gestión de Materias Primas, Work in Process (WIP), control de Incoterms, marchamos y trazabilidad de inventarios.",
+                    keywords: "logistica, almacen, procesos, bizagi, bpmn, wip, inventarios, trazabilidad, incoterms",
+                    link: "proyecto-almacen.html"
+                },
+                {
+                    id: "logistica_futuro",
+                    titulo: "Gestión Logística",
+                    descripcion: "Análisis de cadena de suministro e inventarios. Próximamente...",
+                    keywords: "logistica, supply chain, cadena de suministro",
+                    link: "#"
+                },
+                {
+                    id: "rrhh",
+                    titulo: "Recursos Humanos",
+                    descripcion: "Métricas de rendimiento, retención y headcount. Próximamente...",
+                    keywords: "rrhh, hr, recursos humanos, rendimiento, headcount, personal",
+                    link: "#"
+                }
+            ];
+
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+
+            function resaltarTexto(texto, busqueda) {
+                if (!busqueda) return texto;
+                const regex = new RegExp(`(${busqueda})`, 'gi');
+                return texto.replace(regex, '<span class="highlight-cyan">$1</span>');
+            }
+
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                searchResults.innerHTML = ''; 
+
+                if (query.length > 0) {
+                    const filtrados = proyectos.filter(p => 
+                        p.titulo.toLowerCase().includes(query) || 
+                        p.descripcion.toLowerCase().includes(query) || 
+                        p.keywords.toLowerCase().includes(query)
+                    );
+
+                    if (filtrados.length > 0) {
+                        filtrados.forEach(proyecto => {
+                            // Se recorta la descripción antes de aplicar el resaltado para no romper etiquetas HTML
+                            let descCorta = proyecto.descripcion.length > 100 ? proyecto.descripcion.substring(0, 100) + '...' : proyecto.descripcion;
+                            
+                            const tituloResaltado = resaltarTexto(proyecto.titulo, query);
+                            const descResaltada = resaltarTexto(descCorta, query);
+
+                            const a = document.createElement('a');
+                            a.href = proyecto.link;
+                            a.className = 'search-item';
+                            a.innerHTML = `
+                                <div class="search-item-title">${tituloResaltado}</div>
+                                <div class="search-item-desc">${descResaltada}</div>
+                            `;
+                            searchResults.appendChild(a);
+                        });
+                    } else {
+                        searchResults.innerHTML = '<div class="no-results">No se encontraron coincidencias...</div>';
+                    }
+                    searchResults.classList.add('active');
+                } else {
+                    searchResults.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.classList.remove('active');
                 }
             });
         });
