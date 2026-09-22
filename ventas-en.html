@@ -22,7 +22,7 @@
     <meta name="twitter:description" content="Corporate interactive dashboard with business intelligence and strategic indicators.">
     <meta name="twitter:image" content="https://josealdairchevez.github.io/Portafolio/preview.jpg">
     
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2300d4ff' d='M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z'/></svg>" type="image/svg+xml">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2300d4ff' d='M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5-12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z'/></svg>" type="image/svg+xml">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
@@ -41,17 +41,17 @@
         .menu-btn:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); transform: scale(1.1); }
         .logo { font-weight: 800; font-size: 1.2rem; color: var(--primary); letter-spacing: 1px; }
 
-        /* Category Dropdown */
+        /* Categories Dropdown */
         .nav-category { position: relative; }
         .category-btn { background: transparent; border: none; color: var(--text-light); font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 6px; }
         .category-btn:hover { color: var(--primary); text-shadow: 0 0 8px var(--primary); }
-        .dropdown-menu { position: absolute; top: 150%; left: 0; background: rgba(0, 10, 30, 0.95); backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 12px; min-width: 220px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden; }
+        .dropdown-menu { position: absolute; top: 150%; left: 0; background: rgba(0, 10, 30, 0.95); backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 12px; min-width: 220px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden; z-index: 200; }
         .nav-category:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
         .dropdown-menu a { display: flex; align-items: center; gap: 10px; padding: 1rem 1.2rem; color: var(--text-gray); text-decoration: none; font-size: 0.9rem; transition: 0.3s; border-left: 3px solid transparent; }
         .dropdown-menu a:hover { background: rgba(0, 212, 255, 0.1); color: white; padding-left: 1.5rem; border-left-color: var(--primary); }
         .dropdown-menu i { color: var(--primary); width: 20px; text-align: center; }
 
-        /* Search Box Optimized with Gap */
+        /* Functional Search Box */
         .search-box { display: flex; align-items: center; gap: 8px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 50px; padding: 0.4rem 1rem; transition: 0.3s; }
         .search-box:focus-within { border-color: var(--primary); box-shadow: 0 0 10px rgba(0, 212, 255, 0.3); background: rgba(0,0,0,0.4); }
         .search-box input { background: transparent; border: none; color: white; outline: none; width: 115px; transition: 0.4s; font-size: 0.9rem; }
@@ -59,6 +59,18 @@
         .search-box input::placeholder { color: var(--text-gray); }
         .search-box i { color: var(--text-gray); font-size: 0.9rem; cursor: pointer; transition: 0.3s; }
         .search-box i:hover { color: var(--primary); }
+
+        /* Search Results & Highlight Cyan */
+        .search-dropdown { position: absolute; top: 130%; right: 0; width: 320px; background: rgba(0, 10, 30, 0.95); backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.7); display: none; flex-direction: column; overflow: hidden; z-index: 200; }
+        .search-dropdown.active { display: flex; animation: fadeIn 0.3s ease; }
+        .search-item { padding: 1rem; color: var(--text-gray); text-decoration: none; border-bottom: 1px solid var(--glass-border); transition: 0.3s; display: flex; flex-direction: column; gap: 5px; }
+        .search-item:last-child { border-bottom: none; }
+        .search-item:hover { background: rgba(0, 212, 255, 0.1); border-left: 3px solid var(--primary); }
+        .search-item-title { font-weight: 700; color: white; font-size: 0.95rem; }
+        .search-item-desc { font-size: 0.8rem; line-height: 1.4; color: #94a3b8; }
+        .highlight-cyan { color: var(--primary); text-shadow: 0 0 10px var(--primary); font-weight: 900; background: rgba(0, 212, 255, 0.1); border-radius: 3px; }
+        .no-results { padding: 1rem; color: #ff4757; font-size: 0.85rem; text-align: center; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Language Switch & Socials */
         .lang-switch { display: flex; gap: 5px; background: var(--glass); padding: 5px 10px; border-radius: 20px; border: 1px solid var(--glass-border); font-weight: bold; font-size: 0.9rem; }
@@ -74,8 +86,8 @@
         .btn-back { text-decoration: none; color: var(--text-light); background: var(--glass); border: 1px solid var(--glass-border); padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 600; transition: 0.3s; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
         .btn-back:hover { background: var(--primary); border-color: var(--primary); box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); }
 
-        @media (max-width: 900px) { .nav-category, .search-box { display: none; } }
-        @media (max-width: 600px) { .social-icons, .lang-switch { display: none; } .nav-right { gap: 10px; } }
+        @media (max-width: 900px) { .nav-category, .search-wrapper { display: none; } }
+        @media (max-width: 600px) { .social-icons, .lang-switch { display: none; } .nav-right { gap: 10px; } .btn-back span { display: none; } }
 
         /* --- HAMBURGER SIDEBAR --- */
         .menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); z-index: 999; opacity: 0; visibility: hidden; transition: 0.3s ease; }
@@ -92,13 +104,20 @@
         .menu-links li a i { font-size: 1.2rem; color: var(--primary); width: 24px; text-align: center; }
         .menu-footer { padding: 2rem; margin-top: auto; border-top: 1px solid var(--glass-border); text-align: center; font-size: 0.85rem; color: var(--text-gray); }
 
-        /* --- MAIN CONTENT --- */
+        /* --- PROJECT HEADER (UPDATED ELITE STYLE) --- */
         .main-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-        .page-header { text-align: center; margin-bottom: 3rem; margin-top: 1rem; }
-        .page-header h1 { font-size: 2.5rem; color: white; text-shadow: 0 0 15px rgba(0, 212, 255, 0.6); }
-        .page-header p { color: var(--primary); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-top: 0.5rem; }
-        .badge-year { display: inline-block; background: rgba(0, 212, 255, 0.15); border: 1px solid var(--primary); color: white; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; margin-top: 1rem; box-shadow: 0 0 10px rgba(0, 212, 255, 0.3); }
+        .project-header { text-align: center; padding: 2rem 2rem 2rem; max-width: 900px; margin: 0 auto 3rem; }
+        .project-category { display: inline-block; background: rgba(0, 212, 255, 0.15); color: var(--primary); border: 1px solid var(--primary); padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: bold; margin-bottom: 1rem; letter-spacing: 1px; }
+        .project-header h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 1rem; color: white; text-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+        .project-header p { font-size: 1.1rem; color: var(--text-gray); line-height: 1.6; margin-bottom: 1.5rem; }
+        
+        .tech-stack { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .tech-tag { background: rgba(255,255,255,0.08); border: 1px solid var(--glass-border); padding: 0.4rem 1rem; border-radius: 8px; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; color: white; }
+        .tech-tag i { color: var(--primary); }
 
+        .badge-year { display: inline-block; background: rgba(0, 212, 255, 0.15); border: 1px solid var(--primary); color: white; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; margin-top: 0.5rem; box-shadow: 0 0 10px rgba(0, 212, 255, 0.3); }
+
+        /* --- KPI & REPORTS --- */
         .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
         .kpi-card { background: rgba(0, 10, 30, 0.5); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 20px; text-align: center; backdrop-filter: blur(16px); transition: 0.3s; }
         .kpi-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2); }
@@ -113,7 +132,6 @@
         .btn-primary { border-color: var(--primary); color: var(--primary); }
         .btn-primary:hover { background: var(--primary); color: white; }
         
-        /* Iframe & Skeleton Loader */
         .iframe-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); }
         iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 5; }
         
@@ -188,9 +206,14 @@
         </div>
 
         <div class="nav-right">
-            <div class="search-box">
-                <input type="text" placeholder="Search project..." aria-label="Search projects in portfolio">
-                <i class="fas fa-search" aria-hidden="true"></i>
+            <!-- Functional Search Box with Dropdown -->
+            <div class="search-wrapper" style="position: relative;">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search project..." aria-label="Search projects in portfolio" autocomplete="off">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </div>
+                <!-- Dropdown menu -->
+                <div id="searchResults" class="search-dropdown"></div>
             </div>
 
             <!-- Language Switcher -->
@@ -199,20 +222,33 @@
             </div>
             
             <div class="social-icons">
-                <a href="https://wa.me/51939646138?text=Hello%20Jose,%20I%20was%20reviewing%20your%20portfolio%20and%20would%20like%20to%20contact%20you." target="_blank" class="whatsapp" aria-label="Open WhatsApp chat" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                <a href="https://wa.me/51939646138" target="_blank" class="whatsapp" aria-label="Open WhatsApp chat" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
                 <a href="https://www.linkedin.com/in/josé-chevez" target="_blank" class="linkedin" aria-label="Visit LinkedIn profile" rel="noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
             </div>
 
-            <a href="index-en.html" class="btn-back" aria-label="Back to home page"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back</a>
+            <a href="index-en.html" class="btn-back" aria-label="Back to home page">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i> <span>Back</span>
+            </a>
         </div>
     </nav>
 
-    <div class="main-container">
+    <main class="main-container">
 
-        <header class="page-header" data-aos="zoom-in" data-aos-duration="1000">
-            <h1>Financial Overview</h1>
-            <p>Sales Analysis | Strategic Insights</p>
-            <div class="badge-year"><i class="fas fa-info-circle" aria-hidden="true"></i> Indicators correspond to the last period (2017)</div>
+        <!-- UPDATED ELITE HEADER -->
+        <header class="project-header" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="project-category" aria-label="Project Category"><i class="fas fa-chart-line" aria-hidden="true"></i> BUSINESS INTELLIGENCE / DASHBOARD</div>
+            
+            <h1>Historical Sales Analysis</h1>
+            
+            <p>Corporate interactive report focused on extracting strategic insights. Designed for commercial performance evaluation through data cleaning (ETL) and star schema modeling.</p>
+            
+            <div class="tech-stack" aria-label="Technologies and tools used">
+                <span class="tech-tag"><i class="fas fa-database" aria-hidden="true"></i> Data Modeling</span>
+                <span class="tech-tag"><i class="fas fa-chart-bar" aria-hidden="true"></i> Power BI</span>
+                <span class="tech-tag"><i class="fas fa-calculator" aria-hidden="true"></i> DAX Language</span>
+            </div>
+
+            <div class="badge-year"><i class="fas fa-info-circle" aria-hidden="true"></i> Indicators correspond to the last evaluated period (2017)</div>
         </header>
         
         <div class="kpi-grid">
@@ -307,7 +343,7 @@
             </article>
         </div>
 
-    </div>
+    </main>
 
     <footer data-aos="fade-in">
         <p>&copy; 2024 JCH Analyst. All rights reserved.</p>
@@ -341,6 +377,91 @@
             particlesJS("particles-js", {
                 "particles": { "number": { "value": 60 }, "color": { "value": "#00d4ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.2 }, "move": { "enable": true, "speed": 2 } },
                 "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } }
+            });
+
+            // ==========================================
+            // FUNCTIONAL SEARCH LOGIC (WITH CYAN HIGHLIGHT)
+            // ==========================================
+            const proyectos = [
+                {
+                    id: "ventas",
+                    titulo: "Financial Overview",
+                    descripcion: "Interactive historical Sales analysis report (2015-2017). Data modeling and ETL. Interactive dashboard in Power BI with Star Schema modeling, ETL cleaning, and DAX calculations.",
+                    keywords: "finance, sales, power bi, dax, etl, dashboard, star schema",
+                    link: "ventas-en.html"
+                },
+                {
+                    id: "almacen",
+                    titulo: "Warehouse Control (BPMN)",
+                    descripcion: "End-to-End logistics process modeling in Bizagi. Management of Raw Materials, Work in Process (WIP), Incoterms control, seals, and inventory traceability.",
+                    keywords: "logistics, warehouse, processes, bizagi, bpmn, wip, inventory, traceability, incoterms",
+                    link: "proyecto-almacen-en.html"
+                },
+                {
+                    id: "logistica_futuro",
+                    titulo: "Logistics Management",
+                    descripcion: "Supply chain and inventory analysis. Coming soon...",
+                    keywords: "logistics, supply chain, inventory",
+                    link: "#"
+                },
+                {
+                    id: "rrhh",
+                    titulo: "Human Resources",
+                    descripcion: "Performance metrics, retention, and headcount. Coming soon...",
+                    keywords: "hr, human resources, performance, headcount, personnel",
+                    link: "#"
+                }
+            ];
+
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+
+            function resaltarTexto(texto, busqueda) {
+                if (!busqueda) return texto;
+                const regex = new RegExp(`(${busqueda})`, 'gi');
+                return texto.replace(regex, '<span class="highlight-cyan">$1</span>');
+            }
+
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                searchResults.innerHTML = ''; 
+
+                if (query.length > 0) {
+                    const filtrados = proyectos.filter(p => 
+                        p.titulo.toLowerCase().includes(query) || 
+                        p.descripcion.toLowerCase().includes(query) || 
+                        p.keywords.toLowerCase().includes(query)
+                    );
+
+                    if (filtrados.length > 0) {
+                        filtrados.forEach(proyecto => {
+                            let descCorta = proyecto.descripcion.length > 100 ? proyecto.descripcion.substring(0, 100) + '...' : proyecto.descripcion;
+                            
+                            const tituloResaltado = resaltarTexto(proyecto.titulo, query);
+                            const descResaltada = resaltarTexto(descCorta, query);
+
+                            const a = document.createElement('a');
+                            a.href = proyecto.link;
+                            a.className = 'search-item';
+                            a.innerHTML = `
+                                <div class="search-item-title">${tituloResaltado}</div>
+                                <div class="search-item-desc">${descResaltada}</div>
+                            `;
+                            searchResults.appendChild(a);
+                        });
+                    } else {
+                        searchResults.innerHTML = '<div class="no-results">No matches found...</div>';
+                    }
+                    searchResults.classList.add('active');
+                } else {
+                    searchResults.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.classList.remove('active');
+                }
             });
         });
     </script>
