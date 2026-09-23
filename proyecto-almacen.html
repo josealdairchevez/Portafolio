@@ -52,7 +52,7 @@
         header p {
             font-size: 1.1rem;
             color: #cbd5e1;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             font-weight: 300;
         }
@@ -213,7 +213,7 @@
 
     <header>
         <h1>Optimización y Modelado BPMN de Flujo Logístico en Almacén</h1>
-        <p>Análisis, reingeniería y estandarización de procesos logísticos utilizando Bizagi Modeler y metodología BPMN 2.0.</p>
+        <p>Análisis, reingeniería y estandarización de procesos logísticos utilizando Bizagi Modeler y la metodología BPMN 2.0.</p>
     </header>
 
     <main class="container">
@@ -223,30 +223,30 @@
             <!-- Situación -->
             <div class="card">
                 <h2><i class="fa-solid fa-magnifying-glass-chart"></i> Situación</h2>
-                <p>Como parte de mi desarrollo profesional en la mejora de procesos, analicé un modelo operativo estándar para la recepción, almacenamiento y despacho de materia prima. Durante la evaluación del diagrama de flujo inicial, identifiqué fallas lógicas críticas en el diseño: el control de inventarios (revisión del punto de reorden) bloqueaba secuencialmente la entrega de productos que ya habían sido alistados, lo que en un entorno real generaría retrasos innecesarios en la atención al solicitante.</p>
+                <p>Como parte de mi desarrollo profesional en la mejora de procesos, analicé un modelo operativo estándar para la recepción, almacenamiento y despacho de materia prima. Durante la evaluación del diagrama de flujo inicial, identifiqué fallas lógicas críticas en el diseño: el control de inventarios (revisión del punto de reorden) bloqueaba secuencialmente la entrega de productos que ya habían sido alistados, lo que en un entorno logístico real generaría cuellos de botella y retrasos innecesarios en la atención al solicitante.</p>
             </div>
 
             <!-- Tarea -->
             <div class="card">
                 <h2><i class="fa-solid fa-bullseye"></i> Tarea</h2>
-                <p>El objetivo fue rediseñar y optimizar el diagrama utilizando el software Bizagi Modeler bajo el estándar internacional BPMN 2.0. La meta era lograr un modelo que reflejara fielmente la realidad operativa de un almacén eficiente: garantizar que el despacho de pedidos fluya sin interrupciones, manteniendo al mismo tiempo un control estricto y concurrente sobre los niveles de inventario para su reabastecimiento continuo.</p>
+                <p>El objetivo fue rediseñar y optimizar el diagrama utilizando el software Bizagi Modeler bajo el estándar internacional BPMN 2.0. La meta era lograr un modelo que reflejara fielmente la realidad operativa de un almacén eficiente: garantizar que el despacho de pedidos fluya sin interrupciones, manteniendo al mismo tiempo un control estricto y concurrente sobre los niveles de inventario y la gestión de mantenimiento.</p>
             </div>
 
             <!-- Acción (Ocupa todo el ancho) -->
             <div class="card full-width">
                 <h2><i class="fa-solid fa-gears"></i> Acción</h2>
-                <p>Para resolver la ineficiencia operativa detectada, apliqué las siguientes mejoras arquitectónicas al modelo:</p>
+                <p>Para resolver la ineficiencia operativa detectada, apliqué las siguientes mejoras arquitectónicas al modelo en Bizagi:</p>
                 <ul class="action-list">
-                    <li><strong>Reestructuración Lógica:</strong> Reemplacé una compuerta exclusiva errónea por una compuerta paralela (+). Esto permitió separar el flujo de entrega física del producto del flujo administrativo de revisión de inventario, asegurando cero retrasos en el despacho.</li>
-                    <li><strong>Estandarización de Nomenclatura:</strong> Corregí las actividades del diagrama para que cumplieran estrictamente con las reglas BPMN, transformando sustantivos ambiguos (ej. 'Transacciones inter bodegas') en tareas accionables claras (ej. 'Registrar traslado entre bodegas').</li>
-                    <li><strong>Limpieza Visual:</strong> Reorganicé la arquitectura del diagrama de izquierda a derecha, eliminando cruces de líneas y flujos redundantes (como el envío de material preparado nuevamente a mantenimiento) para facilitar la lectura y toma de decisiones a nivel gerencial.</li>
+                    <li><strong>Reestructuración Lógica mediante Compuerta Paralela (+):</strong> Separé el flujo de entrega física del producto del flujo administrativo de revisión de inventario. Esto asegura cero retrasos en el despacho, permitiendo que la notificación a compras ocurra de manera concurrente.</li>
+                    <li><strong>Estandarización de Nomenclatura BPMN:</strong> Corregí las actividades del diagrama para que cumplieran estrictamente con las reglas de notación, transformando sustantivos ambiguos en tareas accionables claras (ej. cambiar "Transacciones inter bodegas" por "Registrar traslado entre bodegas").</li>
+                    <li><strong>Integración del Flujo de Mantenimiento:</strong> Reubiqué las tareas de "Material continúa almacenado" y "Gestión de mantenimiento" al final de la rama lógica donde el stock no requiere reabastecimiento, reflejando correctamente las operaciones rutinarias del almacén sin interferir en el despacho.</li>
                 </ul>
             </div>
 
             <!-- Resultado (Ocupa todo el ancho) -->
             <div class="card full-width">
                 <h2><i class="fa-solid fa-chart-line"></i> Resultado</h2>
-                <p>El resultado es un modelo BPMN altamente optimizado, limpio y fácil de interpretar. Este nuevo diseño documenta un proceso logístico ágil donde las entregas se realizan de manera ininterrumpida y las alertas de reabastecimiento (compras) se gestionan en paralelo, previniendo quiebres de stock. Este proyecto demuestra mi capacidad para auditar flujos de trabajo, identificar ineficiencias operativas y aplicar soluciones técnicas estandarizadas para la cadena de suministro.</p>
+                <p>El resultado es un modelo BPMN altamente optimizado, limpio y fácil de interpretar. Este nuevo diseño documenta un proceso logístico ágil donde las entregas se realizan de manera ininterrumpida y las alertas de reabastecimiento se gestionan en paralelo, previniendo quiebres de stock. Este proyecto demuestra mi capacidad para auditar flujos de trabajo, identificar ineficiencias operativas y aplicar soluciones técnicas estandarizadas para la cadena de suministro.</p>
             </div>
 
         </div>
@@ -255,15 +255,15 @@
         <div class="image-showcase">
             <h3>Diagrama Optimizado en Bizagi</h3>
             
-            <!-- IMPORTANTE: Aquí debes asegurarte de que tu imagen se llame exactamente así y esté en la misma carpeta que este archivo HTML, o cambiar la ruta -->
-            <img src="diagrama-almacen.jpg" alt="Diagrama BPMN de Flujo de Almacén Optimizado" class="diagram-img">
+            <!-- Archivo de imagen exacto validado (PNG) -->
+            <img src="diagrama-almacen.png" alt="Diagrama BPMN de Flujo de Almacén Optimizado" class="diagram-img">
             
             <div class="cta-container">
-                <!-- Botón principal para el archivo fuente -->
-                <a href="modelo-almacen.bpmc" download class="btn btn-primary">
-                    <i class="fa-solid fa-file-export"></i> Descargar Fuente Bizagi (.bpmc)
+                <!-- Descarga del archivo fuente (BPM) -->
+                <a href="modelo-almacen.bpm" download class="btn btn-primary">
+                    <i class="fa-solid fa-file-export"></i> Descargar Fuente Bizagi (.bpm)
                 </a>
-                <!-- Botón secundario para el PDF -->
+                <!-- Descarga del documento en alta resolución (PDF) -->
                 <a href="diagrama-almacen.pdf" download class="btn btn-secondary">
                     <i class="fa-solid fa-file-pdf"></i> Ver en Alta Resolución (PDF)
                 </a>
