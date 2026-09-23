@@ -22,7 +22,7 @@
         body { background: radial-gradient(circle at 75% 50%, #0077b6 0%, #002244 50%, #000614 100%); background-attachment: fixed; color: var(--text-light); min-height: 100vh; overflow-x: hidden; }
         #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
 
-        /* --- FULL TOP NAVBAR (Integrado con el buscador avanzado) --- */
+        /* --- FULL TOP NAVBAR (Nuestra versión Premium Funcional) --- */
         .navbar { padding: 0.8rem 5%; background: rgba(0, 6, 20, 0.7); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
         .nav-left, .nav-right { display: flex; align-items: center; gap: 20px; }
         .menu-btn { background: transparent; border: none; color: var(--text-light); font-size: 1.5rem; cursor: pointer; transition: 0.3s; }
@@ -117,12 +117,12 @@
         .star-content { color: var(--text-gray); font-size: 1.05rem; line-height: 1.7; }
         .star-content strong { color: white; }
         
-        /* Lista en bloque Acción - Corregida */
+        /* Action Block List */
         .action-list { list-style: none; margin-top: 1.5rem; padding-left: 0; }
         .action-list li { position: relative; padding-left: 30px; margin-bottom: 1.2rem; }
         .action-list li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 4px; font-size: 1.1rem; }
 
-        /* --- SECTION DIAGRAM AND DOWNLOADS (NUEVO DEL OTRO CHAT) --- */
+        /* --- SECTION DIAGRAM AND DOWNLOADS --- */
         .diagram-section { grid-column: 1 / -1; background: rgba(0, 10, 30, 0.5); border: 1px solid var(--glass-border); border-radius: 20px; padding: 2.5rem; backdrop-filter: blur(16px); text-align: center; }
         .diagram-img { max-width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,212,255,0.15); margin-bottom: 2rem; cursor: zoom-in; transition: transform 0.4s ease; }
         .diagram-img:hover { transform: scale(1.02); box-shadow: 0 10px 25px rgba(0, 212, 255, 0.2); }
@@ -201,7 +201,6 @@
                     <input type="text" id="searchInput" placeholder="Search project..." aria-label="Search projects in portfolio" autocomplete="off">
                     <i class="fas fa-search" aria-hidden="true"></i>
                 </div>
-                <!-- Dropdown menu -->
                 <div id="searchResults" class="search-dropdown"></div>
             </div>
             
@@ -221,7 +220,7 @@
     </nav>
 
     <main>
-        <!-- CABECERA DEL CASO DE ESTUDIO (Del código proporcionado) -->
+        <!-- PROJECT HEADER -->
         <header class="project-header" data-aos="zoom-in" data-aos-duration="1000">
             <div class="project-category" aria-label="Project Category"><i class="fas fa-cogs" aria-hidden="true"></i> LOGISTICS / PROCESS MODELING</div>
             <h1>Optimization and BPMN Modeling of Warehouse Flow</h1>
@@ -237,7 +236,7 @@
         <!-- STAR METHOD CONTAINER -->
         <div class="star-container">
             
-            <!-- S: SITUATION (Del código proporcionado) -->
+            <!-- S: SITUATION -->
             <article class="star-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="star-card-header">
                     <div class="star-letter">S</div>
@@ -248,7 +247,7 @@
                 </div>
             </article>
 
-            <!-- T: TASK (Del código proporcionado) -->
+            <!-- T: TASK -->
             <article class="star-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="star-card-header">
                     <div class="star-letter">T</div>
@@ -259,7 +258,7 @@
                 </div>
             </article>
 
-            <!-- A: ACTION (Del código proporcionado) -->
+            <!-- A: ACTION -->
             <article class="star-card action-wrapper" data-aos="fade-up" data-aos-delay="300">
                 <div class="star-card-header">
                     <div class="star-letter">A</div>
@@ -275,7 +274,7 @@
                 </div>
             </article>
 
-            <!-- DIAGRAMA Y DESCARGAS (NUEVA SECCIÓN DEL CÓDIGO PROPORCIONADO) -->
+            <!-- DIAGRAM AND DOWNLOADS SECTION -->
             <article class="diagram-section" data-aos="fade-up" data-aos-delay="350">
                 <h3 style="color: white; margin-bottom: 1.5rem; font-size: 1.5rem;">Optimized Bizagi Diagram</h3>
                 
@@ -291,7 +290,7 @@
                 </div>
             </article>
 
-            <!-- R: RESULTS (Del código proporcionado) -->
+            <!-- R: RESULTS -->
             <article class="star-card results-wrapper" style="border-color: var(--primary);" data-aos="fade-up" data-aos-delay="400">
                 <div class="star-card-header" style="justify-content: center;">
                     <div class="star-letter" style="background: var(--primary); color: #000614;">R</div>
@@ -318,7 +317,7 @@
     </main>
 
     <footer data-aos="fade-in">
-        <p>&copy; 2026 Jose Aldair Chevez. All rights reserved.</p>
+        <p>&copy; 2026 JCH Analyst. All rights reserved.</p>
     </footer>
 
     <!-- Performance Scripts & Search Functionality -->
