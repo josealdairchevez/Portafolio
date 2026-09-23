@@ -3,273 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study: BPMN Modeling | Jose Aldair Chevez</title>
-    <!-- Modern font (Inter) for a premium look -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Icons for buttons and sections -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Case Study: BPMN Logistics Optimization | Jose Aldair Chevez</title>
+    
+    <!-- OPEN GRAPH -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Warehouse Logistics Optimization | Jose Chevez">
+    <meta property="og:description" content="Case study: BPMN Modeling in Bizagi to eliminate bottlenecks and optimize dispatch processes.">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2300d4ff' d='M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z'/></svg>" type="image/svg+xml">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
-        /* Corporate color variables */
-        :root {
-            --primary-color: #0f172a; /* Deep night blue */
-            --secondary-color: #2563eb; /* Vibrant blue */
-            --bg-color: #f8fafc; /* Very soft gray background */
-            --card-bg: #ffffff;
-            --text-main: #334155;
-            --text-light: #64748b;
-            --accent: #e2e8f0;
+        /* --- ESTILOS BASE --- */
+        :root { 
+            --primary: #00d4ff; 
+            --secondary: #005f99; 
+            --glass: rgba(255, 255, 255, 0.05); 
+            --glass-border: rgba(255, 255, 255, 0.15); 
+            --text-light: #f8fafc; 
+            --text-gray: #cbd5e1; 
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background: radial-gradient(circle at 75% 50%, #0077b6 0%, #002244 50%, #000614 100%); background-attachment: fixed; color: var(--text-light); min-height: 100vh; overflow-x: hidden; }
+        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+
+        /* --- NAVBAR MEJORADO (Categorías, Buscador, Redes) --- */
+        .navbar { padding: 1rem 5%; background: rgba(0, 6, 20, 0.85); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; gap: 15px; }
+        
+        .nav-left { display: flex; align-items: center; gap: 20px; }
+        .mobile-menu { font-size: 1.5rem; color: var(--text-light); cursor: pointer; display: none; }
+        .logo { font-weight: 800; font-size: 1.2rem; color: var(--primary); letter-spacing: 1px; white-space: nowrap; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: var(--text-gray); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .search-box { position: relative; display: flex; align-items: center; }
+        .search-box input { background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border); padding: 0.5rem 1rem 0.5rem 2.5rem; border-radius: 50px; color: white; outline: none; transition: 0.3s; width: 200px; }
+        .search-box input:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(0,212,255,0.3); width: 250px; }
+        .search-box i { position: absolute; left: 12px; color: var(--text-gray); font-size: 0.9rem; }
+        
+        .social-icons a { color: var(--text-light); font-size: 1.3rem; transition: 0.3s; margin-left: 10px; }
+        .social-icons a:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+
+        .btn-back { text-decoration: none; color: white; background: rgba(0, 212, 255, 0.1); border: 1px solid var(--primary); padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 600; transition: 0.3s; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; white-space: nowrap; }
+        .btn-back:hover { background: var(--primary); color: #000614; box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); }
+
+        @media (max-width: 900px) {
+            .mobile-menu { display: block; }
+            .nav-links { display: none; }
+            .search-box input { width: 150px; }
+            .search-box input:focus { width: 180px; }
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+        /* --- CABECERA DEL PROYECTO --- */
+        .project-header { text-align: center; padding: 4rem 2rem 2rem; max-width: 900px; margin: 0 auto; }
+        .project-category { display: inline-block; background: rgba(0, 212, 255, 0.15); color: var(--primary); border: 1px solid var(--primary); padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: bold; margin-bottom: 1rem; letter-spacing: 1px; }
+        .project-header h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 1rem; color: white; text-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+        .project-header p { font-size: 1.1rem; color: var(--text-gray); line-height: 1.6; margin-bottom: 2rem; }
+        
+        .tech-stack { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 2rem; }
+        .tech-tag { background: rgba(255,255,255,0.08); border: 1px solid var(--glass-border); padding: 0.4rem 1rem; border-radius: 8px; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; color: white; }
+        .tech-tag i { color: var(--primary); }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.7;
-        }
+        /* --- MÉTODO STAR (GRID LAYOUT) --- */
+        .star-container { max-width: 1100px; margin: 0 auto 4rem; padding: 0 2rem; display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        
+        /* Fases S, T, A */
+        .star-card { background: rgba(0, 10, 30, 0.5); border: 1px solid var(--glass-border); border-radius: 20px; padding: 2.5rem; backdrop-filter: blur(16px); transition: 0.4s ease; position: relative; overflow: hidden; }
+        .star-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 15px 35px rgba(0, 212, 255, 0.15); }
+        
+        /* Línea decorativa lateral */
+        .star-card::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 4px; background: var(--primary); opacity: 0.5; transition: 0.3s; }
+        .star-card:hover::before { opacity: 1; box-shadow: 0 0 15px var(--primary); }
 
-        /* Header / Hero Section */
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
+        .star-card-header { display: flex; align-items: center; gap: 15px; margin-bottom: 1.5rem; }
+        .star-letter { background: rgba(0, 212, 255, 0.1); width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; border-radius: 12px; border: 1px solid var(--primary); color: var(--primary); font-size: 1.5rem; font-weight: 800; font-family: monospace; }
+        .star-card-header h2 { font-size: 1.6rem; color: white; }
+        
+        .star-content { color: var(--text-gray); font-size: 1.05rem; line-height: 1.7; }
+        .star-content strong { color: white; }
+        
+        /* Lista en bloque Acción */
+        .action-list { list-style: none; margin-top: 1rem; }
+        .action-list li { margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px; }
+        .action-list li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); margin-top: 4px; }
 
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            letter-spacing: -0.5px;
-        }
+        /* --- SECCIÓN DIAGRAMA Y DESCARGAS (NUEVO) --- */
+        .diagram-section { grid-column: 1 / -1; background: rgba(0, 10, 30, 0.5); border: 1px solid var(--glass-border); border-radius: 20px; padding: 2.5rem; backdrop-filter: blur(16px); text-align: center; }
+        .diagram-img { max-width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--primary); box-shadow: 0 10px 30px rgba(0,212,255,0.15); margin-bottom: 2rem; }
+        
+        .download-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn-evidence { display: inline-flex; align-items: center; gap: 8px; padding: 0.8rem 1.5rem; background: rgba(0, 212, 255, 0.1); border: 1px solid var(--primary); color: white; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn-evidence:hover { background: var(--primary); color: #000614; box-shadow: 0 0 15px rgba(0, 212, 255, 0.5); transform: translateY(-2px); }
 
-        header p {
-            font-size: 1.1rem;
-            color: #cbd5e1;
-            max-width: 700px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
+        /* --- FASE R: RESULTADOS (GRID DE IMPACTO) --- */
+        .results-wrapper { grid-column: 1 / -1; } 
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        
+        .metric-card { background: linear-gradient(145deg, rgba(0, 212, 255, 0.1), rgba(0, 10, 30, 0.8)); border: 1px solid var(--primary); border-radius: 15px; padding: 2rem; text-align: center; position: relative; overflow: hidden; transition: 0.4s; }
+        .metric-card:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(0, 212, 255, 0.2); }
+        .metric-card::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,212,255,0.1) 0%, transparent 60%); z-index: 0; pointer-events: none; }
+        
+        .metric-val { font-size: 3.5rem; font-weight: 900; color: white; text-shadow: 0 0 20px rgba(0, 212, 255, 0.8); margin-bottom: 0.5rem; position: relative; z-index: 1; }
+        .metric-lbl { font-size: 0.95rem; color: var(--text-gray); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; position: relative; z-index: 1; }
 
-        /* Main Container */
-        .container {
-            max-width: 1100px;
-            margin: -40px auto 50px;
-            padding: 0 20px;
+        @media (min-width: 900px) {
+            .star-container { grid-template-columns: 1fr 1fr; } 
+            .action-wrapper { grid-column: 1 / -1; } 
         }
-
-        /* STAR Method Grid */
-        .star-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-
-        @media (min-width: 768px) {
-            .star-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .full-width {
-                grid-column: span 2;
-            }
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--accent);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-        }
-
-        .card h2 {
-            color: var(--primary-color);
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 10px;
-        }
-
-        .card h2 i {
-            color: var(--secondary-color);
-        }
-
-        .card p {
-            color: var(--text-light);
-        }
-
-        /* Action List */
-        .action-list {
-            list-style: none;
-            margin-top: 15px;
-        }
-
-        .action-list li {
-            margin-bottom: 15px;
-            position: relative;
-            padding-left: 25px;
-            color: var(--text-light);
-        }
-
-        .action-list li::before {
-            content: "\f00c"; /* Check icon */
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: var(--secondary-color);
-            position: absolute;
-            left: 0;
-            top: 2px;
-        }
-
-        .action-list strong {
-            color: var(--text-main);
-        }
-
-        /* Image Showcase Section */
-        .image-showcase {
-            margin-top: 40px;
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            text-align: center;
-        }
-
-        .image-showcase h3 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .diagram-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            border: 1px solid var(--accent);
-            margin-bottom: 20px;
-        }
-
-        /* Premium Download Buttons */
-        .cta-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 28px;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background-color: var(--secondary-color);
-            color: white;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
-        }
-
-        .btn-primary:hover {
-            background-color: #1d4ed8;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background-color: white;
-            color: var(--text-main);
-            border: 1px solid var(--accent);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--text-light);
-            background-color: #f8fafc;
-            transform: translateY(-2px);
-        }
+        
+        footer { text-align: center; padding: 3rem; color: var(--text-gray); border-top: 1px solid var(--glass-border); }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Optimization and BPMN Modeling of Warehouse Logistics Flow</h1>
-        <p>Analysis, reengineering, and standardization of logistics processes using Bizagi Modeler and BPMN 2.0 methodology.</p>
-    </header>
+    <div id="particles-js"></div> 
 
-    <main class="container">
-        <!-- STAR Method Grid -->
-        <div class="star-grid">
-            
-            <!-- Situation -->
-            <div class="card">
-                <h2><i class="fa-solid fa-magnifying-glass-chart"></i> Situation</h2>
-                <p>As part of my professional development in process improvement, I analyzed a standard operational model for the reception, storage, and dispatch of raw materials. During the evaluation of the initial flowchart, I identified critical logical flaws in the design: inventory control (reorder point review) sequentially blocked the delivery of products that had already been prepared, which in a real logistics environment would generate bottlenecks and unnecessary delays in customer service.</p>
+    <!-- NAVBAR COMPLETO CON BUSCADOR Y REDES -->
+    <nav class="navbar" data-aos="fade-down">
+        <div class="nav-left">
+            <i class="fas fa-bars mobile-menu"></i>
+            <div class="logo">ANALISTA JCH</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#portfolio">Projects</a>
+                <a href="#">About</a>
             </div>
-
-            <!-- Task -->
-            <div class="card">
-                <h2><i class="fa-solid fa-bullseye"></i> Task</h2>
-                <p>The objective was to redesign and optimize the diagram using Bizagi Modeler software under the international BPMN 2.0 standard. The goal was to achieve a model that accurately reflected the operational reality of an efficient warehouse: guaranteeing that order dispatch flows without interruptions, while maintaining strict and concurrent control over inventory levels and maintenance management.</p>
-            </div>
-
-            <!-- Action (Full width) -->
-            <div class="card full-width">
-                <h2><i class="fa-solid fa-gears"></i> Action</h2>
-                <p>To resolve the detected operational inefficiency, I applied the following architectural improvements to the model in Bizagi:</p>
-                <ul class="action-list">
-                    <li><strong>Logical Restructuring using a Parallel Gateway (+):</strong> I separated the physical product delivery flow from the administrative inventory review flow. This ensures zero delays in dispatch, allowing purchase notifications to occur concurrently.</li>
-                    <li><strong>BPMN Nomenclature Standardization:</strong> I corrected the diagram's activities to strictly comply with notation rules, transforming ambiguous nouns into clear actionable tasks (e.g., changing "Inter-warehouse transactions" to "Register transfer between warehouses").</li>
-                    <li><strong>Maintenance Flow Integration:</strong> I relocated the "Material remains stored" and "Maintenance management" tasks to the end of the logical branch where stock does not require replenishment, correctly reflecting routine warehouse operations without interfering with dispatch.</li>
-                </ul>
-            </div>
-
-            <!-- Result (Full width) -->
-            <div class="card full-width">
-                <h2><i class="fa-solid fa-chart-line"></i> Result</h2>
-                <p>The result is a highly optimized, clean, and easy-to-interpret BPMN model. This new design documents an agile logistics process where deliveries are made uninterruptedly and replenishment alerts are managed in parallel, preventing stockouts. This project demonstrates my ability to audit workflows, identify operational inefficiencies, and apply standardized technical solutions for the supply chain.</p>
-            </div>
-
         </div>
-
-        <!-- Diagram Showcase & Buttons -->
-        <div class="image-showcase">
-            <h3>Optimized Diagram in Bizagi</h3>
-            
-            <!-- Validated exact image file (PNG) -->
-            <img src="diagrama-almacen.png" alt="Optimized Warehouse Flow BPMN Diagram" class="diagram-img">
-            
-            <div class="cta-container">
-                <!-- Source file download (BPM) -->
-                <a href="modelo-almacen.bpm" download class="btn btn-primary">
-                    <i class="fa-solid fa-file-export"></i> Download Bizagi Source (.bpm)
-                </a>
-                <!-- High-resolution document download (PDF) -->
-                <a href="diagrama-almacen.pdf" download class="btn btn-secondary">
-                    <i class="fa-solid fa-file-pdf"></i> View in High Resolution (PDF)
-                </a>
+        
+        <div class="nav-right">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search projects...">
             </div>
+            
+            <div class="social-icons">
+                <a href="https://linkedin.com/in/tuperfil" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/51976858488?text=Hello,%20I%20saw%20your%20portfolio" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+
+            <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- CABECERA DEL CASO DE ESTUDIO -->
+        <header class="project-header" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="project-category"><i class="fas fa-cogs"></i> LOGISTICS / PROCESS MODELING</div>
+            <h1>Optimization and BPMN Modeling of Warehouse Flow</h1>
+            <p>Analysis, reengineering, and standardization of logistics processes to eliminate bottlenecks in material dispatch.</p>
+            
+            <div class="tech-stack">
+                <span class="tech-tag"><i class="fas fa-project-diagram"></i> Bizagi Modeler</span>
+                <span class="tech-tag"><i class="fas fa-sitemap"></i> BPMN 2.0</span>
+                <span class="tech-tag"><i class="fas fa-box-open"></i> Logistics</span>
+            </div>
+        </header>
+
+        <!-- CONTENEDOR MÉTODO STAR -->
+        <div class="star-container">
+            
+            <!-- S: SITUACIÓN -->
+            <article class="star-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="star-card-header">
+                    <div class="star-letter">S</div>
+                    <h2>Situation (The Challenge)</h2>
+                </div>
+                <div class="star-content">
+                    <p>During the evaluation of a standard operational model for the reception, storage, and dispatch of raw materials, I identified critical logical flaws in the design. The inventory control mechanism (reorder point review) <strong>sequentially blocked</strong> the delivery of products that had already been prepared, generating unnecessary bottlenecks in customer service.</p>
+                </div>
+            </article>
+
+            <!-- T: TAREA -->
+            <article class="star-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="star-card-header">
+                    <div class="star-letter">T</div>
+                    <h2>Task (Objectives)</h2>
+                </div>
+                <div class="star-content">
+                    <p>The objective was to redesign and optimize the diagram using <strong>Bizagi Modeler</strong> under the international BPMN 2.0 standard. The goal was to achieve a model that accurately reflected the operational reality of an efficient warehouse, guaranteeing uninterrupted order dispatch.</p>
+                </div>
+            </article>
+
+            <!-- A: ACCIÓN -->
+            <article class="star-card action-wrapper" data-aos="fade-up" data-aos-delay="300">
+                <div class="star-card-header">
+                    <div class="star-letter">A</div>
+                    <h2>Action (Strategy & Modeling)</h2>
+                </div>
+                <div class="star-content">
+                    <p>To resolve the detected operational inefficiency, I applied the following architectural improvements to the model:</p>
+                    <ul class="action-list">
+                        <li><strong>Logical Restructuring (Parallel Gateway +):</strong> Separated the physical product delivery flow from the administrative inventory review flow. This ensures zero delays in dispatch, allowing purchase notifications to occur concurrently.</li>
+                        <li><strong>BPMN Nomenclature Standardization:</strong> Corrected activities to strictly comply with notation rules, transforming ambiguous nouns into actionable tasks (e.g., "Register transfer between warehouses").</li>
+                        <li><strong>Maintenance Flow Integration:</strong> Relocated routine tasks ("Material remains stored" and "Maintenance management") to the end of the non-replenishment branch, reflecting warehouse reality without interfering with dispatch.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- DIAGRAMA Y DESCARGAS -->
+            <article class="diagram-section" data-aos="fade-up" data-aos-delay="350">
+                <h3 style="color: white; margin-bottom: 1.5rem; font-size: 1.5rem;">Optimized Bizagi Diagram</h3>
+                
+                <!-- Tu imagen exportada en PNG -->
+                <img src="diagrama-almacen.png" alt="Optimized Warehouse Flow BPMN Diagram" class="diagram-img">
+                
+                <div class="download-buttons">
+                    <a href="modelo-almacen.bpm" download class="btn-evidence">
+                        <i class="fas fa-file-export"></i> Download Source (.bpm)
+                    </a>
+                    <a href="diagrama-almacen.pdf" download class="btn-evidence">
+                        <i class="fas fa-file-pdf"></i> View HD PDF
+                    </a>
+                </div>
+            </article>
+
+            <!-- R: RESULTADOS -->
+            <article class="star-card results-wrapper" style="border-color: var(--primary);" data-aos="fade-up" data-aos-delay="400">
+                <div class="star-card-header" style="justify-content: center;">
+                    <div class="star-letter" style="background: var(--primary); color: #000614;">R</div>
+                    <h2 style="color: var(--primary); text-transform: uppercase; font-weight: 800; letter-spacing: 1px;">Projected Results (Impact)</h2>
+                </div>
+                
+                <div class="results-grid">
+                    <div class="metric-card">
+                        <div class="metric-val">0</div>
+                        <div class="metric-lbl">Dispatch Bottlenecks</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-val">100%</div>
+                        <div class="metric-lbl">BPMN 2.0 Compliance</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-val">2</div>
+                        <div class="metric-lbl">Concurrent Flows Managed</div>
+                    </div>
+                </div>
+            </article>
+
         </div>
     </main>
 
+    <footer data-aos="fade-in">
+        <p>&copy; 2026 Jose Aldair Chevez. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts de Rendimiento -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({ once: true });
+            particlesJS("particles-js", {
+                "particles": { "number": { "value": 40 }, "color": { "value": "#00d4ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.3 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.1 }, "move": { "enable": true, "speed": 1.5 } }
+            });
+        });
+    </script>
 </body>
 </html>
