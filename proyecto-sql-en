@@ -128,7 +128,10 @@
         .code-dots { display: flex; gap: 6px; }
         .dot { width: 12px; height: 12px; border-radius: 50%; }
         .dot.r { background: #ff5f56; } .dot.y { background: #ffbd2e; } .dot.g { background: #27c93f; }
-        .code-body { padding: 1.5rem; overflow-x: auto; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.9rem; line-height: 1.5; color: #e6edf3; }
+        
+        /* Pre-formatted code to maintain indentation */
+        .code-body pre { margin: 0; padding: 1.5rem; overflow-x: auto; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.9rem; line-height: 1.5; color: #e6edf3; white-space: pre; }
+        
         .sql-keyword { color: #ff7b72; font-weight: bold; }
         .sql-func { color: #d2a8ff; }
         .sql-string { color: #a5d6ff; }
@@ -148,7 +151,10 @@
 
     <div id="particles-js"></div> 
 
+    <!-- Menu Overlay -->
     <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    
+    <!-- Accessible Hamburger Menu -->
     <aside class="side-menu" id="sideMenu">
         <div class="menu-header">
             <h3>Navigation</h3>
@@ -195,11 +201,11 @@
         <header class="project-header" data-aos="zoom-in">
             <div class="project-category"><i class="fas fa-database"></i> DATA ENGINEERING & ANALYTICS</div>
             <h1>Corporate Data Warehouse:<br>Medallion Architecture & EDA</h1>
-            <p>Design and construction of an end-to-end data pipeline. From data governance and naming conventions implementation, to raw file ingestion (CRM/ERP), intensive T-SQL cleansing, dimensional modeling, and Exploratory Data Analysis (EDA).</p>
+            <p>Design and construction of an end-to-end data pipeline. From the implementation of data governance and naming conventions, to the ingestion of flat files (CRM/ERP), intensive T-SQL data cleansing, dimensional modeling, and Exploratory Data Analysis (EDA).</p>
             
             <div class="tech-stack">
                 <span class="tech-tag"><i class="fas fa-server"></i> SQL Server</span>
-                <span class="tech-tag"><i class="fas fa-code"></i> T-SQL (Stored Procedures)</span>
+                <span class="tech-tag"><i class="fas fa-code"></i> T-SQL</span>
                 <span class="tech-tag"><i class="fas fa-book"></i> Data Governance</span>
                 <span class="tech-tag"><i class="fas fa-layer-group"></i> Medallion Architecture</span>
                 <span class="tech-tag"><i class="fas fa-project-diagram"></i> Star Schema</span>
@@ -216,7 +222,7 @@
                     <h2>Data Governance & Naming Conventions</h2>
                 </div>
                 <div class="doc-text">
-                    <p>A robust Data Warehouse requires a rigorous standard. Strict <em>Naming Conventions</em> rules using <code>snake_case</code> were implemented to ensure consistency across all logical schemas and facilitate data lineage traceability between source systems (CRM/ERP) and analytical tables.</p>
+                    <p>A robust Data Warehouse requires a rigorous standard. Strict <em>Naming Conventions</em> rules were implemented using <code>snake_case</code> to ensure consistency across all logical schemas and facilitate data lineage traceability between the source systems (CRM/ERP) and the analytical tables.</p>
                 </div>
 
                 <ul class="qa-list">
@@ -302,7 +308,7 @@
                 </div>
             </section>
 
-            <!-- PHASE 2: BRONZE -->
+            <!-- PHASE 1: BRONZE -->
             <section class="doc-section" data-aos="fade-up">
                 <div class="doc-title">
                     <i class="fas fa-database"></i>
@@ -317,7 +323,7 @@
                         <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
                         proc_load_bronze.sql (Idempotent Snippet)
                     </div>
-                    <div class="code-body">
+                    <div class="code-body"><pre>
 <span class="sql-keyword">BEGIN TRY</span>
     <span class="sql-keyword">SET</span> @start_time = <span class="sql-func">GETDATE</span>();
     <span class="sql-keyword">TRUNCATE TABLE</span> bronze.crm_sales_details;
@@ -336,11 +342,11 @@
 <span class="sql-keyword">BEGIN CATCH</span>
     <span class="sql-keyword">PRINT</span> <span class="sql-string">'ERROR OCCURRED: '</span> + <span class="sql-func">ERROR_MESSAGE</span>();
 <span class="sql-keyword">END CATCH</span>
-                    </div>
+</pre></div>
                 </div>
             </section>
 
-            <!-- PHASE 3: SILVER -->
+            <!-- PHASE 2: SILVER -->
             <section class="doc-section" data-aos="fade-up">
                 <div class="doc-title">
                     <i class="fas fa-filter"></i>
@@ -355,7 +361,7 @@
                         <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
                         proc_load_silver.sql (Advanced Transformation)
                     </div>
-                    <div class="code-body">
+                    <div class="code-body"><pre>
 <span class="sql-keyword">SELECT</span>
     <span class="sql-comment">-- 1. Extraction of hidden Foreign Keys in text strings</span>
     <span class="sql-func">REPLACE</span>(<span class="sql-func">SUBSTRING</span>(prd_key, 1, 5), <span class="sql-string">'-'</span>, <span class="sql-string">'_'</span>) <span class="sql-keyword">AS</span> cat_id,
@@ -369,10 +375,40 @@
         <span class="sql-keyword">AS DATE</span>
     ) <span class="sql-keyword">AS</span> prd_end_dt
 <span class="sql-keyword">FROM</span> bronze.crm_prd_info;
-                    </div>
+</pre></div>
                 </div>
 
                 <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">Test Suite (Data Quality Assurance)</h3>
+                <p class="doc-text">Once transformed, validation scripts are executed to guarantee the absence of duplicates, correction of chronological anomalies, and the exact match of financial metrics.</p>
+
+                <div class="code-window">
+                    <div class="code-header">
+                        <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+                        quality_checks_silver.sql (Data Profiling & QA)
+                    </div>
+                    <div class="code-body"><pre>
+<span class="sql-comment">-- 1. Integrity Check: Detection of Nulls or Duplicates in Primary Keys</span>
+<span class="sql-keyword">SELECT</span> 
+    prd_id,
+    <span class="sql-func">COUNT</span>(*) 
+<span class="sql-keyword">FROM</span> silver.crm_prd_info
+<span class="sql-keyword">GROUP BY</span> prd_id
+<span class="sql-keyword">HAVING</span> <span class="sql-func">COUNT</span>(*) > 1 <span class="sql-keyword">OR</span> prd_id <span class="sql-keyword">IS NULL</span>;
+
+<span class="sql-comment">-- 2. Mathematical Consistency: Sales Audit = Quantity * Price</span>
+<span class="sql-keyword">SELECT DISTINCT</span> 
+    sls_sales,
+    sls_quantity,
+    sls_price 
+<span class="sql-keyword">FROM</span> silver.crm_sales_details
+<span class="sql-keyword">WHERE</span> sls_sales != sls_quantity * sls_price
+   <span class="sql-keyword">OR</span> sls_sales <span class="sql-keyword">IS NULL</span> 
+   <span class="sql-keyword">OR</span> sls_quantity <span class="sql-keyword">IS NULL</span> 
+   <span class="sql-keyword">OR</span> sls_price <span class="sql-keyword">IS NULL</span>
+   <span class="sql-keyword">OR</span> sls_sales <= 0;
+</pre></div>
+                </div>
+
                 <ul class="qa-list">
                     <li class="qa-item">
                         <i class="fas fa-shield-alt"></i>
@@ -389,7 +425,7 @@
                 </ul>
             </section>
 
-            <!-- PHASE 4: GOLD -->
+            <!-- PHASE 3: GOLD -->
             <section class="doc-section" style="border-color: var(--primary);" data-aos="fade-up">
                 <div class="doc-title">
                     <i class="fas fa-star" style="color: #ffbd2e;"></i>
@@ -412,7 +448,7 @@
                         <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
                         ddl_gold.sql (Surrogate Keys Generation)
                     </div>
-                    <div class="code-body">
+                    <div class="code-body"><pre>
 <span class="sql-keyword">CREATE VIEW</span> gold.dim_customers <span class="sql-keyword">AS</span>
 <span class="sql-keyword">SELECT</span>
     <span class="sql-comment">-- Dynamic Surrogate Key generation for analytical model isolation</span>
@@ -428,11 +464,11 @@
     <span class="sql-keyword">END</span> <span class="sql-keyword">AS</span> gender
 <span class="sql-keyword">FROM</span> silver.crm_cust_info ci
 <span class="sql-keyword">LEFT JOIN</span> silver.erp_cust_az12 ca <span class="sql-keyword">ON</span> ci.cst_key = ca.cid;
-                    </div>
+</pre></div>
                 </div>
             </section>
 
-            <!-- PHASE 5: EDA -->
+            <!-- PHASE 4: EDA -->
             <section class="doc-section" data-aos="fade-up">
                 <div class="doc-title">
                     <i class="fas fa-chart-line"></i>
@@ -447,7 +483,7 @@
                         <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
                         eda_analysis.sql (Sales Ranking with Window Functions)
                     </div>
-                    <div class="code-body">
+                    <div class="code-body"><pre>
 <span class="sql-comment">-- Report: Identify the top 5 most profitable products historically</span>
 <span class="sql-keyword">SELECT</span> * <span class="sql-keyword">FROM</span> (
     <span class="sql-keyword">SELECT</span> 
@@ -460,7 +496,7 @@
     <span class="sql-keyword">GROUP BY</span> p.product_name
 ) ranking_query
 <span class="sql-keyword">WHERE</span> sales_rank <= 5;
-                    </div>
+</pre></div>
                 </div>
 
                 <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">Key Analytical Insights:</h3>
@@ -498,7 +534,7 @@
             });
 
             const proyectos = [
-                { id: "ventas", titulo: "Financial Overview", descripcion: "Interactive historical Sales analysis report (2015-2017). Data modeling and ETL. Interactive dashboard in Power BI.", keywords: "finance, sales, power bi, dax, etl", link: "ventas-en.html" },
+                { id: "ventas", titulo: "Financial Overview", descripcion: "Interactive historical Sales analysis report (2015-2017). ETL cleansing and Star Schema data modeling. Interactive dashboard in Power BI.", keywords: "finance, sales, power bi, dax, etl", link: "ventas-en.html" },
                 { id: "almacen", titulo: "Warehouse Control (BPMN)", descripcion: "End-to-End logistics process modeling in Bizagi.", keywords: "logistics, warehouse, processes, bizagi", link: "proyecto-almacen-en.html" },
                 { id: "sql", titulo: "Corporate Data Warehouse", descripcion: "Data Warehouse construction with Medallion Architecture and EDA using SQL Server.", keywords: "sql, data warehouse, etl, eda, architecture", link: "proyecto-sql-en.html" }
             ];
