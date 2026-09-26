@@ -22,7 +22,7 @@
     <meta name="twitter:description" content="Ingeniero Industrial enfocado en la mejora continua mediante el uso estratégico de datos.">
     <meta name="twitter:image" content="https://josealdairchevez.github.io/Portafolio/preview.jpg">
     
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2300d4ff' d='M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z'/></svg>" type="image/svg+xml">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2300d4ff' d='M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5-12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z'/></svg>" type="image/svg+xml">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
@@ -280,7 +280,7 @@
             </div>
         </section>
 
-        <!-- PORTFOLIO CARDS (4 Tarjetas) -->
+        <!-- PORTFOLIO CARDS (5 Tarjetas) -->
         <div class="container" id="proyectos">
             <div class="grid">
                 
@@ -292,7 +292,7 @@
                     <a href="ventas.html" class="btn-link" aria-label="Ver dashboard de Resumen Financiero"><i class="fas fa-eye" aria-hidden="true"></i> Ver Dashboard</a>
                 </article>
 
-                <!-- Tarjeta 2: Almacén (NUEVA) -->
+                <!-- Tarjeta 2: Almacén -->
                 <article class="card" data-aos="fade-up" data-aos-delay="300">
                     <div class="card-icon"><i class="fas fa-sitemap" aria-hidden="true"></i></div>
                     <h3>Control de Almacén (BPMN)</h3>
@@ -300,16 +300,24 @@
                     <a href="proyecto-almacen.html" class="btn-link" aria-label="Ver caso de estudio de Control de Almacén"><i class="fas fa-arrow-right" aria-hidden="true"></i> Ver Proyecto</a>
                 </article>
 
-                <!-- Tarjeta 3: Logística General -->
+                <!-- Tarjeta 3: SQL Data Warehouse (NUEVA) -->
                 <article class="card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-icon"><i class="fas fa-database" aria-hidden="true"></i></div>
+                    <h3>Data Warehouse Corporativo</h3>
+                    <p>Construcción de Data Warehouse End-to-End con Arquitectura Medallón, gobierno de datos y EDA en SQL Server.</p>
+                    <a href="proyecto-sql.html" class="btn-link" aria-label="Ver caso de estudio de Data Warehouse en SQL"><i class="fas fa-arrow-right" aria-hidden="true"></i> Ver Proyecto</a>
+                </article>
+
+                <!-- Tarjeta 4: Logística General -->
+                <article class="card" data-aos="fade-up" data-aos-delay="500">
                     <div class="card-icon"><i class="fas fa-boxes" aria-hidden="true"></i></div>
                     <h3>Gestión Logística</h3>
                     <p>Análisis de cadena de suministro e inventarios. Próximamente...</p>
                     <a href="#" class="btn-link disabled" aria-disabled="true"><i class="fas fa-tools" aria-hidden="true"></i> En construcción</a>
                 </article>
 
-                <!-- Tarjeta 4: RRHH -->
-                <article class="card" data-aos="fade-up" data-aos-delay="500">
+                <!-- Tarjeta 5: RRHH -->
+                <article class="card" data-aos="fade-up" data-aos-delay="600">
                     <div class="card-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
                     <h3>Recursos Humanos</h3>
                     <p>Métricas de rendimiento, retención y headcount. Próximamente...</p>
@@ -320,7 +328,7 @@
         </div>
 
         <!-- CONTACT FORM -->
-        <section class="contact-section" id="contacto" data-aos="fade-up" data-aos-delay="600">
+        <section class="contact-section" id="contacto" data-aos="fade-up" data-aos-delay="700">
             <h2><i class="fas fa-envelope" aria-hidden="true"></i> Contáctame</h2>
             <form action="https://formspree.io/f/xnpnpvlw" method="POST" class="contact-form">
                 <input type="text" name="name" placeholder="Tu Nombre o Empresa" required aria-label="Tu Nombre o Empresa">
@@ -405,6 +413,13 @@
                     descripcion: "Modelado de procesos logísticos End-to-End en Bizagi. Gestión de Materias Primas, Work in Process (WIP), control de Incoterms, marchamos y trazabilidad de inventarios.",
                     keywords: "logistica, almacen, procesos, bizagi, bpmn, wip, inventarios, trazabilidad, incoterms",
                     link: "proyecto-almacen.html"
+                },
+                {
+                    id: "sql",
+                    titulo: "Data Warehouse Corporativo",
+                    descripcion: "Construcción de Data Warehouse corporativo End-to-End. Implementación de Arquitectura Medallón, gobierno de datos, ETL y Análisis Exploratorio (EDA) con SQL Server.",
+                    keywords: "sql, data warehouse, etl, eda, arquitectura, medallon, bd, base de datos",
+                    link: "proyecto-sql.html"
                 },
                 {
                     id: "logistica_futuro",
