@@ -12,7 +12,7 @@
     <meta property="og:title" content="Jose Chevez | Data Analytics & Business Intelligence">
     <meta property="og:description" content="Industrial Engineer specialized in data visualization, relational modeling, and process optimization. Explore my interactive dashboards.">
     <meta property="og:image" content="https://josealdairchevez.github.io/Portafolio/preview.jpg">
-    <meta property="og:url" content="https://josealdairchevez.github.io/Portafolio/index-en.html">
+    <meta property="og:url" content="https://josealdairchevez.github.io/Portafolio/">
 
     <!-- ========================================== -->
     <!-- TWITTER / X CARDS                          -->
@@ -22,7 +22,7 @@
     <meta name="twitter:description" content="Industrial Engineer focused on continuous improvement through the strategic use of data.">
     <meta name="twitter:image" content="https://josealdairchevez.github.io/Portafolio/preview.jpg">
     
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2300d4ff' d='M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z'/></svg>" type="image/svg+xml">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2300d4ff' d='M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5-12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z'/></svg>" type="image/svg+xml">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
@@ -50,7 +50,7 @@
         .dropdown-menu a:hover { background: rgba(0, 212, 255, 0.1); color: white; padding-left: 1.5rem; border-left-color: var(--primary); }
         .dropdown-menu i { color: var(--primary); width: 20px; text-align: center; }
 
-        /* Search Box Optimized with Gap */
+        /* Enhanced Search */
         .search-box { display: flex; align-items: center; gap: 8px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 50px; padding: 0.4rem 1rem; transition: 0.3s; }
         .search-box:focus-within { border-color: var(--primary); box-shadow: 0 0 10px rgba(0, 212, 255, 0.3); background: rgba(0,0,0,0.4); }
         .search-box input { background: transparent; border: none; color: white; outline: none; width: 115px; transition: 0.4s; font-size: 0.9rem; }
@@ -187,7 +187,7 @@
     <!-- Menu Overlay -->
     <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()" aria-hidden="true"></div>
 
-    <!-- Accessible Hamburger Sidebar -->
+    <!-- Accessible Hamburger Menu -->
     <aside class="side-menu" id="sideMenu" aria-label="Side navigation menu">
         <div class="menu-header">
             <h3>Navigation</h3>
@@ -195,11 +195,11 @@
         </div>
         <ul class="menu-links">
             <li><a href="index-en.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
-            <li><a href="CV_Jose_Chevez_G.pdf" download aria-label="Download resume in PDF format"><i class="fas fa-user-tie" aria-hidden="true"></i> About Me / CV</a></li>
-            <li><a href="index-en.html#projects"><i class="fas fa-chart-line" aria-hidden="true"></i> Business Intelligence</a></li>
+            <li><a href="CV_Jose_Chevez_G.pdf" download aria-label="Download PDF Resume"><i class="fas fa-user-tie" aria-hidden="true"></i> About Me / Resume</a></li>
+            <li><a href="#proyectos"><i class="fas fa-chart-line" aria-hidden="true"></i> Business Intelligence</a></li>
             <li><a href="#"><i class="fas fa-robot" aria-hidden="true"></i> Machine Learning</a></li>
             <li><a href="#"><i class="fas fa-cogs" aria-hidden="true"></i> Process Management</a></li>
-            <li><a href="index-en.html#contact"><i class="fas fa-envelope" aria-hidden="true"></i> Contact Me</a></li>
+            <li><a href="#contacto"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
         </ul>
         <div class="menu-footer">
             <p>JCH Professional Portfolio</p>
@@ -217,7 +217,7 @@
                 <div class="dropdown-menu">
                     <a href="#"><i class="fas fa-chart-pie" aria-hidden="true"></i> Business Intelligence</a>
                     <a href="#"><i class="fab fa-python" aria-hidden="true"></i> Machine Learning (Python)</a>
-                    <a href="#"><i class="fas fa-project-diagram" aria-hidden="true"></i> Process & Six Sigma</a>
+                    <a href="#"><i class="fas fa-project-diagram" aria-hidden="true"></i> Processes & Six Sigma</a>
                     <a href="#"><i class="fas fa-boxes" aria-hidden="true"></i> Logistics & Operations</a>
                 </div>
             </div>
@@ -225,13 +225,13 @@
 
         <div class="nav-right">
             
-            <!-- Functional Search Box with Dropdown -->
+            <!-- Functional Search with Dropdown -->
             <div class="search-wrapper" style="position: relative;">
                 <div class="search-box">
                     <input type="text" id="searchInput" placeholder="Search project..." aria-label="Search projects in portfolio" autocomplete="off">
                     <i class="fas fa-search" aria-hidden="true"></i>
                 </div>
-                <!-- Dropdown menu -->
+                <!-- Dropdown results -->
                 <div id="searchResults" class="search-dropdown"></div>
             </div>
             
@@ -257,13 +257,13 @@
             
             <p>
                 Specialized in <strong>Business Intelligence</strong>, data modeling 
-                (<span class="tech-highlight">SQL Server, Power BI</span>), and operations management 
-                (<span class="tech-highlight">BPMN/Bizagi</span>). I combine analytical rigor with a solid 
-                corporate vision to optimize workflows and accelerate decision-making.
+                (<span class="tech-highlight">SQL Server, Power BI</span>) and operations management 
+                (<span class="tech-highlight">BPMN/Bizagi</span>). I combine analytical rigor with a strong 
+                corporate vision to optimize workflows and accelerate decision making.
             </p>
 
             <div class="hero-actions">
-                <a href="#projects" class="btn-primary-action" aria-label="Go to projects section">
+                <a href="#proyectos" class="btn-primary-action" aria-label="Go to projects section">
                     <i class="fas fa-eye" aria-hidden="true"></i> View Projects
                 </a>
                 <a href="CV_Jose_Chevez_G.pdf" download="CV_Jose_Chevez_G.pdf" class="cv-btn" aria-label="Download resume in PDF format">
@@ -280,47 +280,55 @@
             </div>
         </section>
 
-        <!-- PORTFOLIO CARDS (4 Cards) -->
-        <div class="container" id="projects">
+        <!-- PORTFOLIO CARDS (5 Cards) -->
+        <div class="container" id="proyectos">
             <div class="grid">
                 
                 <!-- Card 1: Sales -->
                 <article class="card" data-aos="fade-up" data-aos-delay="200">
                     <div class="card-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
                     <h3>Financial Overview</h3>
-                    <p>Interactive historical Sales analysis report (2015-2017). Data modeling and ETL.</p>
+                    <p>Interactive historical Sales analysis report (2015-2017). ETL cleansing and data modeling.</p>
                     <a href="ventas-en.html" class="btn-link" aria-label="View Financial Overview dashboard"><i class="fas fa-eye" aria-hidden="true"></i> View Dashboard</a>
                 </article>
 
-                <!-- Card 2: Warehouse (NEW) -->
+                <!-- Card 2: Warehouse -->
                 <article class="card" data-aos="fade-up" data-aos-delay="300">
                     <div class="card-icon"><i class="fas fa-sitemap" aria-hidden="true"></i></div>
                     <h3>Warehouse Control (BPMN)</h3>
-                    <p>End-to-End logistics process modeling in Bizagi. Management of Raw Materials, WIP, and traceability.</p>
+                    <p>End-to-End logistics process modeling in Bizagi. Raw Materials management, WIP, and traceability.</p>
                     <a href="proyecto-almacen-en.html" class="btn-link" aria-label="View Warehouse Control case study"><i class="fas fa-arrow-right" aria-hidden="true"></i> View Project</a>
                 </article>
 
-                <!-- Card 3: Logistics -->
+                <!-- Card 3: SQL Data Warehouse -->
                 <article class="card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-icon"><i class="fas fa-database" aria-hidden="true"></i></div>
+                    <h3>Corporate Data Warehouse</h3>
+                    <p>End-to-End Data Warehouse construction with Medallion Architecture, data governance, and EDA in SQL Server.</p>
+                    <a href="proyecto-sql-en.html" class="btn-link" aria-label="View SQL Data Warehouse case study"><i class="fas fa-arrow-right" aria-hidden="true"></i> View Project</a>
+                </article>
+
+                <!-- Card 4: General Logistics -->
+                <article class="card" data-aos="fade-up" data-aos-delay="500">
                     <div class="card-icon"><i class="fas fa-boxes" aria-hidden="true"></i></div>
                     <h3>Logistics Management</h3>
                     <p>Supply chain and inventory analysis. Coming soon...</p>
-                    <a href="#" class="btn-link disabled" aria-disabled="true"><i class="fas fa-tools" aria-hidden="true"></i> Under Construction</a>
+                    <a href="#" class="btn-link disabled" aria-disabled="true"><i class="fas fa-tools" aria-hidden="true"></i> Under construction</a>
                 </article>
 
-                <!-- Card 4: HR -->
-                <article class="card" data-aos="fade-up" data-aos-delay="500">
+                <!-- Card 5: HR -->
+                <article class="card" data-aos="fade-up" data-aos-delay="600">
                     <div class="card-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
                     <h3>Human Resources</h3>
-                    <p>Performance metrics, retention, and headcount. Coming soon...</p>
-                    <a href="#" class="btn-link disabled" aria-disabled="true"><i class="fas fa-tools" aria-hidden="true"></i> Under Construction</a>
+                    <p>Performance, retention, and headcount metrics. Coming soon...</p>
+                    <a href="#" class="btn-link disabled" aria-disabled="true"><i class="fas fa-tools" aria-hidden="true"></i> Under construction</a>
                 </article>
 
             </div>
         </div>
 
         <!-- CONTACT FORM -->
-        <section class="contact-section" id="contact" data-aos="fade-up" data-aos-delay="600">
+        <section class="contact-section" id="contacto" data-aos="fade-up" data-aos-delay="700">
             <h2><i class="fas fa-envelope" aria-hidden="true"></i> Contact Me</h2>
             <form action="https://formspree.io/f/xnpnpvlw" method="POST" class="contact-form">
                 <input type="text" name="name" placeholder="Your Name or Company" required aria-label="Your Name or Company">
@@ -335,7 +343,7 @@
         <p>&copy; 2024 JCH Analyst. All rights reserved.</p>
     </footer>
 
-    <!-- Optimized Performance Scripts with defer -->
+    <!-- Optimized scripts with defer -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
@@ -389,22 +397,29 @@
             });
 
             // ==========================================
-            // FUNCTIONAL SEARCH LOGIC (WITH CYAN HIGHLIGHT)
+            // FUNCTIONAL SEARCH LOGIC (WITH HIGHLIGHT)
             // ==========================================
             const proyectos = [
                 {
                     id: "ventas",
                     titulo: "Financial Overview",
-                    descripcion: "Interactive historical Sales analysis report (2015-2017). Data modeling and ETL. Interactive dashboard in Power BI with Star Schema modeling, ETL cleaning, and DAX calculations.",
+                    descripcion: "Interactive historical Sales analysis report (2015-2017). ETL cleansing and Star Schema data modeling. Interactive dashboard in Power BI using DAX.",
                     keywords: "finance, sales, power bi, dax, etl, dashboard, star schema",
                     link: "ventas-en.html"
                 },
                 {
                     id: "almacen",
                     titulo: "Warehouse Control (BPMN)",
-                    descripcion: "End-to-End logistics process modeling in Bizagi. Management of Raw Materials, Work in Process (WIP), Incoterms control, seals, and inventory traceability.",
+                    descripcion: "End-to-End logistics process modeling in Bizagi. Raw Materials management, Work in Process (WIP), Incoterms control, and inventory traceability.",
                     keywords: "logistics, warehouse, processes, bizagi, bpmn, wip, inventory, traceability, incoterms",
                     link: "proyecto-almacen-en.html"
+                },
+                {
+                    id: "sql",
+                    titulo: "Corporate Data Warehouse",
+                    descripcion: "End-to-End Corporate Data Warehouse construction. Medallion Architecture implementation, data governance, ETL and Exploratory Data Analysis (EDA) in SQL Server.",
+                    keywords: "sql, data warehouse, etl, eda, architecture, medallion, db, database",
+                    link: "proyecto-sql-en.html"
                 },
                 {
                     id: "logistica_futuro",
@@ -416,8 +431,8 @@
                 {
                     id: "rrhh",
                     titulo: "Human Resources",
-                    descripcion: "Performance metrics, retention, and headcount. Coming soon...",
-                    keywords: "hr, human resources, performance, headcount, personnel",
+                    descripcion: "Performance, retention, and headcount metrics. Coming soon...",
+                    keywords: "hr, human resources, performance, headcount, staff, personnel",
                     link: "#"
                 }
             ];
@@ -444,6 +459,7 @@
 
                     if (filtrados.length > 0) {
                         filtrados.forEach(proyecto => {
+                            // Truncate description before highlighting to avoid breaking HTML tags
                             let descCorta = proyecto.descripcion.length > 100 ? proyecto.descripcion.substring(0, 100) + '...' : proyecto.descripcion;
                             
                             const tituloResaltado = resaltarTexto(proyecto.titulo, query);
