@@ -106,13 +106,21 @@
         .doc-text { color: var(--text-gray); font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem; }
         .doc-text strong { color: white; }
 
-        /* Imágenes de Arquitectura */
+        /* Imágenes de Arquitectura y Lightbox */
         .arch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-        .arch-img-card { background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); border-radius: 12px; padding: 1rem; text-align: center; transition: 0.3s; }
+        .arch-img-card { background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); border-radius: 12px; padding: 1rem; text-align: center; transition: 0.3s; cursor: pointer; }
         .arch-img-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,212,255,0.1); }
-        .arch-img-card img { width: 100%; border-radius: 8px; cursor: zoom-in; margin-bottom: 1rem; }
+        .arch-img-card img { width: 100%; border-radius: 8px; margin-bottom: 1rem; transition: 0.3s; }
         .arch-img-card h4 { color: white; font-size: 1rem; margin-bottom: 0.5rem; }
         .arch-img-card p { font-size: 0.85rem; color: #94a3b8; }
+
+        /* Estilos del Modal (Lightbox) */
+        .img-modal { display: none; position: fixed; z-index: 2000; padding-top: 60px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(8px); }
+        .img-modal-content { margin: auto; display: block; max-width: 90%; max-height: 80vh; object-fit: contain; border-radius: 12px; box-shadow: 0 0 30px rgba(0, 212, 255, 0.2); animation: zoomIn 0.3s ease; }
+        .close-modal { position: absolute; top: 20px; right: 40px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
+        .close-modal:hover, .close-modal:focus { color: var(--primary); text-decoration: none; }
+        .caption-modal { margin: auto; display: block; width: 80%; max-width: 700px; text-align: center; color: var(--text-light); padding: 15px 0; font-size: 1.2rem; font-weight: 600; letter-spacing: 1px; }
+        @keyframes zoomIn { from {transform:scale(0.95); opacity:0;} to {transform:scale(1); opacity:1;} }
 
         /* Data Dictionary & Framework Tables */
         .data-table-wrapper { overflow-x: auto; margin-top: 1.5rem; margin-bottom: 2rem; border: 1px solid var(--glass-border); border-radius: 10px; }
@@ -122,14 +130,13 @@
         .data-table tr:last-child td { border-bottom: none; }
         .data-table tr:hover td { background: rgba(255,255,255,0.03); color: white; }
 
-        /* Bloques de Código */
+        /* Bloques de Código Mejorados (<pre>) */
         .code-window { background: var(--code-bg); border: 1px solid #30363d; border-radius: 10px; overflow: hidden; margin-bottom: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .code-header { background: #161b22; padding: 0.5rem 1rem; border-bottom: 1px solid #30363d; display: flex; justify-content: space-between; align-items: center; color: #8b949e; font-size: 0.85rem; font-family: monospace; }
         .code-dots { display: flex; gap: 6px; }
         .dot { width: 12px; height: 12px; border-radius: 50%; }
         .dot.r { background: #ff5f56; } .dot.y { background: #ffbd2e; } .dot.g { background: #27c93f; }
         
-        /* Ajuste crucial para respetar el indentado del código SQL */
         .code-body pre { margin: 0; padding: 1.5rem; overflow-x: auto; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.9rem; line-height: 1.5; color: #e6edf3; white-space: pre; }
         
         .sql-keyword { color: #ff7b72; font-weight: bold; }
@@ -282,25 +289,25 @@
                 </div>
                 
                 <div class="arch-grid">
-                    <div class="arch-img-card">
-                        <img src="data_architecture.jpg" alt="High Level Architecture" onclick="if(this.requestFullscreen) this.requestFullscreen();">
+                    <div class="arch-img-card" onclick="openModal('data_architecture.jpg', 'Arquitectura de Alto Nivel')">
+                        <img src="data_architecture.jpg" alt="High Level Architecture">
                         <h4>Arquitectura de Alto Nivel</h4>
                         <p>Diseño conceptual del pipeline Medallón.</p>
                     </div>
-                    <div class="arch-img-card">
-                        <img src="ETL.jpg" alt="ETL Mind Map" onclick="if(this.requestFullscreen) this.requestFullscreen();">
+                    <div class="arch-img-card" onclick="openModal('ETL.jpg', 'Metodología ETL')">
+                        <img src="ETL.jpg" alt="ETL Mind Map">
                         <h4>Mapa Conceptual ETL</h4>
-                        <p>Diagrama integral de metodologías de extracción (Push/Pull), limpieza de datos y dimensiones de cambio lento (SCD 0, 1, 2).</p>
+                        <p>Metodologías de extracción y limpieza de datos (SCD 0, 1, 2).</p>
                     </div>
-                    <div class="arch-img-card">
-                        <img src="data_integration.jpg" alt="Data Integration CRM/ERP" onclick="if(this.requestFullscreen) this.requestFullscreen();">
+                    <div class="arch-img-card" onclick="openModal('data_integration.jpg', 'Modelo de Integración')">
+                        <img src="data_integration.jpg" alt="Data Integration CRM/ERP">
                         <h4>Modelo de Integración</h4>
-                        <p>Mapeo lógico de relaciones entre tablas del CRM y el ERP en la Capa Plata.</p>
+                        <p>Mapeo lógico de relaciones entre CRM y ERP en Capa Plata.</p>
                     </div>
-                    <div class="arch-img-card">
-                        <img src="data_flow.jpg" alt="Data Lineage" onclick="if(this.requestFullscreen) this.requestFullscreen();">
+                    <div class="arch-img-card" onclick="openModal('data_flow.jpg', 'Linaje de Datos')">
+                        <img src="data_flow.jpg" alt="Data Lineage">
                         <h4>Linaje de Datos (Data Flow)</h4>
-                        <p>Trazabilidad visual desde archivos fuente (.csv) a través de esquemas hasta el modelo dimensional.</p>
+                        <p>Trazabilidad visual desde archivos .csv hasta la Capa Oro.</p>
                     </div>
                 </div>
             </section>
@@ -312,7 +319,7 @@
                     <h2>Fase 1: Capa Bronce (Data Ingestion)</h2>
                 </div>
                 <div class="doc-text">
-                    <p>Se desarrolló un motor de ingesta (<em>Stored Procedure</em>: <code>load_bronze</code>) enfocado en el rendimiento masivo. Implementa un método <code>BULK INSERT</code> bajo el estándar de carga completa (<em>Full Load</em>). Se aplicó un patrón Idempotente de reinicio seguro (<code>TRUNCATE</code> antes de insertar) y un bloque de auditoría <code>TRY...CATCH</code> para trazabilidad de errores.</p>
+                    <p>Se desarrolló un motor de ingesta (<em>Stored Procedure</em>: <code>bronze.load_bronze</code>) enfocado en el rendimiento masivo. Implementa un método <code>BULK INSERT</code> bajo el estándar de carga completa (<em>Full Load</em>). Se aplicó un patrón Idempotente de reinicio seguro (<code>TRUNCATE</code> antes de insertar) y un bloque de auditoría <code>TRY...CATCH</code> para trazabilidad de errores.</p>
                 </div>
 
                 <div class="code-window">
@@ -321,24 +328,27 @@
                         proc_load_bronze.sql (Extracto Idempotente)
                     </div>
                     <div class="code-body"><pre>
-<span class="sql-keyword">BEGIN TRY</span>
-    <span class="sql-keyword">SET</span> @start_time = <span class="sql-func">GETDATE</span>();
-    <span class="sql-keyword">TRUNCATE TABLE</span> bronze.crm_sales_details;
-    
-    <span class="sql-keyword">BULK INSERT</span> bronze.crm_sales_details
-    <span class="sql-keyword">FROM</span> <span class="sql-string">'C:\SQL_Datasets\source_crm\sales_details.csv'</span>
-    <span class="sql-keyword">WITH</span> (
-        FIRSTROW = 2,
-        FIELDTERMINATOR = <span class="sql-string">','</span>,
-        TABLOCK <span class="sql-comment">-- Optimización de rendimiento de escritura (Bloqueo a nivel tabla)</span>
-    );
-    
-    <span class="sql-keyword">SET</span> @end_time = <span class="sql-func">GETDATE</span>();
-    <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Load Duration: '</span> + <span class="sql-func">CAST</span>(<span class="sql-func">DATEDIFF</span>(second, @start_time, @end_time) <span class="sql-keyword">AS</span> <span class="sql-keyword">NVARCHAR</span>) + <span class="sql-string">' sec'</span>;
-<span class="sql-keyword">END TRY</span>
-<span class="sql-keyword">BEGIN CATCH</span>
-    <span class="sql-keyword">PRINT</span> <span class="sql-string">'ERROR OCCURRED: '</span> + <span class="sql-func">ERROR_MESSAGE</span>();
-<span class="sql-keyword">END CATCH</span>
+<span class="sql-keyword">CREATE OR ALTER PROCEDURE</span> bronze.load_bronze <span class="sql-keyword">AS</span>
+<span class="sql-keyword">BEGIN</span>
+    <span class="sql-keyword">BEGIN TRY</span>
+        <span class="sql-keyword">SET</span> @start_time = <span class="sql-func">GETDATE</span>();
+        <span class="sql-keyword">TRUNCATE TABLE</span> bronze.crm_sales_details;
+        
+        <span class="sql-keyword">BULK INSERT</span> bronze.crm_sales_details
+        <span class="sql-keyword">FROM</span> <span class="sql-string">'C:\SQL_Datasets\source_crm\sales_details.csv'</span>
+        <span class="sql-keyword">WITH</span> (
+            FIRSTROW = 2,
+            FIELDTERMINATOR = <span class="sql-string">','</span>,
+            TABLOCK <span class="sql-comment">-- Optimización de rendimiento de escritura (Bloqueo a nivel tabla)</span>
+        );
+        
+        <span class="sql-keyword">SET</span> @end_time = <span class="sql-func">GETDATE</span>();
+        <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Load Duration: '</span> + <span class="sql-func">CAST</span>(<span class="sql-func">DATEDIFF</span>(second, @start_time, @end_time) <span class="sql-keyword">AS</span> <span class="sql-keyword">NVARCHAR</span>) + <span class="sql-string">' sec'</span>;
+    <span class="sql-keyword">END TRY</span>
+    <span class="sql-keyword">BEGIN CATCH</span>
+        <span class="sql-keyword">PRINT</span> <span class="sql-string">'ERROR OCCURRED: '</span> + <span class="sql-func">ERROR_MESSAGE</span>();
+    <span class="sql-keyword">END CATCH</span>
+<span class="sql-keyword">END</span>
 </pre></div>
                 </div>
             </section>
@@ -350,33 +360,48 @@
                     <h2>Fase 2: Capa Plata (Limpieza & QA)</h2>
                 </div>
                 <div class="doc-text">
-                    <p>En esta capa se ejecuta la transformación de negocio de los datos (<em>Data Cleansing</em>). El objetivo es preparar los datos para análisis, realizando validaciones matemáticas rigurosas, resolución de nulos, estandarización de columnas (ej. género, país) y normalización de fechas históricas aplicando <strong>Funciones de Ventana (Window Functions)</strong> para generar intervalos sin solapamiento.</p>
+                    <p>En esta capa se ejecuta la transformación de negocio de los datos (<em>Data Cleansing</em>). Todo el proceso está automatizado mediante un Stored Procedure maestro (<code>silver.load_silver</code>) que ejecuta un flujo seguro de <code>TRUNCATE</code> e <code>INSERT</code>.</p>
+                    <p>El objetivo es preparar los datos para análisis, realizando validaciones matemáticas rigurosas, estandarización de columnas y normalización de fechas históricas aplicando <strong>Funciones de Ventana (Window Functions)</strong> para generar intervalos sin solapamiento.</p>
                 </div>
 
                 <div class="code-window">
                     <div class="code-header">
                         <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-                        proc_load_silver.sql (Transformación Avanzada)
+                        proc_load_silver.sql (Automatización y Transformación)
                     </div>
                     <div class="code-body"><pre>
-<span class="sql-keyword">SELECT</span>
-    <span class="sql-comment">-- 1. Extracción de Llaves Foráneas ocultas en cadenas de texto</span>
-    <span class="sql-func">REPLACE</span>(<span class="sql-func">SUBSTRING</span>(prd_key, 1, 5), <span class="sql-string">'-'</span>, <span class="sql-string">'_'</span>) <span class="sql-keyword">AS</span> cat_id,
-    
-    <span class="sql-comment">-- 2. Manejo de valores faltantes y nulos</span>
-    <span class="sql-func">ISNULL</span>(prd_cost, 0) <span class="sql-keyword">AS</span> prd_cost,
-    
-    <span class="sql-comment">-- 3. Window Function (LEAD) para dimensionamiento de cambio lento (SCD2)</span>
-    <span class="sql-func">CAST</span>(
-        <span class="sql-func">LEAD</span>(prd_start_dt) <span class="sql-keyword">OVER</span> (<span class="sql-keyword">PARTITION BY</span> prd_key <span class="sql-keyword">ORDER BY</span> prd_start_dt) - 1 
-        <span class="sql-keyword">AS DATE</span>
-    ) <span class="sql-keyword">AS</span> prd_end_dt
-<span class="sql-keyword">FROM</span> bronze.crm_prd_info;
+<span class="sql-keyword">CREATE OR ALTER PROCEDURE</span> silver.load_silver <span class="sql-keyword">AS</span>
+<span class="sql-keyword">BEGIN</span>
+    <span class="sql-keyword">BEGIN TRY</span>
+        <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Truncating Table: silver.crm_prd_info'</span>;
+        <span class="sql-keyword">TRUNCATE TABLE</span> silver.crm_prd_info;
+        
+        <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Inserting Data Into: silver.crm_prd_info'</span>;
+        <span class="sql-keyword">INSERT INTO</span> silver.crm_prd_info (prd_id, cat_id, prd_key, prd_cost, prd_end_dt)
+        <span class="sql-keyword">SELECT</span>
+            prd_id,
+            <span class="sql-comment">-- 1. Extracción de Llaves Foráneas ocultas en cadenas de texto</span>
+            <span class="sql-func">REPLACE</span>(<span class="sql-func">SUBSTRING</span>(prd_key, 1, 5), <span class="sql-string">'-'</span>, <span class="sql-string">'_'</span>) <span class="sql-keyword">AS</span> cat_id,
+            
+            <span class="sql-comment">-- 2. Manejo de valores faltantes y nulos</span>
+            <span class="sql-func">ISNULL</span>(prd_cost, 0) <span class="sql-keyword">AS</span> prd_cost,
+            
+            <span class="sql-comment">-- 3. Window Function (LEAD) para dimensionamiento de cambio lento (SCD2)</span>
+            <span class="sql-func">CAST</span>(
+                <span class="sql-func">LEAD</span>(prd_start_dt) <span class="sql-keyword">OVER</span> (<span class="sql-keyword">PARTITION BY</span> prd_key <span class="sql-keyword">ORDER BY</span> prd_start_dt) - 1 
+                <span class="sql-keyword">AS DATE</span>
+            ) <span class="sql-keyword">AS</span> prd_end_dt
+        <span class="sql-keyword">FROM</span> bronze.crm_prd_info;
+    <span class="sql-keyword">END TRY</span>
+    <span class="sql-keyword">BEGIN CATCH</span>
+        <span class="sql-keyword">PRINT</span> <span class="sql-string">'ERROR OCCURRED IN SILVER LAYER: '</span> + <span class="sql-func">ERROR_MESSAGE</span>();
+    <span class="sql-keyword">END CATCH</span>
+<span class="sql-keyword">END</span>
 </pre></div>
                 </div>
 
                 <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">Suite de Pruebas (Data Quality Assurance)</h3>
-                <p class="doc-text">Una vez transformados, se ejecutan scripts de validación para garantizar la ausencia de duplicados, corrección de anomalías cronológicas y el cuadre exacto de las métricas financieras.</p>
+                <p class="doc-text">Una vez finalizada la inserción del Stored Procedure, se ejecutan scripts de validación (QA) para garantizar la exactitud de los datos limpios antes de pasar al modelado.</p>
                 
                 <div class="code-window">
                     <div class="code-header">
@@ -414,14 +439,14 @@
                     <h2 style="color: var(--primary);">Fase 3: Capa Oro (Modelado Dimensional)</h2>
                 </div>
                 <div class="doc-text">
-                    <p>La capa analítica final (Sales Data Mart) se construyó mediante <strong>Vistas Analíticas</strong>, estableciendo un <strong>Esquema Estrella (Star Schema)</strong> puro. Se integraron las dimensiones normalizadas mediante <strong>Llaves Subrogadas (Surrogate Keys)</strong> dinámicas con la gran tabla de hechos transaccionales en el centro.</p>
+                    <p>La capa analítica final (Sales Data Mart) se construyó mediante <strong>Vistas Analíticas</strong>. Se implementó un Modelo de Estrella puro generando <strong>Llaves Subrogadas (Surrogate Keys)</strong> dinámicas para independizar el Data Warehouse de los cambios en los sistemas origen. Las métricas de ventas centralizadas conectan con las dimensiones normalizadas mediante relaciones de Uno-a-Muchos.</p>
                 </div>
                 
                 <div class="arch-grid" style="grid-template-columns: 1fr;">
-                    <div class="arch-img-card" style="max-width: 800px; margin: 0 auto; background: rgba(0, 10, 30, 0.8);">
-                        <img src="data_model.jpg" alt="Sales Data Mart - Star Schema" onclick="if(this.requestFullscreen) this.requestFullscreen();">
+                    <div class="arch-img-card" style="max-width: 800px; margin: 0 auto; background: rgba(0, 10, 30, 0.8);" onclick="openModal('data_model.jpg', 'Sales Data Mart - Star Schema')">
+                        <img src="data_model.jpg" alt="Sales Data Mart - Star Schema">
                         <h4>Modelo Dimensional (Data Mart)</h4>
-                        <p>Diseño Entidad-Relación final implementado en la Capa Oro: <code>fact_sales</code> unida mediante <em>Foreign Keys</em> a <code>dim_customers</code> y <code>dim_products</code>. Se incluyen cálculos como <em>Sales = Quantity * price</em> y estandarización de columnas descriptivas.</p>
+                        <p>Diseño Entidad-Relación final implementado en la Capa Oro: <code>fact_sales</code> unida mediante <em>Foreign Keys</em> a <code>dim_customers</code> y <code>dim_products</code>.</p>
                     </div>
                 </div>
 
@@ -501,6 +526,13 @@
         <p>&copy; 2026 Jose Aldair Chevez. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- MODAL PARA IMÁGENES (LIGHTBOX) -->
+    <div id="imageModal" class="img-modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="img-modal-content" id="modalImage">
+        <div id="caption" class="caption-modal"></div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script>
@@ -508,6 +540,27 @@
             document.getElementById('sideMenu').classList.toggle('active');
             document.getElementById('menuOverlay').classList.toggle('active');
         }
+
+        // Lógica del Lightbox Modal
+        function openModal(imgSrc, altText) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImage");
+            const captionText = document.getElementById("caption");
+            modal.style.display = "block";
+            modalImg.src = imgSrc;
+            captionText.innerHTML = altText;
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+
+        // Cerrar modal al hacer clic fuera de la imagen
+        document.getElementById("imageModal").addEventListener('click', function(e){
+            if(e.target !== document.getElementById("modalImage")) {
+                closeModal();
+            }
+        });
 
         document.addEventListener('DOMContentLoaded', () => {
             AOS.init({ once: true, offset: 100 });
