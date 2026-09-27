@@ -108,7 +108,7 @@
 
         /* --- TARJETAS PREMIUM DE ARQUITECTURA (ICONOS VECTORIALES NEÓN) --- */
         .arch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-        .arch-card-premium { background: linear-gradient(145deg, rgba(0, 10, 30, 0.8), rgba(0, 212, 255, 0.05)); border: 1px solid var(--glass-border); border-radius: 15px; padding: 2.5rem 1.5rem; text-align: center; transition: 0.4s; position: relative; overflow: hidden; }
+        .arch-card-premium { background: linear-gradient(145deg, rgba(0, 10, 30, 0.8), rgba(0, 212, 255, 0.05)); border: 1px solid var(--glass-border); border-radius: 15px; padding: 2.5rem 1.5rem; text-align: center; transition: 0.4s; position: relative; overflow: hidden; cursor: pointer; }
         .arch-card-premium::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,212,255,0.1) 0%, transparent 70%); opacity: 0; transition: 0.5s; pointer-events: none; }
         .arch-card-premium:hover::before { opacity: 1; }
         .arch-card-premium:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,212,255,0.15); }
@@ -118,6 +118,14 @@
         
         .arch-card-premium h4 { color: white; font-size: 1.1rem; margin-bottom: 0.8rem; font-weight: 700; letter-spacing: 0.5px; }
         .arch-card-premium p { font-size: 0.9rem; color: #94a3b8; line-height: 1.5; margin: 0; }
+
+        /* --- MODAL PARA IMÁGENES (LIGHTBOX) --- */
+        .img-modal { display: none; position: fixed; z-index: 2000; padding-top: 60px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(8px); }
+        .img-modal-content { margin: auto; display: block; max-width: 90%; max-height: 80vh; object-fit: contain; border-radius: 12px; box-shadow: 0 0 30px rgba(0, 212, 255, 0.2); animation: zoomIn 0.3s ease; }
+        .close-modal { position: absolute; top: 20px; right: 40px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
+        .close-modal:hover, .close-modal:focus { color: var(--primary); text-decoration: none; }
+        .caption-modal { margin: auto; display: block; width: 80%; max-width: 700px; text-align: center; color: var(--text-light); padding: 15px 0; font-size: 1.2rem; font-weight: 600; letter-spacing: 1px; }
+        @keyframes zoomIn { from {transform:scale(0.95); opacity:0;} to {transform:scale(1); opacity:1;} }
 
         /* Data Dictionary & Framework Tables */
         .data-table-wrapper { overflow-x: auto; margin-top: 1.5rem; margin-bottom: 2rem; border: 1px solid var(--glass-border); border-radius: 10px; }
@@ -285,24 +293,24 @@
                     </table>
                 </div>
                 
-                <!-- NUEVO DISEÑO PREMIUM: TARJETAS DE ICONOS VECTORIALES -->
+                <!-- TARJETAS PREMIUM DE ARQUITECTURA -->
                 <div class="arch-grid">
-                    <div class="arch-card-premium">
+                    <div class="arch-card-premium" onclick="openModal('data_architecture.jpg', 'Arquitectura de Alto Nivel')">
                         <div class="arch-icon-wrapper"><i class="fas fa-project-diagram"></i></div>
                         <h4>Arquitectura de Alto Nivel</h4>
                         <p>Diseño conceptual y lógico del pipeline Medallón.</p>
                     </div>
-                    <div class="arch-card-premium">
+                    <div class="arch-card-premium" onclick="openModal('ETL.jpg', 'Metodología ETL')">
                         <div class="arch-icon-wrapper"><i class="fas fa-cogs"></i></div>
                         <h4>Metodología ETL</h4>
                         <p>Técnicas de extracción, Full Load y limpieza escalable.</p>
                     </div>
-                    <div class="arch-card-premium">
+                    <div class="arch-card-premium" onclick="openModal('data_integration.jpg', 'Modelo de Integración')">
                         <div class="arch-icon-wrapper"><i class="fas fa-network-wired"></i></div>
                         <h4>Modelo de Integración</h4>
                         <p>Mapeo relacional cruzado entre el CRM y el ERP en la Capa Plata.</p>
                     </div>
-                    <div class="arch-card-premium">
+                    <div class="arch-card-premium" onclick="openModal('data_flow.jpg', 'Linaje de Datos')">
                         <div class="arch-icon-wrapper"><i class="fas fa-stream"></i></div>
                         <h4>Linaje de Datos (Data Flow)</h4>
                         <p>Trazabilidad visual desde archivos planos hasta la Capa Oro.</p>
@@ -310,12 +318,88 @@
                 </div>
             </section>
 
-            <!-- FASE 2: BRONCE -->
+            <!-- FASE 0: INICIALIZACIÓN -->
+            <section class="doc-section" data-aos="fade-up">
+                <div class="doc-title">
+                    <i class="fas fa-terminal"></i>
+                    <h2>Fase 0: Inicialización del Entorno (Setup)</h2>
+                </div>
+                <div class="doc-text">
+                    <p>Todo Data Warehouse robusto requiere una cimentación sólida. Antes de cualquier ingesta, se implementó un script de configuración inicial (<strong>Idempotente</strong>) que reinicia la base de datos de forma segura (forzando el cierre de conexiones activas) y crea los tres esquemas lógicos que dan vida a la Arquitectura Medallón.</p>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-header">
+                        <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+                        init_database.sql (Configuración Base)
+                    </div>
+                    <div class="code-body"><pre>
+<span class="sql-keyword">USE</span> master;
+<span class="sql-keyword">GO</span>
+
+<span class="sql-comment">-- Recreación segura de la base de datos (Idempotencia)</span>
+<span class="sql-keyword">IF EXISTS</span> (<span class="sql-keyword">SELECT</span> 1 <span class="sql-keyword">FROM</span> sys.databases <span class="sql-keyword">WHERE</span> name = <span class="sql-string">'DataWarehouse'</span>)
+<span class="sql-keyword">BEGIN</span>
+    <span class="sql-keyword">ALTER DATABASE</span> DataWarehouse <span class="sql-keyword">SET SINGLE_USER WITH ROLLBACK IMMEDIATE</span>;
+    <span class="sql-keyword">DROP DATABASE</span> DataWarehouse;
+<span class="sql-keyword">END</span>;
+<span class="sql-keyword">GO</span>
+
+<span class="sql-keyword">CREATE DATABASE</span> DataWarehouse;
+<span class="sql-keyword">GO</span>
+
+<span class="sql-keyword">USE</span> DataWarehouse;
+<span class="sql-keyword">GO</span>
+
+<span class="sql-comment">-- Creación de la Arquitectura Medallón lógica</span>
+<span class="sql-keyword">CREATE SCHEMA</span> bronze;
+<span class="sql-keyword">GO</span>
+<span class="sql-keyword">CREATE SCHEMA</span> silver;
+<span class="sql-keyword">GO</span>
+<span class="sql-keyword">CREATE SCHEMA</span> gold;
+<span class="sql-keyword">GO</span>
+</pre></div>
+                </div>
+            </section>
+
+            <!-- FASE 1: BRONCE -->
             <section class="doc-section" data-aos="fade-up">
                 <div class="doc-title">
                     <i class="fas fa-database"></i>
                     <h2>Fase 1: Capa Bronce (Data Ingestion)</h2>
                 </div>
+                
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">1. Definición del Esquema Físico (DDL As-Is)</h3>
+                <div class="doc-text">
+                    <p>La prioridad en la Capa Bronce es la extracción veloz y fiel a la fuente original (<strong>As-Is</strong>). Al modelar las tablas de ingesta, se mantuvo deliberadamente la estructura cruda. Un detalle clave de este diseño es que <strong>las fechas del CRM se declararon como tipo numérico (<code>INT</code>)</strong>, previniendo que el proceso de ingesta masiva fallara por inconsistencias de formato. La limpieza técnica se delega por completo a la Capa Plata.</p>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-header">
+                        <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+                        ddl_bronze.sql (Extracto de Creación de Tabla)
+                    </div>
+                    <div class="code-body"><pre>
+<span class="sql-keyword">IF OBJECT_ID</span>(<span class="sql-string">'bronze.crm_sales_details'</span>, <span class="sql-string">'U'</span>) <span class="sql-keyword">IS NOT NULL</span>
+    <span class="sql-keyword">DROP TABLE</span> bronze.crm_sales_details;
+<span class="sql-keyword">GO</span>
+
+<span class="sql-keyword">CREATE TABLE</span> bronze.crm_sales_details (
+    sls_ord_num  <span class="sql-keyword">NVARCHAR</span>(50),
+    sls_prd_key  <span class="sql-keyword">NVARCHAR</span>(50),
+    sls_cust_id  <span class="sql-keyword">INT</span>,
+    sls_order_dt <span class="sql-keyword">INT</span>,  <span class="sql-comment">-- Mantenido como INT intencionalmente (As-Is)</span>
+    sls_ship_dt  <span class="sql-keyword">INT</span>,  <span class="sql-comment">-- Mantenido como INT intencionalmente (As-Is)</span>
+    sls_due_dt   <span class="sql-keyword">INT</span>,  <span class="sql-comment">-- Mantenido como INT intencionalmente (As-Is)</span>
+    sls_sales    <span class="sql-keyword">INT</span>,
+    sls_quantity <span class="sql-keyword">INT</span>,
+    sls_price    <span class="sql-keyword">INT</span>
+);
+<span class="sql-keyword">GO</span>
+</pre></div>
+                </div>
+
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">2. Motor de Ingesta Automatizado</h3>
                 <div class="doc-text">
                     <p>Se desarrolló un motor de ingesta (<em>Stored Procedure</em>: <code>bronze.load_bronze</code>) enfocado en el rendimiento masivo. Implementa un método <code>BULK INSERT</code> bajo el estándar de carga completa (<em>Full Load</em>). Se aplicó un patrón Idempotente de reinicio seguro (<code>TRUNCATE</code> antes de insertar) y un bloque de auditoría <code>TRY...CATCH</code> para trazabilidad de errores.</p>
                 </div>
@@ -323,7 +407,7 @@
                 <div class="code-window">
                     <div class="code-header">
                         <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-                        proc_load_bronze.sql (Extracto Idempotente)
+                        proc_load_bronze.sql (Extracto del SP)
                     </div>
                     <div class="code-body"><pre>
 <span class="sql-keyword">CREATE OR ALTER PROCEDURE</span> bronze.load_bronze <span class="sql-keyword">AS</span>
@@ -357,15 +441,47 @@
                     <i class="fas fa-filter"></i>
                     <h2>Fase 2: Capa Plata (Limpieza & QA)</h2>
                 </div>
+
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">1. Evolución del Esquema (Data Type Casting & Metadatos)</h3>
                 <div class="doc-text">
-                    <p>En esta capa se ejecuta la transformación de negocio de los datos (<em>Data Cleansing</em>). Todo el proceso está automatizado mediante un <strong>Stored Procedure maestro (<code>silver.load_silver</code>)</strong> que ejecuta de manera transaccional el truncado, la transformación y la inserción de todas las tablas.</p>
-                    <p>El objetivo es preparar los datos para análisis, realizando validaciones matemáticas rigurosas, estandarización de columnas y normalización de fechas históricas aplicando <strong>Funciones de Ventana (Window Functions)</strong> para generar intervalos sin solapamiento.</p>
+                    <p>Tras analizar los datos crudos (<em>Data Profiling</em>), se mejoró y refinó el esquema (DDL) para la Capa Plata. <strong>Se aplicó un proceso de <em>Data Type Casting</em></strong> para corregir los tipos de datos anómalos heredados de la Capa Bronce (por ejemplo, las fechas de ventas se actualizaron de <code>INT</code> a tipo <code>DATE</code> explícito). Además, se añadió la columna de auditoría obligatoria <code>dwh_create_date</code> a todas las tablas.</p>
                 </div>
 
                 <div class="code-window">
                     <div class="code-header">
                         <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-                        proc_load_silver.sql (Transformación y Automatización)
+                        ddl_silver.sql (Evolución de Tipos de Datos)
+                    </div>
+                    <div class="code-body"><pre>
+<span class="sql-keyword">IF OBJECT_ID</span>(<span class="sql-string">'silver.crm_sales_details'</span>, <span class="sql-string">'U'</span>) <span class="sql-keyword">IS NOT NULL</span>
+    <span class="sql-keyword">DROP TABLE</span> silver.crm_sales_details;
+<span class="sql-keyword">GO</span>
+
+<span class="sql-keyword">CREATE TABLE</span> silver.crm_sales_details (
+    sls_ord_num     <span class="sql-keyword">NVARCHAR</span>(50),
+    sls_prd_key     <span class="sql-keyword">NVARCHAR</span>(50),
+    sls_cust_id     <span class="sql-keyword">INT</span>,
+    sls_order_dt    <span class="sql-keyword">DATE</span>,  <span class="sql-comment">-- Tipo de dato corregido (Data Type Casting)</span>
+    sls_ship_dt     <span class="sql-keyword">DATE</span>,  <span class="sql-comment">-- Tipo de dato corregido (Data Type Casting)</span>
+    sls_due_dt      <span class="sql-keyword">DATE</span>,  <span class="sql-comment">-- Tipo de dato corregido (Data Type Casting)</span>
+    sls_sales       <span class="sql-keyword">INT</span>,
+    sls_quantity    <span class="sql-keyword">INT</span>,
+    sls_price       <span class="sql-keyword">INT</span>,
+    dwh_create_date <span class="sql-keyword">DATETIME2 DEFAULT</span> <span class="sql-func">GETDATE</span>() <span class="sql-comment">-- Columna técnica inyectada</span>
+);
+<span class="sql-keyword">GO</span>
+</pre></div>
+                </div>
+
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">2. Automatización y Transformación ETL</h3>
+                <div class="doc-text">
+                    <p>La limpieza profunda (<em>Data Cleansing</em>) se automatizó mediante un <strong>Stored Procedure maestro (<code>silver.load_silver</code>)</strong>. Este motor ejecuta de manera transaccional el truncado, la transformación (validaciones matemáticas, resolución de nulos, estandarización de diccionarios) y la inserción de las 6 tablas. Un logro técnico destacado fue la normalización de historiales de productos (SCD Tipo 2) usando <strong>Funciones de Ventana</strong>.</p>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-header">
+                        <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+                        proc_load_silver.sql (Uso de Window Functions)
                     </div>
                     <div class="code-body"><pre>
 <span class="sql-keyword">CREATE OR ALTER PROCEDURE</span> silver.load_silver <span class="sql-keyword">AS</span>
@@ -392,7 +508,6 @@
             ) <span class="sql-keyword">AS</span> prd_end_dt
         <span class="sql-keyword">FROM</span> bronze.crm_prd_info;
         
-        <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Proceso Capa Plata Completado Exitosamente.'</span>;
     <span class="sql-keyword">END TRY</span>
     <span class="sql-keyword">BEGIN CATCH</span>
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'ERROR OCCURRED IN SILVER LAYER: '</span> + <span class="sql-func">ERROR_MESSAGE</span>();
@@ -401,8 +516,8 @@
 </pre></div>
                 </div>
 
-                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">Suite de Pruebas (Data Quality Assurance)</h3>
-                <p class="doc-text">Una vez finalizada la inserción del Stored Procedure, se ejecutan scripts de validación (QA) para garantizar la exactitud de los datos limpios antes de pasar al modelado dimensional.</p>
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">3. Suite de Pruebas (Data Quality Assurance)</h3>
+                <p class="doc-text">Una vez finalizada la inserción del Stored Procedure, se diseñó e implementó una rigurosa suite de validación (QA scripts) para auditar la integridad de la base de datos antes de proceder al modelado final.</p>
                 
                 <div class="code-window">
                     <div class="code-header">
@@ -444,10 +559,12 @@
                 </div>
                 
                 <div class="arch-grid" style="grid-template-columns: 1fr;">
-                    <div class="arch-card-premium" style="max-width: 800px; margin: 0 auto;">
-                        <div class="arch-icon-wrapper"><i class="fas fa-star"></i></div>
-                        <h4>Modelo Dimensional en Estrella (Data Mart)</h4>
+                    <!-- NOTA: Asegúrate de tener 'data_model.jpg' en tu repositorio de GitHub -->
+                    <div class="arch-card-premium" style="max-width: 800px; margin: 0 auto;" onclick="openModal('data_model.jpg', 'Sales Data Mart - Star Schema')">
+                        <div class="arch-icon-wrapper" style="margin-bottom: 0.5rem;"><i class="fas fa-star"></i></div>
+                        <h4 style="margin-top: 1rem;">Modelo Dimensional en Estrella (Data Mart)</h4>
                         <p>Diseño Entidad-Relación final implementado en la Capa Oro: <code>fact_sales</code> unida mediante <em>Foreign Keys</em> a las dimensiones <code>dim_customers</code> y <code>dim_products</code>.</p>
+                        <span style="font-size: 0.8rem; color: var(--primary); display: block; margin-top: 1rem;"><i class="fas fa-search-plus"></i> Haz clic para ver el diagrama</span>
                     </div>
                 </div>
 
@@ -527,6 +644,13 @@
         <p>&copy; 2026 Jose Aldair Chevez. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- MODAL PARA IMÁGENES (LIGHTBOX) -->
+    <div id="imageModal" class="img-modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="img-modal-content" id="modalImage">
+        <div id="caption" class="caption-modal"></div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script>
@@ -534,6 +658,27 @@
             document.getElementById('sideMenu').classList.toggle('active');
             document.getElementById('menuOverlay').classList.toggle('active');
         }
+
+        // Lógica del Lightbox Modal
+        function openModal(imgSrc, altText) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImage");
+            const captionText = document.getElementById("caption");
+            modal.style.display = "block";
+            modalImg.src = imgSrc;
+            captionText.innerHTML = altText;
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+
+        // Cerrar modal al hacer clic fuera de la imagen o en la 'x'
+        document.getElementById("imageModal").addEventListener('click', function(e){
+            if(e.target !== document.getElementById("modalImage")) {
+                closeModal();
+            }
+        });
 
         document.addEventListener('DOMContentLoaded', () => {
             AOS.init({ once: true, offset: 100 });
