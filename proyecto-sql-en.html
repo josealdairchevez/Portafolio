@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Warehouse Corporativo | Domijoch Analytics</title>
+    <title>Corporate Data Warehouse | JCH Analytics</title>
     
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Data Warehouse Corporativo End-to-End | José Chevez">
-    <meta property="og:description" content="Construcción de Data Warehouse desde cero (Arquitectura Medallón), Gobierno de Datos (Naming Conventions), ETL y EDA.">
+    <meta property="og:title" content="Corporate Data Warehouse End-to-End | Jose Chevez">
+    <meta property="og:description" content="Building an end-to-end Data Warehouse (Medallion Architecture), Data Governance (Naming Conventions), ETL, and EDA.">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2300d4ff' d='M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5-12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z'/></svg>" type="image/svg+xml">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
-        /* --- ESTILOS BASE --- */
+        /* --- BASE STYLES --- */
         :root { --primary: #00d4ff; --secondary: #005f99; --glass: rgba(255, 255, 255, 0.05); --glass-border: rgba(255, 255, 255, 0.15); --text-light: #f8fafc; --text-gray: #cbd5e1; --code-bg: #0d1117; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
         body { background: radial-gradient(circle at 75% 50%, #0077b6 0%, #002244 50%, #000614 100%); background-attachment: fixed; color: var(--text-light); min-height: 100vh; overflow-x: hidden; }
@@ -84,7 +84,7 @@
         .menu-links li a:hover { color: white; background: rgba(0, 212, 255, 0.08); border-left: 4px solid var(--primary); text-shadow: 0 0 8px rgba(0, 212, 255, 0.5); }
         .menu-links li a i { font-size: 1.2rem; color: var(--primary); width: 24px; text-align: center; }
 
-        /* --- CONTENIDO PRINCIPAL --- */
+        /* --- MAIN CONTENT --- */
         .project-header { text-align: center; padding: 4rem 2rem 2rem; max-width: 1000px; margin: 0 auto; }
         .project-category { display: inline-block; background: rgba(0, 212, 255, 0.15); color: var(--primary); border: 1px solid var(--primary); padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: bold; margin-bottom: 1rem; letter-spacing: 1px; }
         .project-header h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 1rem; color: white; text-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
@@ -106,7 +106,7 @@
         .doc-text { color: var(--text-gray); font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem; }
         .doc-text strong { color: white; }
 
-        /* --- TARJETAS PREMIUM DE ARQUITECTURA (ICONOS VECTORIALES NEÓN) --- */
+        /* --- PREMIUM ARCHITECTURE CARDS (NEON VECTOR ICONS) --- */
         .arch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
         .arch-card-premium { background: linear-gradient(145deg, rgba(0, 10, 30, 0.8), rgba(0, 212, 255, 0.05)); border: 1px solid var(--glass-border); border-radius: 15px; padding: 2.5rem 1.5rem; text-align: center; transition: 0.4s; position: relative; overflow: hidden; cursor: pointer; }
         .arch-card-premium::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,212,255,0.1) 0%, transparent 70%); opacity: 0; transition: 0.5s; pointer-events: none; }
@@ -119,7 +119,7 @@
         .arch-card-premium h4 { color: white; font-size: 1.1rem; margin-bottom: 0.8rem; font-weight: 700; letter-spacing: 0.5px; }
         .arch-card-premium p { font-size: 0.9rem; color: #94a3b8; line-height: 1.5; margin: 0; }
 
-        /* --- MODAL PARA IMÁGENES (LIGHTBOX) --- */
+        /* --- LIGHTBOX MODAL --- */
         .img-modal { display: none; position: fixed; z-index: 2000; padding-top: 60px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(8px); }
         .img-modal-content { margin: auto; display: block; max-width: 90%; max-height: 80vh; object-fit: contain; border-radius: 12px; box-shadow: 0 0 30px rgba(0, 212, 255, 0.2); animation: zoomIn 0.3s ease; }
         .close-modal { position: absolute; top: 20px; right: 40px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
@@ -135,7 +135,7 @@
         .data-table tr:last-child td { border-bottom: none; }
         .data-table tr:hover td { background: rgba(255,255,255,0.03); color: white; }
 
-        /* Bloques de Código Mejorados (<pre>) con Scrollbar Premium Celeste Brillante */
+        /* Enhanced Code Blocks (<pre>) with Custom Cyan Scrollbar */
         .code-window { background: var(--code-bg); border: 1px solid #30363d; border-radius: 10px; overflow: hidden; margin-bottom: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .code-header { background: #161b22; padding: 0.5rem 1rem; border-bottom: 1px solid #30363d; display: flex; justify-content: space-between; align-items: center; color: #8b949e; font-size: 0.85rem; font-family: monospace; }
         .code-dots { display: flex; gap: 6px; }
@@ -144,7 +144,7 @@
         
         .code-body pre { margin: 0; padding: 1.5rem; overflow-x: auto; overflow-y: auto; max-height: 450px; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.9rem; line-height: 1.5; color: #e6edf3; white-space: pre; }
         
-        /* Personalización del Scrollbar interno del código - Color Cyan Brillante */
+        /* Custom Scrollbar - Bright Cyan */
         .code-body pre::-webkit-scrollbar { width: 8px; height: 8px; }
         .code-body pre::-webkit-scrollbar-track { background: #0d1117; border-radius: 4px; }
         .code-body pre::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; box-shadow: 0 0 10px var(--primary); }
@@ -155,7 +155,7 @@
         .sql-string { color: #a5d6ff; }
         .sql-comment { color: #8b949e; font-style: italic; }
 
-        /* Listas QA & Rules */
+        /* QA & Rules Lists */
         .qa-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
         .qa-item { background: rgba(0, 212, 255, 0.05); border: 1px solid rgba(0, 212, 255, 0.2); padding: 1rem; border-radius: 8px; display: flex; align-items: flex-start; gap: 12px; }
         .qa-item i { color: #25D366; font-size: 1.2rem; margin-top: 3px; }
@@ -172,24 +172,24 @@
     <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
     <aside class="side-menu" id="sideMenu">
         <div class="menu-header">
-            <h3>Navegación</h3>
+            <h3>Navigation</h3>
             <button class="close-btn" onclick="toggleMenu()"><i class="fas fa-times"></i></button>
         </div>
         <ul class="menu-links">
-            <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
-            <li><a href="CV_Jose_Chevez_G.pdf" download><i class="fas fa-user-tie"></i> Sobre Mí / CV</a></li>
-            <li><a href="index.html#proyectos"><i class="fas fa-chart-line"></i> Business Intelligence</a></li>
+            <li><a href="index-en.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="CV_Jose_Chevez_G.pdf" download><i class="fas fa-user-tie"></i> About Me / Resume</a></li>
+            <li><a href="index-en.html#proyectos"><i class="fas fa-chart-line"></i> Business Intelligence</a></li>
         </ul>
     </aside>
 
     <nav class="navbar" data-aos="fade-down">
         <div class="nav-left">
             <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-            <div class="logo">ANALISTA JCH</div>
+            <div class="logo">JCH ANALYST</div>
             <div class="nav-category">
-                <button class="category-btn">Categorías <i class="fas fa-chevron-down" style="font-size: 0.75rem;"></i></button>
+                <button class="category-btn">Categories <i class="fas fa-chevron-down" style="font-size: 0.75rem;"></i></button>
                 <div class="dropdown-menu">
-                    <a href="#"><i class="fas fa-database"></i> Ingeniería de Datos</a>
+                    <a href="#"><i class="fas fa-database"></i> Data Engineering</a>
                     <a href="#"><i class="fas fa-chart-pie"></i> Business Intelligence</a>
                 </div>
             </div>
@@ -198,26 +198,25 @@
         <div class="nav-right">
             <div class="search-wrapper">
                 <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Buscar..." autocomplete="off">
+                    <input type="text" id="searchInput" placeholder="Search..." autocomplete="off">
                     <i class="fas fa-search"></i>
                 </div>
                 <div id="searchResults" class="search-dropdown"></div>
             </div>
             
             <div class="lang-switch">
-                <!-- AQUI ESTÁ EL ENLACE CORREGIDO PARA CAMBIAR A INGLÉS -->
-                <a href="proyecto-sql.html" class="active">ES</a> | <a href="proyecto-sql-en.html">EN</a>
+                <a href="proyecto-sql.html">ES</a> | <a href="#" class="active">EN</a>
             </div>
             
-            <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> <span>Volver</span></a>
+            <a href="index-en.html" class="btn-back"><i class="fas fa-arrow-left"></i> <span>Back</span></a>
         </div>
     </nav>
 
     <main>
         <header class="project-header" data-aos="zoom-in">
             <div class="project-category"><i class="fas fa-database"></i> DATA ENGINEERING & ANALYTICS</div>
-            <h1>Data Warehouse Corporativo:<br>Arquitectura Medallón & EDA</h1>
-            <p>Diseño y construcción de un pipeline de datos end-to-end. Desde la implementación de gobierno de datos y convenciones de nomenclatura, hasta la ingesta de archivos planos (CRM/ERP), limpieza intensiva con T-SQL, modelado dimensional, y Análisis Exploratorio de Datos (EDA).</p>
+            <h1>Corporate Data Warehouse:<br>Medallion Architecture & EDA</h1>
+            <p>Design and construction of an end-to-end data pipeline. From the implementation of data governance and naming conventions, to the ingestion of flat files (CRM/ERP), intensive T-SQL data cleansing, dimensional modeling, and Exploratory Data Analysis (EDA).</p>
             
             <div class="tech-stack">
                 <span class="tech-tag"><i class="fas fa-server"></i> SQL Server</span>
@@ -231,120 +230,120 @@
 
         <div class="doc-container">
 
-            <!-- SECCIÓN 0: GOBIERNO DE DATOS -->
+            <!-- SECTION 0: DATA GOVERNANCE -->
             <section class="doc-section" data-aos="fade-up">
                 <div class="doc-title">
                     <i class="fas fa-book"></i>
-                    <h2>Gobierno de Datos & Convenciones de Nomenclatura</h2>
+                    <h2>Data Governance & Naming Conventions</h2>
                 </div>
                 <div class="doc-text">
-                    <p>Un Data Warehouse robusto requiere un estándar riguroso. Se implementaron reglas estrictas de <em>Naming Conventions</em> utilizando <code>snake_case</code> para asegurar la coherencia en todos los esquemas lógicos y facilitar la trazabilidad del linaje de datos entre las fuentes de origen (CRM/ERP) y las tablas analíticas.</p>
+                    <p>A robust Data Warehouse requires a rigorous standard. Strict <em>Naming Conventions</em> rules were implemented using <code>snake_case</code> to ensure consistency across all logical schemas and facilitate data lineage traceability between the source systems (CRM/ERP) and the analytical tables.</p>
                 </div>
 
                 <ul class="qa-list">
                     <li class="qa-item">
                         <i class="fas fa-check-circle" style="color: var(--primary);"></i>
-                        <div><strong>Estandarización de Tablas Crudas (Bronce & Plata)</strong>Las entidades mantienen el nombre de su sistema de origen para asegurar trazabilidad. Patrón: <code>&lt;sourcesystem&gt;_&lt;entity&gt;</code> (Ej. <code>crm_customer_info</code>).</div>
+                        <div><strong>Raw Tables Standardization (Bronze & Silver)</strong>Entities maintain their source system name to ensure traceability. Pattern: <code>&lt;sourcesystem&gt;_&lt;entity&gt;</code> (e.g., <code>crm_customer_info</code>).</div>
                     </li>
                     <li class="qa-item">
                         <i class="fas fa-check-circle" style="color: var(--primary);"></i>
-                        <div><strong>Modelado de Negocio (Oro)</strong>Las tablas finales utilizan nombres descriptivos alineados al dominio de negocio, utilizando los prefijos <code>dim_</code> para Dimensiones y <code>fact_</code> para Hechos.</div>
+                        <div><strong>Business Modeling (Gold)</strong>Final tables use descriptive names aligned with the business domain, utilizing the prefixes <code>dim_</code> for Dimensions and <code>fact_</code> for Facts.</div>
                     </li>
                     <li class="qa-item">
                         <i class="fas fa-check-circle" style="color: var(--primary);"></i>
-                        <div><strong>Metadatos Técnicos & Auditoría</strong>Toda columna autogenerada por el sistema para propósitos de auditoría inicia con el prefijo <code>dwh_</code> (Ej. <code>dwh_create_date</code>). Toda llave subrogada utiliza el sufijo <code>_key</code>.</div>
+                        <div><strong>Technical Metadata & Auditing</strong>Every system-generated column for auditing purposes starts with the prefix <code>dwh_</code> (e.g., <code>dwh_create_date</code>). Every surrogate key uses the suffix <code>_key</code>.</div>
                     </li>
                 </ul>
             </section>
 
-            <!-- SECCIÓN 1: ARQUITECTURA -->
+            <!-- SECTION 1: ARCHITECTURE -->
             <section class="doc-section" data-aos="fade-up">
                 <div class="doc-title">
                     <i class="fas fa-sitemap"></i>
-                    <h2>Diseño de Arquitectura y Metodología ETL</h2>
+                    <h2>Architecture Design & ETL Methodology</h2>
                 </div>
                 <div class="doc-text">
-                    <p>Integrando conceptos de <em>Kimball</em> y <em>Data Lakehouses</em>, se diseñó una <strong>Arquitectura Medallón</strong> lógica en SQL Server. Esta aproximación garantiza la separación de responsabilidades (SoC) entre la ingesta cruda, la transformación y el consumo de datos.</p>
+                    <p>Integrating concepts from <em>Kimball</em> and <em>Data Lakehouses</em>, a logical <strong>Medallion Architecture</strong> was designed in SQL Server. This approach guarantees the Separation of Concerns (SoC) between raw data ingestion, transformation, and business consumption.</p>
                 </div>
 
                 <div class="data-table-wrapper">
                     <table class="data-table">
                         <thead>
                             <tr>
-                                <th>Capa de Datos</th>
-                                <th>Objetivo y Tipo de Objeto</th>
-                                <th>Transformaciones Aplicadas</th>
-                                <th>Método de Carga</th>
+                                <th>Data Layer</th>
+                                <th>Objective & Object Type</th>
+                                <th>Transformations Applied</th>
+                                <th>Load Method</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong><i class="fas fa-box" style="color: #cd7f32;"></i> Capa Bronce</strong></td>
-                                <td>Trazabilidad. Tablas físicas (Raw Tables). Datos almacenados "As-Is".</td>
-                                <td>Ninguna (As-Is).</td>
-                                <td>Carga Completa (Truncate & Insert).</td>
+                                <td><strong><i class="fas fa-box" style="color: #cd7f32;"></i> Bronze Layer</strong></td>
+                                <td>Traceability. Physical Tables (Raw Tables). Data stored "As-Is".</td>
+                                <td>None (As-Is).</td>
+                                <td>Full Load (Truncate & Insert).</td>
                             </tr>
                             <tr>
-                                <td><strong><i class="fas fa-filter" style="color: #c0c0c0;"></i> Capa Plata</strong></td>
-                                <td>Limpieza y preparación. Tablas físicas (Cleaned Tables).</td>
-                                <td>Data Cleansing, Normalización, Estandarización y Columnas Derivadas.</td>
-                                <td>Carga Completa (Truncate & Insert).</td>
+                                <td><strong><i class="fas fa-filter" style="color: #c0c0c0;"></i> Silver Layer</strong></td>
+                                <td>Cleansing and preparation. Physical Tables (Cleaned Tables).</td>
+                                <td>Data Cleansing, Normalization, Standardization, and Derived Columns.</td>
+                                <td>Full Load (Truncate & Insert).</td>
                             </tr>
                             <tr>
-                                <td><strong><i class="fas fa-star" style="color: #ffbd2e;"></i> Capa Oro</strong></td>
-                                <td>Consumo por negocio (BI & Analytics). Vistas Analíticas.</td>
-                                <td>Data Integration, Agregaciones, Lógica de Negocio y Data Modeling (Star Schema).</td>
-                                <td>Ninguna (Son Vistas en tiempo real).</td>
+                                <td><strong><i class="fas fa-star" style="color: #ffbd2e;"></i> Gold Layer</strong></td>
+                                <td>Business consumption (BI & Analytics). Analytical Views.</td>
+                                <td>Data Integration, Aggregations, Business Logic, and Data Modeling (Star Schema).</td>
+                                <td>None (Real-time Views).</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 
-                <!-- TARJETAS PREMIUM DE ARQUITECTURA (FORMATO .PNG) -->
+                <!-- PREMIUM ARCHITECTURE CARDS -->
                 <div class="arch-grid">
-                    <div class="arch-card-premium" onclick="openModal('data_architecture.png', 'Arquitectura de Alto Nivel')">
+                    <div class="arch-card-premium" onclick="openModal('data_architecture.png', 'High Level Architecture')">
                         <div class="arch-icon-wrapper"><i class="fas fa-project-diagram"></i></div>
-                        <h4>Arquitectura de Alto Nivel</h4>
-                        <p>Diseño conceptual y lógico del pipeline Medallón.</p>
+                        <h4>High Level Architecture</h4>
+                        <p>Conceptual and logical design of the Medallion pipeline.</p>
                     </div>
-                    <div class="arch-card-premium" onclick="openModal('ETL.png', 'Metodología ETL')">
+                    <div class="arch-card-premium" onclick="openModal('ETL.png', 'ETL Methodology')">
                         <div class="arch-icon-wrapper"><i class="fas fa-cogs"></i></div>
-                        <h4>Metodología ETL</h4>
-                        <p>Técnicas de extracción, Full Load y limpieza escalable.</p>
+                        <h4>ETL Methodology</h4>
+                        <p>Extraction techniques, Full Load mapping, and scalable data cleansing.</p>
                     </div>
-                    <div class="arch-card-premium" onclick="openModal('data_integration.png', 'Modelo de Integración')">
+                    <div class="arch-card-premium" onclick="openModal('data_integration.png', 'Integration Model')">
                         <div class="arch-icon-wrapper"><i class="fas fa-network-wired"></i></div>
-                        <h4>Modelo de Integración</h4>
-                        <p>Mapeo relacional cruzado entre el CRM y el ERP en la Capa Plata.</p>
+                        <h4>Integration Model</h4>
+                        <p>Cross relational mapping between CRM and ERP sources in the Silver Layer.</p>
                     </div>
-                    <div class="arch-card-premium" onclick="openModal('data_flow.png', 'Linaje de Datos')">
+                    <div class="arch-card-premium" onclick="openModal('data_flow.png', 'Data Lineage')">
                         <div class="arch-icon-wrapper"><i class="fas fa-stream"></i></div>
-                        <h4>Linaje de Datos (Data Flow)</h4>
-                        <p>Trazabilidad visual desde archivos planos hasta la Capa Oro.</p>
+                        <h4>Data Lineage (Data Flow)</h4>
+                        <p>Visual traceability mapping from source flat files directly to the Gold Layer.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- FASE 0: INICIALIZACIÓN -->
+            <!-- PHASE 0: SETUP -->
             <section class="doc-section" data-aos="fade-up">
                 <div class="doc-title">
                     <i class="fas fa-terminal"></i>
-                    <h2>Fase 0: Inicialización del Entorno (Setup)</h2>
+                    <h2>Phase 0: Environment Setup</h2>
                 </div>
                 <div class="doc-text">
-                    <p>Todo Data Warehouse robusto requiere una cimentación sólida. Antes de cualquier ingesta, se implementó un script de configuración inicial (<strong>Idempotente</strong>) que reinicia la base de datos de forma segura (forzando el cierre de conexiones activas) y crea los tres esquemas lógicos que dan vida a la Arquitectura Medallón.</p>
+                    <p>Every robust Data Warehouse requires a solid foundation. Before any data ingestion, an initial setup script (<strong>Idempotent</strong>) was implemented. It safely recreates the database (forcing the closure of active connections) and creates the three logical schemas that power the Medallion Architecture.</p>
                 </div>
 
                 <div class="code-window">
                     <div class="code-header">
                         <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-                        init_database.sql (Configuración Base)
+                        init_database.sql (Base Configuration)
                     </div>
                     <div class="code-body"><pre>
 <span class="sql-keyword">USE</span> master;
 <span class="sql-keyword">GO</span>
 
-<span class="sql-comment">-- Recreación segura de la base de datos (Idempotencia)</span>
+<span class="sql-comment">-- Safe database recreation (Idempotency Pattern)</span>
 <span class="sql-keyword">IF EXISTS</span> (<span class="sql-keyword">SELECT</span> 1 <span class="sql-keyword">FROM</span> sys.databases <span class="sql-keyword">WHERE</span> name = <span class="sql-string">'DataWarehouse'</span>)
 <span class="sql-keyword">BEGIN</span>
     <span class="sql-keyword">ALTER DATABASE</span> DataWarehouse <span class="sql-keyword">SET SINGLE_USER WITH ROLLBACK IMMEDIATE</span>;
@@ -358,7 +357,7 @@
 <span class="sql-keyword">USE</span> DataWarehouse;
 <span class="sql-keyword">GO</span>
 
-<span class="sql-comment">-- Creación de la Arquitectura Medallón lógica</span>
+<span class="sql-comment">-- Creation of the logical Medallion Architecture schemas</span>
 <span class="sql-keyword">CREATE SCHEMA</span> bronze;
 <span class="sql-keyword">GO</span>
 <span class="sql-keyword">CREATE SCHEMA</span> silver;
@@ -369,47 +368,47 @@
                 </div>
             </section>
 
-            <!-- FASE 1: BRONCE -->
+            <!-- PHASE 1: BRONZE -->
             <section class="doc-section" data-aos="fade-up">
                 <div class="doc-title">
                     <i class="fas fa-database"></i>
-                    <h2>Fase 1: Capa Bronce (Data Ingestion)</h2>
+                    <h2>Phase 1: Bronze Layer (Data Ingestion)</h2>
                 </div>
                 
-                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">1. Definición del Esquema Físico (DDL As-Is)</h3>
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">1. Physical Schema Definition (DDL As-Is)</h3>
                 <div class="doc-text">
-                    <p>La prioridad en la Capa Bronce es la extracción veloz y fiel a la fuente original (<strong>As-Is</strong>). Al modelar las tablas de ingesta, se mantuvo deliberadamente la estructura cruda para evitar que el <code>BULK INSERT</code> falle. Un ejemplo destacado es la tabla de ventas, donde <strong>las fechas del CRM se mantuvieron como tipo numérico (<code>INT</code>)</strong>, delegando la limpieza de tipos de datos a la Capa Plata.</p>
+                    <p>The priority in the Bronze Layer is fast and faithful extraction to the original source (<strong>As-Is</strong>). When modeling the ingestion tables, the raw structure was deliberately maintained to prevent the <code>BULK INSERT</code> from failing. A prime example is the sales table, where <strong>CRM dates were kept as numeric types (<code>INT</code>)</strong>, delegating data type cleansing entirely to the Silver Layer.</p>
                 </div>
 
                 <div class="code-window">
                     <div class="code-header">
                         <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-                        ddl_bronze.sql (Definición Completa de la Capa Cruda)
+                        ddl_bronze.sql (Raw Layer Complete Definition)
                     </div>
                     <div class="code-body"><pre>
 <span class="sql-comment">/*
 ===============================================================================
-Script DDL: Creación de Tablas de la Capa Bronce (Raw Data)
+DDL Script: Create Bronze Tables (Raw Data)
 ===============================================================================
-Propósito:
-    Define la estructura física de la Capa Bronce. Se aplica el principio "As-Is": 
-    Los tipos de datos se ajustan estrictamente a lo que envía el archivo CSV 
-    origen para evitar fallos durante la ingesta masiva (Bulk Insert).
+Purpose:
+    Defines the physical structure of the Bronze Layer. Applies the "As-Is" principle: 
+    Data types are strictly mapped to the source CSV file format to prevent 
+    failures during massive data ingestion (Bulk Insert).
 ===============================================================================
 */</span>
 
 <span class="sql-comment">-- ===================================================================</span>
-<span class="sql-comment">-- SISTEMA ORIGEN: CRM (Customer Relationship Management)</span>
+<span class="sql-comment">-- SOURCE SYSTEM: CRM (Customer Relationship Management)</span>
 <span class="sql-comment">-- ===================================================================</span>
 
-<span class="sql-comment">-- Validar si la tabla existe antes de crearla (Patrón Idempotente)</span>
+<span class="sql-comment">-- Validate if table exists before creating (Idempotent Pattern)</span>
 <span class="sql-keyword">IF OBJECT_ID</span>(<span class="sql-string">'bronze.crm_cust_info'</span>, <span class="sql-string">'U'</span>) <span class="sql-keyword">IS NOT NULL</span>
     <span class="sql-keyword">DROP TABLE</span> bronze.crm_cust_info;
 <span class="sql-keyword">GO</span>
 
 <span class="sql-keyword">CREATE TABLE</span> bronze.crm_cust_info (
     cst_id              <span class="sql-keyword">INT</span>,
-    cst_key             <span class="sql-keyword">NVARCHAR</span>(50), <span class="sql-comment">-- Uso de NVARCHAR para soportar caracteres alfanuméricos</span>
+    cst_key             <span class="sql-keyword">NVARCHAR</span>(50), <span class="sql-comment">-- Using NVARCHAR to support alphanumeric characters</span>
     cst_firstname       <span class="sql-keyword">NVARCHAR</span>(50),
     cst_lastname        <span class="sql-keyword">NVARCHAR</span>(50),
     cst_marital_status  <span class="sql-keyword">NVARCHAR</span>(50),
@@ -441,8 +440,8 @@ Propósito:
     sls_ord_num  <span class="sql-keyword">NVARCHAR</span>(50),
     sls_prd_key  <span class="sql-keyword">NVARCHAR</span>(50),
     sls_cust_id  <span class="sql-keyword">INT</span>,
-    sls_order_dt <span class="sql-keyword">INT</span>,  <span class="sql-comment">-- ¡ATENCIÓN! Mantenido como INT intencionalmente. El CSV manda números.</span>
-    sls_ship_dt  <span class="sql-keyword">INT</span>,  <span class="sql-comment">-- El Data Type Casting real (a DATE) se hará en la Capa Plata.</span>
+    sls_order_dt <span class="sql-keyword">INT</span>,  <span class="sql-comment">-- ATTENTION: Intentionally kept as INT since the CSV sends numbers.</span>
+    sls_ship_dt  <span class="sql-keyword">INT</span>,  <span class="sql-comment">-- Actual Data Type Casting (to DATE) will be handled in the Silver Layer.</span>
     sls_due_dt   <span class="sql-keyword">INT</span>,  
     sls_sales    <span class="sql-keyword">INT</span>,
     sls_quantity <span class="sql-keyword">INT</span>,
@@ -451,7 +450,7 @@ Propósito:
 <span class="sql-keyword">GO</span>
 
 <span class="sql-comment">-- ===================================================================</span>
-<span class="sql-comment">-- SISTEMA ORIGEN: ERP (Enterprise Resource Planning)</span>
+<span class="sql-comment">-- SOURCE SYSTEM: ERP (Enterprise Resource Planning)</span>
 <span class="sql-comment">-- ===================================================================</span>
 
 <span class="sql-keyword">IF OBJECT_ID</span>(<span class="sql-string">'bronze.erp_loc_a101'</span>, <span class="sql-string">'U'</span>) <span class="sql-keyword">IS NOT NULL</span>
@@ -489,30 +488,30 @@ Propósito:
 </pre></div>
                 </div>
 
-                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">2. Motor de Ingesta Automatizado</h3>
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">2. Automated Ingestion Engine</h3>
                 <div class="doc-text">
-                    <p>Se desarrolló un motor de ingesta masiva centralizado para todas las fuentes (CRM y ERP). Implementa un método <code>BULK INSERT</code> bajo el estándar de carga completa (<em>Full Load</em>). Se aplicó un patrón Idempotente de reinicio seguro (<code>TRUNCATE</code> antes de insertar), auditoría de tiempos de ejecución y manejo de errores mediante <code>TRY...CATCH</code>.</p>
+                    <p>A centralized massive ingestion engine was developed for all sources (CRM and ERP). It implements a <code>BULK INSERT</code> method under the Full Load standard. An Idempotent pattern for safe restarts (<code>TRUNCATE</code> before inserting), execution time auditing, and error handling via <code>TRY...CATCH</code> were applied.</p>
                 </div>
 
                 <div class="code-window">
                     <div class="code-header">
                         <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-                        proc_load_bronze.sql (Motor de Ingesta Completo)
+                        proc_load_bronze.sql (Complete Ingestion Engine)
                     </div>
                     <div class="code-body"><pre>
 <span class="sql-comment">/*
 ===============================================================================
 Stored Procedure: Load Bronze Layer (Source -> Bronze)
 ===============================================================================
-Propósito:
-    Carga datos en el esquema 'bronze' desde archivos CSV externos.
-    - Trunca las tablas antes de cargar (Idempotencia).
-    - Usa `BULK INSERT` para ingesta masiva optimizada.
+Purpose:
+    Loads data into the 'bronze' schema from external CSV files.
+    - Truncates tables before loading (Idempotency).
+    - Uses `BULK INSERT` for optimized massive ingestion.
 ===============================================================================
 */</span>
 <span class="sql-keyword">CREATE OR ALTER PROCEDURE</span> bronze.load_bronze <span class="sql-keyword">AS</span>
 <span class="sql-keyword">BEGIN</span>
-    <span class="sql-comment">-- Declaración de variables para auditoría de rendimiento</span>
+    <span class="sql-comment">-- Variable declaration for performance auditing</span>
     <span class="sql-keyword">DECLARE</span> @start_time <span class="sql-keyword">DATETIME</span>, @end_time <span class="sql-keyword">DATETIME</span>, @batch_start_time <span class="sql-keyword">DATETIME</span>, @batch_end_time <span class="sql-keyword">DATETIME</span>; 
     
     <span class="sql-keyword">BEGIN TRY</span>
@@ -522,7 +521,7 @@ Propósito:
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'================================================'</span>;
 
         <span class="sql-comment">-- ------------------------------------------------</span>
-        <span class="sql-comment">-- 1. Carga de Tablas CRM</span>
+        <span class="sql-comment">-- 1. Loading CRM Tables</span>
         <span class="sql-comment">-- ------------------------------------------------</span>
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'------------------------------------------------'</span>;
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'Loading CRM Tables'</span>;
@@ -530,7 +529,7 @@ Propósito:
 
         <span class="sql-keyword">SET</span> @start_time = <span class="sql-func">GETDATE</span>();
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Truncating Table: bronze.crm_cust_info'</span>;
-        <span class="sql-keyword">TRUNCATE TABLE</span> bronze.crm_cust_info; <span class="sql-comment">-- Limpieza de tabla para evitar duplicados en reinicios</span>
+        <span class="sql-keyword">TRUNCATE TABLE</span> bronze.crm_cust_info; <span class="sql-comment">-- Table cleanup to avoid duplicates on restarts</span>
         
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Inserting Data Into: bronze.crm_cust_info'</span>;
         <span class="sql-keyword">BULK INSERT</span> bronze.crm_cust_info
@@ -538,7 +537,7 @@ Propósito:
         <span class="sql-keyword">WITH</span> (
             FIRSTROW = 2,
             FIELDTERMINATOR = <span class="sql-string">','</span>,
-            TABLOCK <span class="sql-comment">-- Optimización clave: Bloquea la tabla completa en memoria acelerando la escritura masiva</span>
+            TABLOCK <span class="sql-comment">-- Key Optimization: Locks the entire table in memory speeding up massive writes</span>
         );
         <span class="sql-keyword">SET</span> @end_time = <span class="sql-func">GETDATE</span>();
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Load Duration: '</span> + <span class="sql-func">CAST</span>(<span class="sql-func">DATEDIFF</span>(second, @start_time, @end_time) <span class="sql-keyword">AS</span> <span class="sql-keyword">NVARCHAR</span>) + <span class="sql-string">' seconds'</span>;
@@ -569,7 +568,7 @@ Propósito:
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> -------------'</span>;
 
         <span class="sql-comment">-- ------------------------------------------------</span>
-        <span class="sql-comment">-- 2. Carga de Tablas ERP</span>
+        <span class="sql-comment">-- 2. Loading ERP Tables</span>
         <span class="sql-comment">-- ------------------------------------------------</span>
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'------------------------------------------------'</span>;
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'Loading ERP Tables'</span>;
@@ -618,7 +617,7 @@ Propósito:
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'=========================================='</span>
     <span class="sql-keyword">END TRY</span>
     <span class="sql-keyword">BEGIN CATCH</span>
-        <span class="sql-comment">-- Captura y registro de errores a nivel de base de datos en caso de fallo de ingesta</span>
+        <span class="sql-comment">-- Database-level error capture and logging in case of ingestion failure</span>
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'=========================================='</span>
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'ERROR OCCURED DURING LOADING BRONZE LAYER'</span>
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'Error Message: '</span> + <span class="sql-func">ERROR_MESSAGE</span>();
@@ -631,38 +630,38 @@ Propósito:
                 </div>
             </section>
 
-            <!-- FASE 3: PLATA -->
+            <!-- PHASE 2: SILVER -->
             <section class="doc-section" data-aos="fade-up">
                 <div class="doc-title">
                     <i class="fas fa-filter"></i>
-                    <h2>Fase 2: Capa Plata (Limpieza & QA)</h2>
+                    <h2>Phase 2: Silver Layer (Cleansing & QA)</h2>
                 </div>
 
-                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">1. Evolución del Esquema (Data Type Casting & Metadatos)</h3>
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">1. Schema Evolution (Data Type Casting & Metadata)</h3>
                 <div class="doc-text">
-                    <p>Tras analizar los datos crudos (<em>Data Profiling</em>), se mejoró y refinó el esquema (DDL) para la Capa Plata. <strong>Se aplicó un proceso de <em>Data Type Casting</em></strong> para corregir los tipos de datos anómalos heredados de la Capa Bronce (las fechas de ventas se actualizaron de <code>INT</code> a tipo <code>DATE</code> explícito). Además, se añadió la columna de auditoría obligatoria <code>dwh_create_date</code> a todas las tablas.</p>
+                    <p>After analyzing the raw data (<em>Data Profiling</em>), the schema (DDL) was improved and refined for the Silver Layer. <strong>A <em>Data Type Casting</em> process was applied</strong> to correct the anomalous data types inherited from the Bronze Layer (sales dates were explicitly updated from <code>INT</code> to <code>DATE</code> type). Additionally, the mandatory audit column <code>dwh_create_date</code> was added to all tables.</p>
                 </div>
 
                 <div class="code-window">
                     <div class="code-header">
                         <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-                        ddl_silver.sql (Definición de Tablas Limpias)
+                        ddl_silver.sql (Cleansed Tables Definition)
                     </div>
                     <div class="code-body"><pre>
 <span class="sql-comment">/*
 ===============================================================================
-Script DDL: Creación de Tablas de la Capa Plata (Cleansed Data)
+DDL Script: Create Silver Tables (Cleansed Data)
 ===============================================================================
-Propósito:
-    Define la estructura física de la Capa Plata. 
-    - Implementa "Evolución de Esquema" (Schema Evolution).
-    - Corrige tipos de datos (Data Type Casting) desde la capa cruda.
-    - Inyecta metadatos de auditoría (dwh_create_date) para trazabilidad.
+Purpose:
+    Defines the physical structure of the Silver Layer. 
+    - Implements "Schema Evolution".
+    - Corrects data types (Data Type Casting) from the raw layer.
+    - Injects audit metadata (dwh_create_date) for traceability.
 ===============================================================================
 */</span>
 
 <span class="sql-comment">-- ===================================================================</span>
-<span class="sql-comment">-- SISTEMA ORIGEN: CRM (Customer Relationship Management)</span>
+<span class="sql-comment">-- SOURCE SYSTEM: CRM (Customer Relationship Management)</span>
 <span class="sql-comment">-- ===================================================================</span>
 <span class="sql-keyword">IF OBJECT_ID</span>(<span class="sql-string">'silver.crm_cust_info'</span>, <span class="sql-string">'U'</span>) <span class="sql-keyword">IS NOT NULL</span>
     <span class="sql-keyword">DROP TABLE</span> silver.crm_cust_info;
@@ -676,7 +675,7 @@ Propósito:
     cst_marital_status <span class="sql-keyword">NVARCHAR</span>(50),
     cst_gndr           <span class="sql-keyword">NVARCHAR</span>(50),
     cst_create_date    <span class="sql-keyword">DATE</span>,
-    dwh_create_date    <span class="sql-keyword">DATETIME2 DEFAULT</span> <span class="sql-func">GETDATE</span>() <span class="sql-comment">-- Metadato de auditoría inyectado</span>
+    dwh_create_date    <span class="sql-keyword">DATETIME2 DEFAULT</span> <span class="sql-func">GETDATE</span>() <span class="sql-comment">-- Injected audit metadata</span>
 );
 <span class="sql-keyword">GO</span>
 
@@ -686,7 +685,7 @@ Propósito:
 
 <span class="sql-keyword">CREATE TABLE</span> silver.crm_prd_info (
     prd_id          <span class="sql-keyword">INT</span>,
-    cat_id          <span class="sql-keyword">NVARCHAR</span>(50), <span class="sql-comment">-- Columna derivada agregada para Data Integration</span>
+    cat_id          <span class="sql-keyword">NVARCHAR</span>(50), <span class="sql-comment">-- Derived column added for Data Integration</span>
     prd_key         <span class="sql-keyword">NVARCHAR</span>(50),
     prd_nm          <span class="sql-keyword">NVARCHAR</span>(50),
     prd_cost        <span class="sql-keyword">INT</span>,
@@ -705,9 +704,9 @@ Propósito:
     sls_ord_num     <span class="sql-keyword">NVARCHAR</span>(50),
     sls_prd_key     <span class="sql-keyword">NVARCHAR</span>(50),
     sls_cust_id     <span class="sql-keyword">INT</span>,
-    sls_order_dt    <span class="sql-keyword">DATE</span>, <span class="sql-comment">-- Tipo corregido: De INT (Bronce) a DATE explícito</span>
-    sls_ship_dt     <span class="sql-keyword">DATE</span>, <span class="sql-comment">-- Tipo corregido: De INT (Bronce) a DATE explícito</span>
-    sls_due_dt      <span class="sql-keyword">DATE</span>, <span class="sql-comment">-- Tipo corregido: De INT (Bronce) a DATE explícito</span>
+    sls_order_dt    <span class="sql-keyword">DATE</span>, <span class="sql-comment">-- Corrected type: From INT (Bronze) to explicit DATE</span>
+    sls_ship_dt     <span class="sql-keyword">DATE</span>, <span class="sql-comment">-- Corrected type: From INT (Bronze) to explicit DATE</span>
+    sls_due_dt      <span class="sql-keyword">DATE</span>, <span class="sql-comment">-- Corrected type: From INT (Bronze) to explicit DATE</span>
     sls_sales       <span class="sql-keyword">INT</span>,
     sls_quantity    <span class="sql-keyword">INT</span>,
     sls_price       <span class="sql-keyword">INT</span>,
@@ -716,7 +715,7 @@ Propósito:
 <span class="sql-keyword">GO</span>
 
 <span class="sql-comment">-- ===================================================================</span>
-<span class="sql-comment">-- SISTEMA ORIGEN: ERP (Enterprise Resource Planning)</span>
+<span class="sql-comment">-- SOURCE SYSTEM: ERP (Enterprise Resource Planning)</span>
 <span class="sql-comment">-- ===================================================================</span>
 <span class="sql-keyword">IF OBJECT_ID</span>(<span class="sql-string">'silver.erp_loc_a101'</span>, <span class="sql-string">'U'</span>) <span class="sql-keyword">IS NOT NULL</span>
     <span class="sql-keyword">DROP TABLE</span> silver.erp_loc_a101;
@@ -756,24 +755,24 @@ Propósito:
 </pre></div>
                 </div>
 
-                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">2. Automatización y Transformación ETL (Stored Procedure Maestro)</h3>
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">2. ETL Automation & Transformation (Master Stored Procedure)</h3>
                 <div class="doc-text">
-                    <p>La limpieza de datos (<em>Data Cleansing</em>) se orquestó mediante un sofisticado <strong>Stored Procedure maestro (<code>silver.load_silver</code>)</strong>. Este motor extrae los datos crudos, aplica reglas de negocio mediante <code>CASE WHEN</code>, limpia texto con <code>TRIM</code>, recalcula métricas faltantes, unifica formatos de fecha y normaliza historiales usando funciones analíticas como <code>ROW_NUMBER()</code> y <code>LEAD()</code>.</p>
+                    <p>Deep data cleansing was orchestrated through a sophisticated <strong>master Stored Procedure (<code>silver.load_silver</code>)</strong>. This engine extracts the raw data, applies business rules via <code>CASE WHEN</code>, cleans text with <code>TRIM</code>, recalculates missing metrics, unifies date formats, and normalizes histories using analytical functions such as <code>ROW_NUMBER()</code> and <code>LEAD()</code>.</p>
                 </div>
 
                 <div class="code-window">
                     <div class="code-header">
                         <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-                        proc_load_silver.sql (Motor de Transformación Completo)
+                        proc_load_silver.sql (Complete Transformation Engine)
                     </div>
                     <div class="code-body"><pre>
 <span class="sql-comment">/*
 ===============================================================================
 Stored Procedure: Load Silver Layer (Bronze -> Silver)
 ===============================================================================
-Propósito:
-    Ejecuta el proceso ETL para transformar y cargar los datos desde 'bronze' 
-    hacia 'silver'. Aplica limpieza profunda, normalización y cálculos derivados.
+Purpose:
+    Executes the ETL process to transform and load data from 'bronze' 
+    into 'silver'. Applies deep cleansing, normalization, and derived calculations.
 ===============================================================================
 */</span>
 <span class="sql-keyword">CREATE OR ALTER PROCEDURE</span> silver.load_silver <span class="sql-keyword">AS</span>
@@ -786,10 +785,10 @@ Propósito:
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'================================================'</span>;
 
         <span class="sql-comment">-- ------------------------------------------------</span>
-        <span class="sql-comment">-- 1. Transformación CRM Tables</span>
+        <span class="sql-comment">-- 1. CRM Tables Transformation</span>
         <span class="sql-comment">-- ------------------------------------------------</span>
         
-        <span class="sql-comment">-- Carga de crm_cust_info (Eliminación de duplicados y limpieza de strings)</span>
+        <span class="sql-comment">-- Loading crm_cust_info (Duplicate elimination and string cleansing)</span>
         <span class="sql-keyword">SET</span> @start_time = <span class="sql-func">GETDATE</span>();
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Truncating Table: silver.crm_cust_info'</span>;
         <span class="sql-keyword">TRUNCATE TABLE</span> silver.crm_cust_info;
@@ -804,15 +803,15 @@ Propósito:
                 <span class="sql-keyword">WHEN</span> <span class="sql-func">UPPER</span>(<span class="sql-func">TRIM</span>(cst_marital_status)) = <span class="sql-string">'S'</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Single'</span>
                 <span class="sql-keyword">WHEN</span> <span class="sql-func">UPPER</span>(<span class="sql-func">TRIM</span>(cst_marital_status)) = <span class="sql-string">'M'</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Married'</span>
                 <span class="sql-keyword">ELSE</span> <span class="sql-string">'n/a'</span>
-            <span class="sql-keyword">END AS</span> cst_marital_status, <span class="sql-comment">-- Normalización de diccionario de Estado Civil</span>
+            <span class="sql-keyword">END AS</span> cst_marital_status, <span class="sql-comment">-- Marital Status dictionary normalization</span>
             <span class="sql-keyword">CASE</span> 
                 <span class="sql-keyword">WHEN</span> <span class="sql-func">UPPER</span>(<span class="sql-func">TRIM</span>(cst_gndr)) = <span class="sql-string">'F'</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Female'</span>
                 <span class="sql-keyword">WHEN</span> <span class="sql-func">UPPER</span>(<span class="sql-func">TRIM</span>(cst_gndr)) = <span class="sql-string">'M'</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Male'</span>
                 <span class="sql-keyword">ELSE</span> <span class="sql-string">'n/a'</span>
-            <span class="sql-keyword">END AS</span> cst_gndr, <span class="sql-comment">-- Normalización de diccionario de Género</span>
+            <span class="sql-keyword">END AS</span> cst_gndr, <span class="sql-comment">-- Gender dictionary normalization</span>
             cst_create_date
         <span class="sql-keyword">FROM</span> (
-            <span class="sql-comment">-- Selección del registro más reciente en caso de id duplicados (Deduplicación)</span>
+            <span class="sql-comment">-- Select the most recent record in case of duplicated IDs (Deduplication)</span>
             <span class="sql-keyword">SELECT</span>
                 *,
                 <span class="sql-func">ROW_NUMBER</span>() <span class="sql-keyword">OVER</span> (<span class="sql-keyword">PARTITION BY</span> cst_id <span class="sql-keyword">ORDER BY</span> cst_create_date <span class="sql-keyword">DESC</span>) <span class="sql-keyword">AS</span> flag_last
@@ -823,7 +822,7 @@ Propósito:
         <span class="sql-keyword">SET</span> @end_time = <span class="sql-func">GETDATE</span>();
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Load Duration: '</span> + <span class="sql-func">CAST</span>(<span class="sql-func">DATEDIFF</span>(SECOND, @start_time, @end_time) <span class="sql-keyword">AS</span> <span class="sql-keyword">NVARCHAR</span>) + <span class="sql-string">' seconds'</span>;
 
-        <span class="sql-comment">-- Carga de crm_prd_info (Separación de Strings y SCD)</span>
+        <span class="sql-comment">-- Loading crm_prd_info (String splitting and SCD)</span>
         <span class="sql-keyword">SET</span> @start_time = <span class="sql-func">GETDATE</span>();
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Truncating Table: silver.crm_prd_info'</span>;
         <span class="sql-keyword">TRUNCATE TABLE</span> silver.crm_prd_info;
@@ -831,8 +830,8 @@ Propósito:
         <span class="sql-keyword">INSERT INTO</span> silver.crm_prd_info (prd_id, cat_id, prd_key, prd_nm, prd_cost, prd_line, prd_start_dt, prd_end_dt)
         <span class="sql-keyword">SELECT</span>
             prd_id,
-            <span class="sql-func">REPLACE</span>(<span class="sql-func">SUBSTRING</span>(prd_key, 1, 5), <span class="sql-string">'-'</span>, <span class="sql-string">'_'</span>) <span class="sql-keyword">AS</span> cat_id, <span class="sql-comment">-- Extracción de categoría</span>
-            <span class="sql-func">SUBSTRING</span>(prd_key, 7, <span class="sql-func">LEN</span>(prd_key)) <span class="sql-keyword">AS</span> prd_key,        <span class="sql-comment">-- Extracción de Product Key puro</span>
+            <span class="sql-func">REPLACE</span>(<span class="sql-func">SUBSTRING</span>(prd_key, 1, 5), <span class="sql-string">'-'</span>, <span class="sql-string">'_'</span>) <span class="sql-keyword">AS</span> cat_id, <span class="sql-comment">-- Category extraction</span>
+            <span class="sql-func">SUBSTRING</span>(prd_key, 7, <span class="sql-func">LEN</span>(prd_key)) <span class="sql-keyword">AS</span> prd_key,        <span class="sql-comment">-- Pure Product Key extraction</span>
             prd_nm,
             <span class="sql-func">ISNULL</span>(prd_cost, 0) <span class="sql-keyword">AS</span> prd_cost,
             <span class="sql-keyword">CASE</span> 
@@ -846,12 +845,12 @@ Propósito:
             <span class="sql-func">CAST</span>(
                 <span class="sql-func">LEAD</span>(prd_start_dt) <span class="sql-keyword">OVER</span> (<span class="sql-keyword">PARTITION BY</span> prd_key <span class="sql-keyword">ORDER BY</span> prd_start_dt) - 1 
                 <span class="sql-keyword">AS DATE</span>
-            ) <span class="sql-keyword">AS</span> prd_end_dt <span class="sql-comment">-- Cálculo automático de Fecha Fin (SCD Tipo 2)</span>
+            ) <span class="sql-keyword">AS</span> prd_end_dt <span class="sql-comment">-- Automatic End Date calculation (SCD Type 2)</span>
         <span class="sql-keyword">FROM</span> bronze.crm_prd_info;
         <span class="sql-keyword">SET</span> @end_time = <span class="sql-func">GETDATE</span>();
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Load Duration: '</span> + <span class="sql-func">CAST</span>(<span class="sql-func">DATEDIFF</span>(SECOND, @start_time, @end_time) <span class="sql-keyword">AS</span> <span class="sql-keyword">NVARCHAR</span>) + <span class="sql-string">' seconds'</span>;
 
-        <span class="sql-comment">-- Carga de crm_sales_details (Validación Matemática y de Fechas)</span>
+        <span class="sql-comment">-- Loading crm_sales_details (Mathematical and Date Validation)</span>
         <span class="sql-keyword">SET</span> @start_time = <span class="sql-func">GETDATE</span>();
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Truncating Table: silver.crm_sales_details'</span>;
         <span class="sql-keyword">TRUNCATE TABLE</span> silver.crm_sales_details;
@@ -863,7 +862,7 @@ Propósito:
             sls_cust_id,
             <span class="sql-keyword">CASE</span> 
                 <span class="sql-keyword">WHEN</span> sls_order_dt = 0 <span class="sql-keyword">OR LEN</span>(sls_order_dt) != 8 <span class="sql-keyword">THEN NULL</span>
-                <span class="sql-keyword">ELSE</span> <span class="sql-func">CAST</span>(<span class="sql-func">CAST</span>(sls_order_dt <span class="sql-keyword">AS VARCHAR</span>) <span class="sql-keyword">AS DATE</span>) <span class="sql-comment">-- Casting de INT a DATE (YYYYMMDD)</span>
+                <span class="sql-keyword">ELSE</span> <span class="sql-func">CAST</span>(<span class="sql-func">CAST</span>(sls_order_dt <span class="sql-keyword">AS VARCHAR</span>) <span class="sql-keyword">AS DATE</span>) <span class="sql-comment">-- Casting from INT to DATE (YYYYMMDD)</span>
             <span class="sql-keyword">END AS</span> sls_order_dt,
             <span class="sql-keyword">CASE</span> 
                 <span class="sql-keyword">WHEN</span> sls_ship_dt = 0 <span class="sql-keyword">OR LEN</span>(sls_ship_dt) != 8 <span class="sql-keyword">THEN NULL</span>
@@ -875,13 +874,13 @@ Propósito:
             <span class="sql-keyword">END AS</span> sls_due_dt,
             <span class="sql-keyword">CASE</span> 
                 <span class="sql-keyword">WHEN</span> sls_sales <span class="sql-keyword">IS NULL OR</span> sls_sales <= 0 <span class="sql-keyword">OR</span> sls_sales != sls_quantity * <span class="sql-func">ABS</span>(sls_price) 
-                    <span class="sql-keyword">THEN</span> sls_quantity * <span class="sql-func">ABS</span>(sls_price) <span class="sql-comment">-- Recalcula ventas si el origen está corrupto</span>
+                    <span class="sql-keyword">THEN</span> sls_quantity * <span class="sql-func">ABS</span>(sls_price) <span class="sql-comment">-- Recalculates sales if source is corrupted</span>
                 <span class="sql-keyword">ELSE</span> sls_sales
             <span class="sql-keyword">END AS</span> sls_sales, 
             sls_quantity,
             <span class="sql-keyword">CASE</span> 
                 <span class="sql-keyword">WHEN</span> sls_price <span class="sql-keyword">IS NULL OR</span> sls_price <= 0 
-                    <span class="sql-keyword">THEN</span> sls_sales / <span class="sql-func">NULLIF</span>(sls_quantity, 0) <span class="sql-comment">-- Deriva el precio / Evita división por cero</span>
+                    <span class="sql-keyword">THEN</span> sls_sales / <span class="sql-func">NULLIF</span>(sls_quantity, 0) <span class="sql-comment">-- Derives price / Prevents division by zero</span>
                 <span class="sql-keyword">ELSE</span> sls_price  
             <span class="sql-keyword">END AS</span> sls_price
         <span class="sql-keyword">FROM</span> bronze.crm_sales_details;
@@ -889,10 +888,10 @@ Propósito:
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Load Duration: '</span> + <span class="sql-func">CAST</span>(<span class="sql-func">DATEDIFF</span>(SECOND, @start_time, @end_time) <span class="sql-keyword">AS</span> <span class="sql-keyword">NVARCHAR</span>) + <span class="sql-string">' seconds'</span>;
 
         <span class="sql-comment">-- ------------------------------------------------</span>
-        <span class="sql-comment">-- 2. Transformación ERP Tables</span>
+        <span class="sql-comment">-- 2. ERP Tables Transformation</span>
         <span class="sql-comment">-- ------------------------------------------------</span>
         
-        <span class="sql-comment">-- Carga de erp_cust_az12 (Limpieza de ID's y Control de Fechas futuras)</span>
+        <span class="sql-comment">-- Loading erp_cust_az12 (ID Cleansing and Future Dates Control)</span>
         <span class="sql-keyword">SET</span> @start_time = <span class="sql-func">GETDATE</span>();
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Truncating Table: silver.erp_cust_az12'</span>;
         <span class="sql-keyword">TRUNCATE TABLE</span> silver.erp_cust_az12;
@@ -900,11 +899,11 @@ Propósito:
         <span class="sql-keyword">INSERT INTO</span> silver.erp_cust_az12 (cid, bdate, gen)
         <span class="sql-keyword">SELECT</span>
             <span class="sql-keyword">CASE</span>
-                <span class="sql-keyword">WHEN</span> cid <span class="sql-keyword">LIKE</span> <span class="sql-string">'NAS%'</span> <span class="sql-keyword">THEN</span> <span class="sql-func">SUBSTRING</span>(cid, 4, <span class="sql-func">LEN</span>(cid)) <span class="sql-comment">-- Limpieza del prefijo ERP erróneo</span>
+                <span class="sql-keyword">WHEN</span> cid <span class="sql-keyword">LIKE</span> <span class="sql-string">'NAS%'</span> <span class="sql-keyword">THEN</span> <span class="sql-func">SUBSTRING</span>(cid, 4, <span class="sql-func">LEN</span>(cid)) <span class="sql-comment">-- Removes erroneous ERP prefix</span>
                 <span class="sql-keyword">ELSE</span> cid
             <span class="sql-keyword">END AS</span> cid, 
             <span class="sql-keyword">CASE</span>
-                <span class="sql-keyword">WHEN</span> bdate > <span class="sql-func">GETDATE</span>() <span class="sql-keyword">THEN NULL</span> <span class="sql-comment">-- Convierte nacimientos futuros irreales a NULL</span>
+                <span class="sql-keyword">WHEN</span> bdate > <span class="sql-func">GETDATE</span>() <span class="sql-keyword">THEN NULL</span> <span class="sql-comment">-- Converts unrealistic future births to NULL</span>
                 <span class="sql-keyword">ELSE</span> bdate
             <span class="sql-keyword">END AS</span> bdate, 
             <span class="sql-keyword">CASE</span>
@@ -916,7 +915,7 @@ Propósito:
         <span class="sql-keyword">SET</span> @end_time = <span class="sql-func">GETDATE</span>();
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Load Duration: '</span> + <span class="sql-func">CAST</span>(<span class="sql-func">DATEDIFF</span>(SECOND, @start_time, @end_time) <span class="sql-keyword">AS</span> <span class="sql-keyword">NVARCHAR</span>) + <span class="sql-string">' seconds'</span>;
 
-        <span class="sql-comment">-- Carga de erp_loc_a101</span>
+        <span class="sql-comment">-- Loading erp_loc_a101</span>
         <span class="sql-keyword">SET</span> @start_time = <span class="sql-func">GETDATE</span>();
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Truncating Table: silver.erp_loc_a101'</span>;
         <span class="sql-keyword">TRUNCATE TABLE</span> silver.erp_loc_a101;
@@ -934,7 +933,7 @@ Propósito:
         <span class="sql-keyword">SET</span> @end_time = <span class="sql-func">GETDATE</span>();
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Load Duration: '</span> + <span class="sql-func">CAST</span>(<span class="sql-func">DATEDIFF</span>(SECOND, @start_time, @end_time) <span class="sql-keyword">AS</span> <span class="sql-keyword">NVARCHAR</span>) + <span class="sql-string">' seconds'</span>;
         
-        <span class="sql-comment">-- Carga de erp_px_cat_g1v2</span>
+        <span class="sql-comment">-- Loading erp_px_cat_g1v2</span>
         <span class="sql-keyword">SET</span> @start_time = <span class="sql-func">GETDATE</span>();
         <span class="sql-keyword">PRINT</span> <span class="sql-string">'>> Truncating Table: silver.erp_px_cat_g1v2'</span>;
         <span class="sql-keyword">TRUNCATE TABLE</span> silver.erp_px_cat_g1v2;
@@ -962,8 +961,8 @@ Propósito:
 </pre></div>
                 </div>
 
-                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">3. Suite de Pruebas (Data Quality Assurance)</h3>
-                <p class="doc-text">Una vez finalizada la inserción masiva, se ejecuta un script de validación (QA) para auditar la integridad de la base de datos, garantizando la exactitud de los datos limpios antes de pasar al modelado dimensional.</p>
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">3. Data Quality Assurance (QA) Suite</h3>
+                <p class="doc-text">Once the mass insertion is completed, a validation script (QA) is executed to audit the database integrity, ensuring the accuracy of the cleansed data before moving to dimensional modeling.</p>
                 
                 <div class="code-window">
                     <div class="code-header">
@@ -973,22 +972,22 @@ Propósito:
                     <div class="code-body"><pre>
 <span class="sql-comment">/*
 ===============================================================================
-Pruebas de Calidad (Data Profiling & QA)
+Quality Checks (Data Profiling & QA)
 ===============================================================================
-Propósito:
-    Audita la consistencia, precisión y estandarización a través de la capa 'silver'. 
-    Incluye validaciones críticas para:
-    - Nulos o duplicados en Llaves Primarias (Integridad de Entidades).
-    - Espacios no deseados en campos de texto (Data Cleansing).
-    - Rangos cronológicos inválidos (Reglas de Fechas).
-    - Consistencia Matemática (Ventas = Cantidad * Precio).
+Purpose:
+    Audits consistency, accuracy, and standardization across the 'silver' layer. 
+    Includes critical validations for:
+    - Nulls or duplicates in Primary Keys (Entity Integrity).
+    - Unwanted spaces in string fields (Data Cleansing).
+    - Invalid date ranges (Chronological Rules).
+    - Mathematical Consistency (Sales = Quantity * Price).
 ===============================================================================
 */</span>
 
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Auditando 'silver.crm_cust_info'</span>
+<span class="sql-comment">-- Auditing 'silver.crm_cust_info'</span>
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Revisión de duplicados o nulos en Llave Primaria (Esperado: 0 Resultados)</span>
+<span class="sql-comment">-- Primary Key Null or Duplicate Check (Expectation: 0 Results)</span>
 <span class="sql-keyword">SELECT</span> 
     cst_id,
     <span class="sql-func">COUNT</span>(*) 
@@ -996,21 +995,21 @@ Propósito:
 <span class="sql-keyword">GROUP BY</span> cst_id
 <span class="sql-keyword">HAVING</span> <span class="sql-func">COUNT</span>(*) > 1 <span class="sql-keyword">OR</span> cst_id <span class="sql-keyword">IS NULL</span>;
 
-<span class="sql-comment">-- Verificación de espacios en blanco residuales (Esperado: 0 Resultados)</span>
+<span class="sql-comment">-- Residual whitespace check (Expectation: 0 Results)</span>
 <span class="sql-keyword">SELECT</span> 
     cst_key 
 <span class="sql-keyword">FROM</span> silver.crm_cust_info
 <span class="sql-keyword">WHERE</span> cst_key != <span class="sql-func">TRIM</span>(cst_key);
 
-<span class="sql-comment">-- Estandarización de Datos: Validar valores categóricos correctos</span>
+<span class="sql-comment">-- Data Standardization: Verify correct categorical values</span>
 <span class="sql-keyword">SELECT DISTINCT</span> 
     cst_marital_status 
 <span class="sql-keyword">FROM</span> silver.crm_cust_info;
 
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Auditando 'silver.crm_prd_info'</span>
+<span class="sql-comment">-- Auditing 'silver.crm_prd_info'</span>
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Revisión de duplicados o nulos en Llave Primaria (Esperado: 0 Resultados)</span>
+<span class="sql-comment">-- Primary Key Null or Duplicate Check (Expectation: 0 Results)</span>
 <span class="sql-keyword">SELECT</span> 
     prd_id,
     <span class="sql-func">COUNT</span>(*) 
@@ -1018,28 +1017,28 @@ Propósito:
 <span class="sql-keyword">GROUP BY</span> prd_id
 <span class="sql-keyword">HAVING</span> <span class="sql-func">COUNT</span>(*) > 1 <span class="sql-keyword">OR</span> prd_id <span class="sql-keyword">IS NULL</span>;
 
-<span class="sql-comment">-- Verificación de espacios en blanco residuales</span>
+<span class="sql-comment">-- Residual whitespace check</span>
 <span class="sql-keyword">SELECT</span> 
     prd_nm 
 <span class="sql-keyword">FROM</span> silver.crm_prd_info
 <span class="sql-keyword">WHERE</span> prd_nm != <span class="sql-func">TRIM</span>(prd_nm);
 
-<span class="sql-comment">-- Evitar costos nulos o valores negativos imposibles</span>
+<span class="sql-comment">-- Prevent null costs or impossible negative values</span>
 <span class="sql-keyword">SELECT</span> 
     prd_cost 
 <span class="sql-keyword">FROM</span> silver.crm_prd_info
 <span class="sql-keyword">WHERE</span> prd_cost < 0 <span class="sql-keyword">OR</span> prd_cost <span class="sql-keyword">IS NULL</span>;
 
-<span class="sql-comment">-- Regla de Negocio: Fecha de inicio debe ser siempre menor a Fecha fin</span>
+<span class="sql-comment">-- Business Rule: Start date must always be less than End date</span>
 <span class="sql-keyword">SELECT</span> 
     * 
 <span class="sql-keyword">FROM</span> silver.crm_prd_info
 <span class="sql-keyword">WHERE</span> prd_end_dt < prd_start_dt;
 
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Auditando 'silver.crm_sales_details'</span>
+<span class="sql-comment">-- Auditing 'silver.crm_sales_details'</span>
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Bloquear fechas fuera de rango histórico lógico (Esperado: 0 Resultados)</span>
+<span class="sql-comment">-- Block dates outside logical historical range (Expectation: 0 Results)</span>
 <span class="sql-keyword">SELECT</span> 
     <span class="sql-func">NULLIF</span>(sls_due_dt, 0) <span class="sql-keyword">AS</span> sls_due_dt 
 <span class="sql-keyword">FROM</span> bronze.crm_sales_details
@@ -1048,14 +1047,14 @@ Propósito:
     <span class="sql-keyword">OR</span> sls_due_dt > 20500101 
     <span class="sql-keyword">OR</span> sls_due_dt < 19000101;
 
-<span class="sql-comment">-- Regla de Negocio: Fecha de orden no puede ser posterior a envío/vencimiento</span>
+<span class="sql-comment">-- Business Rule: Order date cannot be after shipping/due dates</span>
 <span class="sql-keyword">SELECT</span> 
     * 
 <span class="sql-keyword">FROM</span> silver.crm_sales_details
 <span class="sql-keyword">WHERE</span> sls_order_dt > sls_ship_dt 
    <span class="sql-keyword">OR</span> sls_order_dt > sls_due_dt;
 
-<span class="sql-comment">-- Consistencia Matemática: Auditoría de Ventas = Cantidad * Precio</span>
+<span class="sql-comment">-- Mathematical Consistency: Sales Audit = Quantity * Price</span>
 <span class="sql-keyword">SELECT DISTINCT</span> 
     sls_sales,
     sls_quantity,
@@ -1071,33 +1070,33 @@ Propósito:
 <span class="sql-keyword">ORDER BY</span> sls_sales, sls_quantity, sls_price;
 
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Auditando 'silver.erp_cust_az12'</span>
+<span class="sql-comment">-- Auditing 'silver.erp_cust_az12'</span>
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Rango demográfico: Fecha de nacimiento entre 1924 y HOY</span>
+<span class="sql-comment">-- Demographic range: Birthdate between 1924 and TODAY</span>
 <span class="sql-keyword">SELECT DISTINCT</span> 
     bdate 
 <span class="sql-keyword">FROM</span> silver.erp_cust_az12
 <span class="sql-keyword">WHERE</span> bdate < <span class="sql-string">'1924-01-01'</span> 
    <span class="sql-keyword">OR</span> bdate > <span class="sql-func">GETDATE</span>();
 
-<span class="sql-comment">-- Estandarización de Datos: Revisar géneros limpiados</span>
+<span class="sql-comment">-- Data Standardization: Review cleansed genders</span>
 <span class="sql-keyword">SELECT DISTINCT</span> 
     gen 
 <span class="sql-keyword">FROM</span> silver.erp_cust_az12;
 
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Auditando 'silver.erp_loc_a101'</span>
+<span class="sql-comment">-- Auditing 'silver.erp_loc_a101'</span>
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Estandarización Geográfica: Revisar países mapeados</span>
+<span class="sql-comment">-- Geographic Standardization: Review mapped countries</span>
 <span class="sql-keyword">SELECT DISTINCT</span> 
     cntry 
 <span class="sql-keyword">FROM</span> silver.erp_loc_a101
 <span class="sql-keyword">ORDER BY</span> cntry;
 
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Auditando 'silver.erp_px_cat_g1v2'</span>
+<span class="sql-comment">-- Auditing 'silver.erp_px_cat_g1v2'</span>
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Verificación final de espacios en blanco (Esperado: 0 Resultados)</span>
+<span class="sql-comment">-- Final whitespace verification (Expectation: 0 Results)</span>
 <span class="sql-keyword">SELECT</span> 
     * 
 <span class="sql-keyword">FROM</span> silver.erp_px_cat_g1v2
@@ -1108,46 +1107,46 @@ Propósito:
                 </div>
             </section>
 
-            <!-- FASE 4: ORO -->
+            <!-- PHASE 4: GOLD -->
             <section class="doc-section" style="border-color: var(--primary);" data-aos="fade-up">
                 <div class="doc-title">
                     <i class="fas fa-star" style="color: #ffbd2e;"></i>
-                    <h2 style="color: var(--primary);">Fase 3: Capa Oro (Modelado Dimensional)</h2>
+                    <h2 style="color: var(--primary);">Phase 3: Gold Layer (Dimensional Modeling)</h2>
                 </div>
                 
-                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">1. Creación del Modelo Estrella (Star Schema Views)</h3>
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">1. Star Schema Views Creation</h3>
                 <div class="doc-text">
-                    <p>La capa analítica final se construyó mediante <strong>Vistas Analíticas</strong>. Se implementó un Modelo de Estrella conectando la tabla de hechos con las dimensiones mediante <strong>Llaves Subrogadas (Surrogate Keys)</strong> dinámicas, asegurando el aislamiento del Data Warehouse respecto a los cambios en el CRM/ERP.</p>
+                    <p>The final analytical layer was built using <strong>Analytical Views</strong>. A Star Schema was implemented connecting the fact table with the dimensions through dynamic <strong>Surrogate Keys</strong>, ensuring the isolation of the Data Warehouse from changes in the CRM/ERP.</p>
                 </div>
                 
                 <div class="arch-grid" style="grid-template-columns: 1fr;">
                     <div class="arch-card-premium" style="max-width: 800px; margin: 0 auto;" onclick="openModal('data_model.png', 'Sales Data Mart - Star Schema')">
                         <div class="arch-icon-wrapper" style="margin-bottom: 0.5rem;"><i class="fas fa-star"></i></div>
-                        <h4 style="margin-top: 1rem;">Modelo Dimensional en Estrella (Data Mart)</h4>
-                        <p>Diseño Entidad-Relación final implementado en la Capa Oro: <code>fact_sales</code> unida mediante <em>Foreign Keys</em> a las dimensiones <code>dim_customers</code> y <code>dim_products</code>.</p>
-                        <span style="font-size: 0.8rem; color: var(--primary); display: block; margin-top: 1rem;"><i class="fas fa-search-plus"></i> Haz clic para ver el diagrama</span>
+                        <h4 style="margin-top: 1rem;">Dimensional Star Schema (Data Mart)</h4>
+                        <p>Final Entity-Relationship design implemented in the Gold Layer: <code>fact_sales</code> joined via <em>Foreign Keys</em> to the <code>dim_customers</code> and <code>dim_products</code> dimensions.</p>
+                        <span style="font-size: 0.8rem; color: var(--primary); display: block; margin-top: 1rem;"><i class="fas fa-search-plus"></i> Click to view diagram</span>
                     </div>
                 </div>
 
                 <div class="code-window">
                     <div class="code-header">
                         <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-                        ddl_gold.sql (Generación de Vistas Estrella)
+                        ddl_gold.sql (Star Views Generation)
                     </div>
                     <div class="code-body"><pre>
 <span class="sql-comment">/*
 ===============================================================================
-Script DDL: Creación de Vistas Capa Oro (Gold Layer)
+DDL Script: Create Gold Views
 ===============================================================================
-Propósito:
-    Construye las vistas analíticas definitivas (Modelo Estrella).
-    Transforma y combina la data limpia de la Capa Plata para entregar un 
-    dataset enriquecido y listo para consumo de negocio (BI / Reportes).
+Purpose:
+    Builds the definitive analytical views (Star Schema).
+    Transforms and combines cleansed data from the Silver Layer to deliver an 
+    enriched, business-ready dataset for consumption (BI / Reporting).
 ===============================================================================
 */</span>
 
 <span class="sql-comment">-- =============================================================================</span>
-<span class="sql-comment">-- Dimensión: Clientes (gold.dim_customers)</span>
+<span class="sql-comment">-- Dimension: Customers (gold.dim_customers)</span>
 <span class="sql-comment">-- =============================================================================</span>
 <span class="sql-keyword">IF OBJECT_ID</span>(<span class="sql-string">'gold.dim_customers'</span>, <span class="sql-string">'V'</span>) <span class="sql-keyword">IS NOT NULL</span>
     <span class="sql-keyword">DROP VIEW</span> gold.dim_customers;
@@ -1155,7 +1154,7 @@ Propósito:
 
 <span class="sql-keyword">CREATE VIEW</span> gold.dim_customers <span class="sql-keyword">AS</span>
 <span class="sql-keyword">SELECT</span>
-    <span class="sql-comment">-- Generación de Llave Subrogada (Aislamiento analítico)</span>
+    <span class="sql-comment">-- Surrogate Key Generation (Analytical Isolation)</span>
     <span class="sql-func">ROW_NUMBER</span>() <span class="sql-keyword">OVER</span> (<span class="sql-keyword">ORDER BY</span> cst_id) <span class="sql-keyword">AS</span> customer_key, 
     ci.cst_id                          <span class="sql-keyword">AS</span> customer_id,
     ci.cst_key                         <span class="sql-keyword">AS</span> customer_number,
@@ -1163,10 +1162,10 @@ Propósito:
     ci.cst_lastname                    <span class="sql-keyword">AS</span> last_name,
     la.cntry                           <span class="sql-keyword">AS</span> country,
     ci.cst_marital_status              <span class="sql-keyword">AS</span> marital_status,
-    <span class="sql-comment">-- Master Data Management (MDM): Regla de prioridad de fuentes</span>
+    <span class="sql-comment">-- Master Data Management (MDM): Source priority rule</span>
     <span class="sql-keyword">CASE</span> 
-        <span class="sql-keyword">WHEN</span> ci.cst_gndr != <span class="sql-string">'n/a'</span> <span class="sql-keyword">THEN</span> ci.cst_gndr <span class="sql-comment">-- CRM es la fuente principal</span>
-        <span class="sql-keyword">ELSE</span> <span class="sql-func">COALESCE</span>(ca.gen, <span class="sql-string">'n/a'</span>)               <span class="sql-comment">-- ERP como fuente de respaldo</span>
+        <span class="sql-keyword">WHEN</span> ci.cst_gndr != <span class="sql-string">'n/a'</span> <span class="sql-keyword">THEN</span> ci.cst_gndr <span class="sql-comment">-- CRM is the primary source</span>
+        <span class="sql-keyword">ELSE</span> <span class="sql-func">COALESCE</span>(ca.gen, <span class="sql-string">'n/a'</span>)               <span class="sql-comment">-- ERP as fallback source</span>
     <span class="sql-keyword">END</span>                                <span class="sql-keyword">AS</span> gender,
     ca.bdate                           <span class="sql-keyword">AS</span> birthdate,
     ci.cst_create_date                 <span class="sql-keyword">AS</span> create_date
@@ -1178,7 +1177,7 @@ Propósito:
 <span class="sql-keyword">GO</span>
 
 <span class="sql-comment">-- =============================================================================</span>
-<span class="sql-comment">-- Dimensión: Productos (gold.dim_products)</span>
+<span class="sql-comment">-- Dimension: Products (gold.dim_products)</span>
 <span class="sql-comment">-- =============================================================================</span>
 <span class="sql-keyword">IF OBJECT_ID</span>(<span class="sql-string">'gold.dim_products'</span>, <span class="sql-string">'V'</span>) <span class="sql-keyword">IS NOT NULL</span>
     <span class="sql-keyword">DROP VIEW</span> gold.dim_products;
@@ -1186,7 +1185,7 @@ Propósito:
 
 <span class="sql-keyword">CREATE VIEW</span> gold.dim_products <span class="sql-keyword">AS</span>
 <span class="sql-keyword">SELECT</span>
-    <span class="sql-comment">-- Llave Subrogada basada en el inicio de vigencia (SCD)</span>
+    <span class="sql-comment">-- Surrogate Key based on validity start date (SCD)</span>
     <span class="sql-func">ROW_NUMBER</span>() <span class="sql-keyword">OVER</span> (<span class="sql-keyword">ORDER BY</span> pn.prd_start_dt, pn.prd_key) <span class="sql-keyword">AS</span> product_key, 
     pn.prd_id       <span class="sql-keyword">AS</span> product_id,
     pn.prd_key      <span class="sql-keyword">AS</span> product_number,
@@ -1201,11 +1200,11 @@ Propósito:
 <span class="sql-keyword">FROM</span> silver.crm_prd_info pn
 <span class="sql-keyword">LEFT JOIN</span> silver.erp_px_cat_g1v2 pc
     <span class="sql-keyword">ON</span> pn.cat_id = pc.id
-<span class="sql-keyword">WHERE</span> pn.prd_end_dt <span class="sql-keyword">IS NULL</span>; <span class="sql-comment">-- Filtro SCD Tipo 2: Solo devuelve los registros activos</span>
+<span class="sql-keyword">WHERE</span> pn.prd_end_dt <span class="sql-keyword">IS NULL</span>; <span class="sql-comment">-- SCD Type 2 Filter: Only returns active records</span>
 <span class="sql-keyword">GO</span>
 
 <span class="sql-comment">-- =============================================================================</span>
-<span class="sql-comment">-- Tabla de Hechos: Ventas (gold.fact_sales)</span>
+<span class="sql-comment">-- Fact Table: Sales (gold.fact_sales)</span>
 <span class="sql-comment">-- =============================================================================</span>
 <span class="sql-keyword">IF OBJECT_ID</span>(<span class="sql-string">'gold.fact_sales'</span>, <span class="sql-string">'V'</span>) <span class="sql-keyword">IS NOT NULL</span>
     <span class="sql-keyword">DROP VIEW</span> gold.fact_sales;
@@ -1214,8 +1213,8 @@ Propósito:
 <span class="sql-keyword">CREATE VIEW</span> gold.fact_sales <span class="sql-keyword">AS</span>
 <span class="sql-keyword">SELECT</span>
     sd.sls_ord_num  <span class="sql-keyword">AS</span> order_number,
-    pr.product_key  <span class="sql-keyword">AS</span> product_key,  <span class="sql-comment">-- Foreign Key hacia Dimensión Productos</span>
-    cu.customer_key <span class="sql-keyword">AS</span> customer_key, <span class="sql-comment">-- Foreign Key hacia Dimensión Clientes</span>
+    pr.product_key  <span class="sql-keyword">AS</span> product_key,  <span class="sql-comment">-- Foreign Key to Products Dimension</span>
+    cu.customer_key <span class="sql-keyword">AS</span> customer_key, <span class="sql-comment">-- Foreign Key to Customers Dimension</span>
     sd.sls_order_dt <span class="sql-keyword">AS</span> order_date,
     sd.sls_ship_dt  <span class="sql-keyword">AS</span> shipping_date,
     sd.sls_due_dt   <span class="sql-keyword">AS</span> due_date,
@@ -1231,35 +1230,35 @@ Propósito:
 </pre></div>
                 </div>
 
-                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">2. Suite de Pruebas de Calidad (Data Quality Assurance - Capa Oro)</h3>
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">2. Data Quality Assurance (QA) - Gold Layer</h3>
                 <div class="doc-text">
-                    <p>Como paso definitivo antes de conectar este Data Warehouse a herramientas de Business Intelligence (Power BI), se implementó un testeo riguroso del Esquema Estrella para prevenir fugas de datos y productos cartesianos (inflación de ventas).</p>
+                    <p>As the definitive step before connecting this Data Warehouse to Business Intelligence tools (Power BI), rigorous Star Schema testing was implemented to prevent data leaks and Cartesian products (sales inflation).</p>
                 </div>
 
                 <div class="code-window">
                     <div class="code-header">
                         <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-                        quality_checks_gold.sql (Validación del Modelo Dimensional)
+                        quality_checks_gold.sql (Dimensional Model Validation)
                     </div>
                     <div class="code-body"><pre>
 <span class="sql-comment">/*
 ===============================================================================
-Pruebas de Calidad (QA) - Capa Oro (Star Schema)
+Quality Checks (QA) - Gold Layer (Star Schema)
 ===============================================================================
-Propósito:
-    Validar la integridad, consistencia y precisión de la Capa Oro.
-    Garantiza que el modelo dimensional esté listo para herramientas de BI verificando:
-    - Unicidad de las llaves subrogadas (Surrogate Keys) en las dimensiones.
-    - Integridad referencial exacta entre la tabla de hechos y las dimensiones.
+Purpose:
+    Validates the integrity, consistency, and accuracy of the Gold Layer.
+    Ensures the dimensional model is ready for BI tools by verifying:
+    - Uniqueness of Surrogate Keys in the dimensions.
+    - Exact referential integrity between the fact table and dimensions.
 ===============================================================================
 */</span>
 
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Auditando 'gold.dim_customers'</span>
+<span class="sql-comment">-- Auditing 'gold.dim_customers'</span>
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Verificación de Unicidad de la Llave Subrogada (Customer Key)</span>
-<span class="sql-comment">-- Objetivo: Prevenir productos cartesianos (duplicidad de datos) en los joins.</span>
-<span class="sql-comment">-- Esperado: 0 Resultados </span>
+<span class="sql-comment">-- Uniqueness Check for Surrogate Key (Customer Key)</span>
+<span class="sql-comment">-- Goal: Prevent Cartesian products (data duplication) in joins.</span>
+<span class="sql-comment">-- Expectation: 0 Results </span>
 <span class="sql-keyword">SELECT</span> 
     customer_key,
     <span class="sql-func">COUNT</span>(*) <span class="sql-keyword">AS</span> duplicate_count
@@ -1268,10 +1267,10 @@ Propósito:
 <span class="sql-keyword">HAVING</span> <span class="sql-func">COUNT</span>(*) > 1;
 
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Auditando 'gold.dim_products'</span>
+<span class="sql-comment">-- Auditing 'gold.dim_products'</span>
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Verificación de Unicidad de la Llave Subrogada (Product Key)</span>
-<span class="sql-comment">-- Esperado: 0 Resultados </span>
+<span class="sql-comment">-- Uniqueness Check for Surrogate Key (Product Key)</span>
+<span class="sql-comment">-- Expectation: 0 Results </span>
 <span class="sql-keyword">SELECT</span> 
     product_key,
     <span class="sql-func">COUNT</span>(*) <span class="sql-keyword">AS</span> duplicate_count
@@ -1280,12 +1279,12 @@ Propósito:
 <span class="sql-keyword">HAVING</span> <span class="sql-func">COUNT</span>(*) > 1;
 
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Auditando 'gold.fact_sales'</span>
+<span class="sql-comment">-- Auditing 'gold.fact_sales'</span>
 <span class="sql-comment">-- ====================================================================</span>
-<span class="sql-comment">-- Verificación de Integridad Referencial en el Modelo de Datos</span>
-<span class="sql-comment">-- Objetivo: Detectar registros huérfanos. Si una venta no tiene cliente o </span>
-<span class="sql-comment">-- producto asignado, aparecerá como "(En blanco)" en Power BI, dañando la analítica.</span>
-<span class="sql-comment">-- Esperado: 0 Resultados</span>
+<span class="sql-comment">-- Referential Integrity Check in the Data Model</span>
+<span class="sql-comment">-- Goal: Detect orphan records. If a sale has no assigned customer or </span>
+<span class="sql-comment">-- product, it will appear as "(Blank)" in Power BI, damaging analytics.</span>
+<span class="sql-comment">-- Expectation: 0 Results</span>
 <span class="sql-keyword">SELECT</span> * 
 <span class="sql-keyword">FROM</span> gold.fact_sales f
 <span class="sql-keyword">LEFT JOIN</span> gold.dim_customers c
@@ -1298,23 +1297,23 @@ Propósito:
                 </div>
             </section>
 
-            <!-- FASE 5: EDA -->
+            <!-- PHASE 5: EDA -->
             <section class="doc-section" data-aos="fade-up">
                 <div class="doc-title">
                     <i class="fas fa-chart-line"></i>
-                    <h2>Fase 4: Análisis Exploratorio (EDA)</h2>
+                    <h2>Phase 4: Exploratory Data Analysis (EDA)</h2>
                 </div>
                 <div class="doc-text">
-                    <p>Tras modelar el <em>Data Warehouse</em>, ejecutamos un proceso de Análisis Exploratorio (EDA) para interrogar la Capa Oro utilizando T-SQL. A través de agregaciones y segmentaciones cruzadas entre Dimensiones y Medidas, se descubrieron tendencias críticas para el negocio y <em>Insights</em> procesables.</p>
+                    <p>After modeling the <em>Data Warehouse</em>, we executed an Exploratory Data Analysis (EDA) process to interrogate the Gold Layer using T-SQL. Through cross-segmentations and aggregations between Dimensions and Measures, critical business trends and actionable <em>Insights</em> were discovered.</p>
                 </div>
 
                 <div class="code-window">
                     <div class="code-header">
                         <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-                        eda_analysis.sql (Ranking con Window Functions)
+                        eda_analysis.sql (Sales Ranking with Window Functions)
                     </div>
                     <div class="code-body"><pre>
-<span class="sql-comment">-- Reporte: Identificar los 5 productos más rentables del histórico</span>
+<span class="sql-comment">-- Report: Identify the top 5 most profitable products historically</span>
 <span class="sql-keyword">SELECT</span> * <span class="sql-keyword">FROM</span> (
     <span class="sql-keyword">SELECT</span> 
         p.product_name,
@@ -1329,15 +1328,15 @@ Propósito:
 </pre></div>
                 </div>
 
-                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">Insights Analíticos Resultantes:</h3>
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">Key Analytical Insights:</h3>
                 <ul class="qa-list">
                     <li class="qa-item">
                         <i class="fas fa-chart-pie" style="color: var(--primary);"></i>
-                        <div><strong>Análisis de Proporción y Magnitud</strong>Agrupación de Medidas (Ventas) por Dimensión (Categoría). La categoría "Bikes" generó un volumen de $28 Millones, representando el pilar central de rentabilidad del negocio.</div>
+                        <div><strong>Proportion and Magnitude Analysis</strong>Grouping of Measures (Sales) by Dimension (Category). The "Bikes" category generated a volume of $28 Million, representing the core profitability pillar of the business.</div>
                     </li>
                     <li class="qa-item">
                         <i class="fas fa-trophy" style="color: var(--primary);"></i>
-                        <div><strong>Ranking y Segmentación (Top Spenders)</strong>Identificación de los clientes más valiosos mediante el uso combinado de funciones de agrupamiento y subconsultas, entregando un listado procesable para el departamento de fidelización.</div>
+                        <div><strong>Ranking and Segmentation (Top Spenders)</strong>Identification of the most valuable customers using a combined approach of grouping functions and subqueries, delivering an actionable list for the loyalty department.</div>
                     </li>
                 </ul>
             </section>
@@ -1346,10 +1345,10 @@ Propósito:
     </main>
 
     <footer data-aos="fade-in">
-        <p>&copy; 2026 Jose Aldair Chevez. Todos los derechos reservados.</p>
+        <p>&copy; 2026 Jose Aldair Chevez. All rights reserved.</p>
     </footer>
 
-    <!-- MODAL PARA IMÁGENES (LIGHTBOX) -->
+    <!-- MODAL FOR IMAGES (LIGHTBOX) -->
     <div id="imageModal" class="img-modal">
         <span class="close-modal" onclick="closeModal()">&times;</span>
         <img class="img-modal-content" id="modalImage">
@@ -1364,7 +1363,7 @@ Propósito:
             document.getElementById('menuOverlay').classList.toggle('active');
         }
 
-        // Lógica del Lightbox Modal
+        // Lightbox Modal Logic
         function openModal(imgSrc, altText) {
             const modal = document.getElementById("imageModal");
             const modalImg = document.getElementById("modalImage");
@@ -1378,7 +1377,7 @@ Propósito:
             document.getElementById("imageModal").style.display = "none";
         }
 
-        // Cerrar modal al hacer clic fuera de la imagen o en la 'x'
+        // Close modal when clicking outside the image or on the 'x'
         document.getElementById("imageModal").addEventListener('click', function(e){
             if(e.target !== document.getElementById("modalImage")) {
                 closeModal();
@@ -1392,9 +1391,9 @@ Propósito:
             });
 
             const proyectos = [
-                { id: "ventas", titulo: "Resumen Financiero", descripcion: "Reporte interactivo de análisis histórico de Ventas (2015-2017). Modelado y limpieza ETL. Dashboard interactivo en Power BI.", keywords: "finanzas, ventas, power bi, dax, etl", link: "ventas.html" },
-                { id: "almacen", titulo: "Control de Almacén (BPMN)", descripcion: "Modelado de procesos logísticos End-to-End en Bizagi.", keywords: "logistica, almacen, procesos, bizagi", link: "proyecto-almacen.html" },
-                { id: "sql", titulo: "Data Warehouse Corporativo", descripcion: "Construcción de Data Warehouse con Arquitectura Medallón y EDA con SQL Server.", keywords: "sql, data warehouse, etl, eda, arquitectura", link: "proyecto-sql.html" }
+                { id: "ventas", titulo: "Financial Overview", descripcion: "Interactive historical Sales analysis report (2015-2017). ETL cleansing and Star Schema data modeling. Interactive dashboard in Power BI.", keywords: "finance, sales, power bi, dax, etl", link: "ventas-en.html" },
+                { id: "almacen", titulo: "Warehouse Control (BPMN)", descripcion: "End-to-End logistics process modeling in Bizagi.", keywords: "logistics, warehouse, processes, bizagi", link: "proyecto-almacen-en.html" },
+                { id: "sql", titulo: "Corporate Data Warehouse", descripcion: "End-to-End Corporate Data Warehouse construction. Medallion Architecture implementation, data governance, ETL and Exploratory Data Analysis (EDA) in SQL Server.", keywords: "sql, data warehouse, etl, eda, architecture, medallion, db, database", link: "proyecto-sql-en.html" }
             ];
 
             const searchInput = document.getElementById('searchInput');
@@ -1419,18 +1418,23 @@ Propósito:
 
                     if (filtrados.length > 0) {
                         filtrados.forEach(proyecto => {
+                            // Truncate description before highlighting to avoid breaking HTML tags
                             let descCorta = proyecto.descripcion.length > 100 ? proyecto.descripcion.substring(0, 100) + '...' : proyecto.descripcion;
+                            
                             const tituloResaltado = resaltarTexto(proyecto.titulo, query);
                             const descResaltada = resaltarTexto(descCorta, query);
 
                             const a = document.createElement('a');
                             a.href = proyecto.link;
                             a.className = 'search-item';
-                            a.innerHTML = `<div class="search-item-title">${tituloResaltado}</div><div class="search-item-desc">${descResaltada}</div>`;
+                            a.innerHTML = `
+                                <div class="search-item-title">${tituloResaltado}</div>
+                                <div class="search-item-desc">${descResaltada}</div>
+                            `;
                             searchResults.appendChild(a);
                         });
                     } else {
-                        searchResults.innerHTML = '<div class="no-results">No se encontraron coincidencias...</div>';
+                        searchResults.innerHTML = '<div class="no-results">No matches found...</div>';
                     }
                     searchResults.classList.add('active');
                 } else {
