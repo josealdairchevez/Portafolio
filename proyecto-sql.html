@@ -163,6 +163,15 @@
         .qa-item strong { color: white; display: block; margin-bottom: 4px; }
         
         footer { text-align: center; padding: 3rem; color: var(--text-gray); border-top: 1px solid var(--glass-border); }
+
+        /* --- ESTILOS PARA TARJETAS DE IMPACTO (KPI) --- */
+        .kpi-value { font-size: 2.8rem; font-weight: 900; color: white; text-shadow: 0 0 15px var(--primary); margin-bottom: 0.5rem; letter-spacing: 1px; }
+        .badge-phase { display: inline-block; padding: 0.35rem 1.2rem; border-radius: 50px; font-size: 0.8rem; font-weight: bold; margin-bottom: 1.2rem; letter-spacing: 1.5px; }
+        .badge-bronze { background: rgba(205, 127, 50, 0.15); border: 1px solid #cd7f32; color: #cd7f32; box-shadow: 0 0 10px rgba(205, 127, 50, 0.2); }
+        .badge-silver { background: rgba(192, 192, 192, 0.15); border: 1px solid #c0c0c0; color: #c0c0c0; box-shadow: 0 0 10px rgba(192, 192, 192, 0.2); }
+        .badge-gold { background: rgba(255, 189, 46, 0.15); border: 1px solid #ffbd2e; color: #ffbd2e; box-shadow: 0 0 10px rgba(255, 189, 46, 0.2); }
+        .impact-text { font-size: 0.9rem; color: #cbd5e1; line-height: 1.6; margin-top: 1.2rem; border-top: 1px solid var(--glass-border); padding-top: 1.2rem; text-align: left; }
+        .impact-text strong { color: white; display: block; margin-bottom: 5px; color: var(--primary); }
     </style>
 </head>
 <body>
@@ -1297,48 +1306,65 @@ Propósito:
                 </div>
             </section>
 
-            <!-- FASE 5: EDA -->
+            <!-- SECCIÓN CONCLUSIONES E IMPACTO -->
             <section class="doc-section" data-aos="fade-up">
                 <div class="doc-title">
-                    <i class="fas fa-chart-line"></i>
-                    <h2>Fase 4: Análisis Exploratorio (EDA)</h2>
+                    <i class="fas fa-rocket"></i>
+                    <h2>Impacto y Resultados del Proyecto</h2>
                 </div>
                 <div class="doc-text">
-                    <p>Tras modelar el <em>Data Warehouse</em>, ejecutamos un proceso de Análisis Exploratorio (EDA) para interrogar la Capa Oro utilizando T-SQL. A través de agregaciones y segmentaciones cruzadas entre Dimensiones y Medidas, se descubrieron tendencias críticas para el negocio y <em>Insights</em> procesables.</p>
+                    <p>El valor de un <em>Data Warehouse</em> no reside únicamente en la complejidad de su código, sino en cómo resuelve los problemas estratégicos del negocio. A continuación, se detallan los resultados tangibles y el retorno técnico tras la implementación de la Arquitectura Medallón:</p>
                 </div>
 
-                <div class="code-window">
-                    <div class="code-header">
-                        <div class="code-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-                        eda_analysis.sql (Ranking con Window Functions)
+                <div class="arch-grid">
+                    <!-- Tarjeta 1: Bronce -->
+                    <div class="arch-card-premium" style="cursor: default;">
+                        <div class="badge-phase badge-bronze">FASE 1: BRONCE</div>
+                        <div class="kpi-value">100%</div>
+                        <h4 style="color: white;">Automatizado</h4>
+                        <p>Ingesta masiva <em>As-Is</em> de archivos planos mediante <code>BULK INSERT</code> y scripts idempotentes.</p>
+                        <div class="impact-text">
+                            <strong><i class="fas fa-bullseye"></i> Impacto de Negocio:</strong>
+                            Eliminación de intervención manual y cuellos de botella. Capacidad para procesar históricos pesados en segundos sin fallos por tipos de datos anómalos.
+                        </div>
                     </div>
-                    <div class="code-body"><pre>
-<span class="sql-comment">-- Reporte: Identificar los 5 productos más rentables del histórico</span>
-<span class="sql-keyword">SELECT</span> * <span class="sql-keyword">FROM</span> (
-    <span class="sql-keyword">SELECT</span> 
-        p.product_name,
-        <span class="sql-func">SUM</span>(f.sales_amount) <span class="sql-keyword">AS</span> total_revenue,
-        <span class="sql-func">RANK</span>() <span class="sql-keyword">OVER</span> (<span class="sql-keyword">ORDER BY</span> <span class="sql-func">SUM</span>(f.sales_amount) <span class="sql-keyword">DESC</span>) <span class="sql-keyword">AS</span> sales_rank
-    <span class="sql-keyword">FROM</span> gold.fact_sales f
-    <span class="sql-keyword">LEFT JOIN</span> gold.dim_products p 
-        <span class="sql-keyword">ON</span> f.product_key = p.product_key
-    <span class="sql-keyword">GROUP BY</span> p.product_name
-) ranking_query
-<span class="sql-keyword">WHERE</span> sales_rank <= 5;
-</pre></div>
-                </div>
 
-                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">Insights Analíticos Resultantes:</h3>
-                <ul class="qa-list">
-                    <li class="qa-item">
-                        <i class="fas fa-chart-pie" style="color: var(--primary);"></i>
-                        <div><strong>Análisis de Proporción y Magnitud</strong>Agrupación de Medidas (Ventas) por Dimensión (Categoría). La categoría "Bikes" generó un volumen de $28 Millones, representando el pilar central de rentabilidad del negocio.</div>
-                    </li>
-                    <li class="qa-item">
-                        <i class="fas fa-trophy" style="color: var(--primary);"></i>
-                        <div><strong>Ranking y Segmentación (Top Spenders)</strong>Identificación de los clientes más valiosos mediante el uso combinado de funciones de agrupamiento y subconsultas, entregando un listado procesable para el departamento de fidelización.</div>
-                    </li>
-                </ul>
+                    <!-- Tarjeta 2: Plata QA -->
+                    <div class="arch-card-premium" style="cursor: default;">
+                        <div class="badge-phase badge-silver">FASE 2: PLATA</div>
+                        <div class="kpi-value">0</div>
+                        <h4 style="color: white;">Duplicados Activos</h4>
+                        <p>Limpieza orquestada con <em>Stored Procedures</em>, normalización <code>TRIM()</code> y auditoría inyectada.</p>
+                        <div class="impact-text">
+                            <strong><i class="fas fa-shield-alt"></i> Impacto de Negocio:</strong>
+                            Mitigación total del riesgo de proyecciones basadas en datos corruptos. Integridad matemática y referencial garantizada desde la base.
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 3: Plata SCD -->
+                    <div class="arch-card-premium" style="cursor: default;">
+                        <div class="badge-phase badge-silver">FASE 2: PLATA</div>
+                        <div class="kpi-value">SCD 2</div>
+                        <h4 style="color: white;">Trazabilidad Histórica</h4>
+                        <p>Implementación de Dimensiones Lentamente Cambiantes usando <code>LEAD()</code> y <code>ROW_NUMBER()</code>.</p>
+                        <div class="impact-text">
+                            <strong><i class="fas fa-history"></i> Impacto de Negocio:</strong>
+                            Auditoría precisa de la evolución de clientes y catálogo de productos en el tiempo sin sobrescribir el pasado (vital para cierres financieros).
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 4: Oro -->
+                    <div class="arch-card-premium" style="cursor: default;">
+                        <div class="badge-phase badge-gold">FASE 3: ORO</div>
+                        <div class="kpi-value">STAR</div>
+                        <h4 style="color: white;">Esquema Dimensional</h4>
+                        <p>Diseño basado en Llaves Subrogadas y MDM (priorizando fuentes consolidadas mediante <code>COALESCE</code>).</p>
+                        <div class="impact-text">
+                            <strong><i class="fas fa-bolt"></i> Impacto de Negocio:</strong>
+                            Capa semántica desacoplada lista para Power BI. Consultas analíticas ultrarrápidas y blindadas contra productos cartesianos (inflación de ventas).
+                        </div>
+                    </div>
+                </div>
             </section>
 
         </div>
