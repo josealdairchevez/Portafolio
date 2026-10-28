@@ -192,7 +192,7 @@
         /* --- SKILLS RADAR --- */
         .skills-section { max-width: 800px; margin: 0 auto 4rem; padding: 2rem; background: rgba(0, 10, 30, 0.5); border-radius: 20px; border: 1px solid var(--glass-border); backdrop-filter: blur(16px); text-align: center; }
         .skills-section h2 { margin-bottom: 1.5rem; color: var(--primary); font-size: 1.8rem; }
-        .canvas-container { position: relative; height: 350px; width: 100%; display: flex; justify-content: center; }
+        .canvas-container { position: relative; height: 380px; width: 100%; display: flex; justify-content: center; }
 
         /* --- BARRA DE FILTROS DE CATEGORÍAS (PILLS) --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 2rem; scroll-margin-top: 80px; }
@@ -517,7 +517,7 @@
                 "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } }
             });
 
-            // Chart.js Radar (Nivel Senior)
+            // Chart.js Radar (Escala 0-100 Real en Chart.js v4 + Nivel Senior)
             const ctx = document.getElementById('skillsRadar').getContext('2d');
             new Chart(ctx, {
                 type: 'radar',
@@ -525,26 +525,56 @@
                     labels: ['Power BI', 'SQL Server', 'Bizagi (BPMN)', 'Excel Avanzado', 'Python', 'Primavera P6'],
                     datasets: [{
                         label: 'Dominio Técnico',
-                        data: [100, 100, 100, 90, 85, 85],
-                        backgroundColor: 'rgba(0, 212, 255, 0.2)',
+                        data: [100, 100, 100, 95, 88, 88],
+                        backgroundColor: 'rgba(0, 212, 255, 0.25)',
                         borderColor: '#00d4ff',
-                        pointBackgroundColor: '#005f99',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
+                        borderWidth: 2.5,
+                        pointBackgroundColor: '#00d4ff',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2,
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        pointHoverBackgroundColor: '#ffffff',
                         pointHoverBorderColor: '#00d4ff'
                     }]
                 },
                 options: {
-                    responsive: true, maintainAspectRatio: false,
+                    responsive: true,
+                    maintainAspectRatio: false,
                     scales: {
                         r: {
-                            angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
-                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                            pointLabels: { color: '#cbd5e1', font: { size: 13, family: 'Segoe UI' } },
-                            ticks: { display: false, max: 100, min: 0 }
+                            min: 0,
+                            max: 100,
+                            beginAtZero: true,
+                            angleLines: { color: 'rgba(255, 255, 255, 0.15)' },
+                            grid: { color: 'rgba(255, 255, 255, 0.12)' },
+                            pointLabels: {
+                                color: '#f8fafc',
+                                font: { size: 13.5, weight: '600', family: 'Segoe UI' }
+                            },
+                            ticks: {
+                                display: false,
+                                stepSize: 20
+                            }
                         }
                     },
-                    plugins: { legend: { display: false } }
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 10, 30, 0.95)',
+                            titleColor: '#00d4ff',
+                            bodyColor: '#f8fafc',
+                            borderColor: 'rgba(0, 212, 255, 0.4)',
+                            borderWidth: 1,
+                            padding: 10,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Nivel de Dominio: ' + context.parsed.r + '%';
+                                }
+                            }
+                        }
+                    }
                 }
             });
 
